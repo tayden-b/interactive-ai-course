@@ -1,5 +1,6 @@
 import { Figure } from "@/components/book/reading-frame"
 import { Code, Transcript, Compare, Table, Steps, Note, Flow, Numbers, KV, Mark, Stack } from "@/components/figures/kit"
+import { Pictogram, modulePictogram } from "@/components/figures/pictograms"
 
 export default function KitPage() {
   return (
@@ -8,6 +9,17 @@ export default function KitPage() {
         <p className="font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Parts bin</p>
         <h1 className="mt-4 font-display text-6xl">Kit</h1>
         <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">The typeset blocks for figure slots that are not drawings. One accent, bold where it helps, structure everywhere.</p>
+
+        <Figure caption="PICTOGRAMS — one per module, from IBM Carbon (Apache-2.0), in the book's blue.">
+          <div className="grid grid-cols-4 gap-6 md:grid-cols-8">
+            {Object.entries(modulePictogram).map(([m, name]) => (
+              <div key={m} className="text-center">
+                <Pictogram name={name} size={56} style={{ color: "var(--figure-accent)", margin: "0 auto" }} />
+                <p className="mt-2 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">{String(m).padStart(2, "0")}</p>
+              </div>
+            ))}
+          </div>
+        </Figure>
 
         <Figure caption="CODE — a request body, with the line that matters marked.">
           <Code lang="json" title="request" mark={[5]}>{`
