@@ -69,6 +69,39 @@
       "one_idea": "A system is several copies of the same loop, each with its own window, wired in a line.",
       "caption": "FIGURE 7 — The Desk. Every part is a loop you have already built.",
       "accent": "the three research loops running at once"
+    },
+    {
+      "n": 8,
+      "slug": "distribution",
+      "name": "A ranked list",
+      "modules": "M1 s3",
+      "target": "lesson-one.tsx · s3 (FIGURE 3.1)",
+      "one_idea": "The output is a whole ranked distribution, and even the winning token is a sliver of it.",
+      "caption": "FIGURE 3.1 — Not an answer. A list of possible next tokens, with odds.",
+      "accent": "the top bar, filled solid",
+      "family": "quantity"
+    },
+    {
+      "n": 9,
+      "slug": "compounding",
+      "name": "Ninety percent, ten times",
+      "modules": "M5 s5",
+      "target": "module-five.tsx · s5 (FIGURE 5.5.1)",
+      "one_idea": "Per-step reliability multiplies: 90% a step leaves a third of the task standing by step ten.",
+      "caption": "FIGURE 5.5.1 — Small per-step errors, large end-to-end failure.",
+      "accent": "the 90% survivor bar, filled solid",
+      "family": "state"
+    },
+    {
+      "n": 10,
+      "slug": "trace",
+      "name": "One run, read back",
+      "modules": "M8 s6",
+      "target": "module-eight.tsx · s6 (FIGURE 8.6.1)",
+      "one_idea": "Nesting shows who called whom, a shared time axis shows what ran at once, one bar shows where the time went.",
+      "caption": "FIGURE 8.6.1 — One run, fully visible. This is the page people will stare at.",
+      "accent": "the straggler span, filled solid",
+      "family": "trace"
     }
   ]
 }

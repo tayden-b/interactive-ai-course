@@ -16,23 +16,29 @@ PLACEMENTS = [
     ("module-three.tsx", "Fig04", 'title: "The loop"'),
     ("module-four.tsx",  "Fig05", 'title: "Long-term memory: notes and files"'),
     ("module-six.tsx",   "Fig06", 'title: "Guardrails"'),
+    ("module-five.tsx",  "Fig09", 'title: "Compounding errors"'),
+    ("module-eight.tsx", "Fig10", 'title: "Observability"'),
     ("module-eight.tsx", "Fig07", 'title: "What you’re building"'),
 ]
 
-# Matches the <Figure ...><pre ...>{X.figure}</pre></Figure> shape in any module variant:
-# the caption/library props differ, and module-eight binds the lesson as `item` not `lesson`.
+# Matches <Figure caption={X.caption} ...><pre ...>{X.figure}</pre></Figure> in ANY module variant.
+# The props between caption and > differ per module: absent, library={X.library}, or a ternary.
 FIG_RE = re.compile(
-    r'<Figure caption=\{(?P<v>\w+)\.caption\}(?P<lib> library=\{\w+\.library\})?>'
+    r'<Figure caption=\{(?P<v>\w+)\.caption\}(?P<rest>[^>]*)>'
     r'(?P<pre><pre className="[^"]*">\{\w+\.figure\}</pre>)'
     r'</Figure>'
 )
+LIB_RE = re.compile(r'\s*library=\{(?P<expr>[^}]*)\}')
 
 def use_node(src):
-    """Render `node` in preference to the <pre>, and hide the LIBRARY note when a node exists."""
+    """Render `node` in preference to the <pre>, and suppress the LIBRARY build-note when a
+    node exists — whatever shape the library prop happens to take in this module."""
     def sub(m):
-        v, lib, pre = m.group("v"), m.group("lib"), m.group("pre")
-        libprop = f' library={{{v}.node ? "" : {v}.library}}' if lib else ""
-        return f'<Figure caption={{{v}.caption}}{libprop}>{{{v}.node ?? {pre}}}</Figure>'
+        v, rest, pre = m.group("v"), m.group("rest"), m.group("pre")
+        lm = LIB_RE.search(rest)
+        if lm:
+            rest = rest[:lm.start()] + f' library={{{v}.node ? undefined : ({lm.group("expr")})}}' + rest[lm.end():]
+        return f'<Figure caption={{{v}.caption}}{rest}>{{{v}.node ?? {pre}}}</Figure>'
     return FIG_RE.sub(sub, src, count=1)
 
 def add_import(src, comps):

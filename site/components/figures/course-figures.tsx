@@ -426,6 +426,142 @@ const SVG_07 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fi
 /** Figure 7 — Many loops — the Desk (M7 s3–s4, M8 s1–s3) */
 export function Fig07() { return <Reveal svg={SVG_07} label={"A system is several copies of the same loop, each with its own window, wired in a line."} /> }
 
+const SVG_08 = `<svg viewBox="0 0 960 360" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f08-ink8" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f08-model">
+    <rect x="64" y="90" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="164" y="156" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="f08-emit">
+    <path d="M264 150 H330" stroke="currentColor" stroke-width="2" marker-end="url(#f08-ink8)"/>
+  </g>
+
+  <g id="f08-bars">
+    <rect x="416" y="90"  width="400" height="16" rx="3" fill="currentColor"/>
+    <rect x="416" y="118" width="210" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="416" y="146" width="138" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="416" y="174" width="84"  height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+  </g>
+
+  <g id="f08-labels">
+    <text x="400" y="103" fill="currentColor" font-size="13" text-anchor="end">sleep</text>
+    <text x="400" y="131" fill="var(--muted-foreground)" font-size="13" text-anchor="end">cook</text>
+    <text x="400" y="159" fill="var(--muted-foreground)" font-size="13" text-anchor="end">relax</text>
+    <text x="400" y="187" fill="var(--muted-foreground)" font-size="13" text-anchor="end">read</text>
+    <text x="828" y="103" fill="var(--muted-foreground)" font-size="13">9%</text>
+  </g>
+
+  <g id="f08-tail">
+    <rect x="416" y="204" width="62" height="3" rx="1.5" fill="var(--muted-foreground)" opacity=".26"/>
+    <rect x="416" y="215" width="44" height="3" rx="1.5" fill="var(--muted-foreground)" opacity=".23"/>
+    <rect x="416" y="226" width="31" height="3" rx="1.5" fill="var(--muted-foreground)" opacity=".2"/>
+    <rect x="416" y="237" width="21" height="3" rx="1.5" fill="var(--muted-foreground)" opacity=".17"/>
+    <rect x="416" y="248" width="14" height="3" rx="1.5" fill="var(--muted-foreground)" opacity=".14"/>
+    <rect x="416" y="259" width="9"  height="3" rx="1.5" fill="var(--muted-foreground)" opacity=".11"/>
+    <text x="416" y="292" fill="var(--muted-foreground)" font-size="13">thousands more</text>
+  </g>
+</svg>`
+/** Figure 8 — A ranked list (M1 s3) */
+export function Fig08() { return <Reveal svg={SVG_08} label={"The output is a whole ranked distribution, and even the winning token is a sliver of it."} /> }
+
+const SVG_09 = `<svg viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g id="f09-header"><text x="220" y="82" fill="var(--muted-foreground)" font-size="13" text-anchor="end">per step</text></g>
+  <g id="f09-rail1">
+    <path d="M240.0 110 H840.0" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M240 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M300 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M360 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M420 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M480 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M540 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M600 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M660 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M720 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M780 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M840 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <rect x="240" y="102" width="543" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <text x="220" y="115" fill="var(--muted-foreground)" font-size="15" text-anchor="end">99%</text>
+  </g>
+  <g id="f09-rail2">
+    <path d="M240.0 190 H840.0" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M240 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M300 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M360 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M420 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M480 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M540 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M600 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M660 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M720 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M780 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M840 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <rect x="240" y="182" width="359" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <text x="220" y="195" fill="var(--muted-foreground)" font-size="15" text-anchor="end">95%</text>
+  </g>
+  <g id="f09-rail3">
+    <path d="M240.0 270 H840.0" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M240 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M300 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M360 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M420 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M480 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M540 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M600 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M660 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M720 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M780 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M840 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <rect x="240" y="262" width="209" height="16" rx="3" fill="currentColor"/>
+    <text x="220" y="275" fill="currentColor" font-size="15" text-anchor="end">90%</text>
+    <text x="467" y="275" fill="currentColor" font-size="15">35% still right</text>
+  </g>
+  <g id="f09-axis"><text x="540" y="330" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">ten steps</text></g>
+</svg>`
+/** Figure 9 — Ninety percent, ten times (M5 s5) */
+export function Fig09() { return <Reveal svg={SVG_09} label={"Per-step reliability multiplies: 90% a step leaves a third of the task standing by step ten."} /> }
+
+const SVG_10 = `<svg viewBox="0 0 960 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g id="f10-row1">
+    <rect x="300" y="84" width="84" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
+    <text x="170" y="97" fill="currentColor" font-size="13">plan</text>
+  </g>
+  <g id="f10-row2">
+    <rect x="392" y="118" width="332" height="16" rx="3" fill="var(--muted-foreground)" opacity=".28"/>
+    <text x="170" y="131" fill="currentColor" font-size="13">research</text>
+  </g>
+  <g id="f10-row3">
+    <rect x="400" y="152" width="166" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
+    <text x="192" y="165" fill="var(--muted-foreground)" font-size="13">search</text>
+  </g>
+  <g id="f10-row4">
+    <rect x="400" y="186" width="212" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
+  </g>
+  <g id="f10-row5">
+    <rect x="400" y="220" width="318" height="16" rx="3" fill="currentColor"/>
+    <text x="734" y="233" fill="currentColor" font-size="13">slowest</text>
+  </g>
+  <g id="f10-row6">
+    <rect x="732" y="254" width="62" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
+    <text x="170" y="267" fill="currentColor" font-size="13">check</text>
+  </g>
+  <g id="f10-row7">
+    <rect x="802" y="288" width="76" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
+    <text x="170" y="301" fill="currentColor" font-size="13">write</text>
+  </g>
+  <g id="f10-axis">
+    <path d="M300 322 H880" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <text x="590" y="348" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">time</text>
+  </g>
+</svg>`
+/** Figure 10 — One run, read back (M8 s6) */
+export function Fig10() { return <Reveal svg={SVG_10} label={"Nesting shows who called whom, a shared time axis shows what ran at once, one bar shows where the time went."} /> }
+
 export const figureCaptions: Record<string, string> = {
   "01": "FIGURE 4.1 — Pick, append, repeat.",
   "02": "FIGURE 2 — The model reads all of it, every call, and keeps none of it.",
@@ -434,4 +570,7 @@ export const figureCaptions: Record<string, string> = {
   "05": "FIGURE 4.3.1 — Memory that survives the window: a file.",
   "06": "FIGURE 6 — Three gates your code owns, around a loop it doesn't.",
   "07": "FIGURE 7 — The Desk. Every part is a loop you have already built.",
+  "08": "FIGURE 3.1 — Not an answer. A list of possible next tokens, with odds.",
+  "09": "FIGURE 5.5.1 — Small per-step errors, large end-to-end failure.",
+  "10": "FIGURE 8.6.1 — One run, fully visible. This is the page people will stare at.",
 }

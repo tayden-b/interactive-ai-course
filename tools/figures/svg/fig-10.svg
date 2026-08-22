@@ -1,0 +1,33 @@
+<svg viewBox="0 0 960 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g id="row1">
+    <rect x="300" y="84" width="84" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
+    <text x="170" y="97" fill="currentColor" font-size="13">plan</text>
+  </g>
+  <g id="row2">
+    <rect x="392" y="118" width="332" height="16" rx="3" fill="var(--muted-foreground)" opacity=".28"/>
+    <text x="170" y="131" fill="currentColor" font-size="13">research</text>
+  </g>
+  <g id="row3">
+    <rect x="400" y="152" width="166" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
+    <text x="192" y="165" fill="var(--muted-foreground)" font-size="13">search</text>
+  </g>
+  <g id="row4">
+    <rect x="400" y="186" width="212" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
+  </g>
+  <g id="row5">
+    <rect x="400" y="220" width="318" height="16" rx="3" fill="currentColor"/>
+    <text x="734" y="233" fill="currentColor" font-size="13">slowest</text>
+  </g>
+  <g id="row6">
+    <rect x="732" y="254" width="62" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
+    <text x="170" y="267" fill="currentColor" font-size="13">check</text>
+  </g>
+  <g id="row7">
+    <rect x="802" y="288" width="76" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
+    <text x="170" y="301" fill="currentColor" font-size="13">write</text>
+  </g>
+  <g id="axis">
+    <path d="M300 322 H880" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <text x="590" y="348" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">time</text>
+  </g>
+</svg>

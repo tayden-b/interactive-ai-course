@@ -1,0 +1,53 @@
+<svg viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g id="header"><text x="220" y="82" fill="var(--muted-foreground)" font-size="13" text-anchor="end">per step</text></g>
+  <g id="rail1">
+    <path d="M240.0 110 H840.0" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M240 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M300 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M360 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M420 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M480 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M540 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M600 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M660 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M720 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M780 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M840 104 V116" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <rect x="240" y="102" width="543" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <text x="220" y="115" fill="var(--muted-foreground)" font-size="15" text-anchor="end">99%</text>
+  </g>
+  <g id="rail2">
+    <path d="M240.0 190 H840.0" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M240 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M300 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M360 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M420 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M480 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M540 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M600 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M660 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M720 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M780 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M840 184 V196" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <rect x="240" y="182" width="359" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <text x="220" y="195" fill="var(--muted-foreground)" font-size="15" text-anchor="end">95%</text>
+  </g>
+  <g id="rail3">
+    <path d="M240.0 270 H840.0" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M240 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M300 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M360 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M420 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M480 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M540 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M600 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M660 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M720 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M780 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <path d="M840 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
+    <rect x="240" y="262" width="209" height="16" rx="3" fill="currentColor"/>
+    <text x="220" y="275" fill="currentColor" font-size="15" text-anchor="end">90%</text>
+    <text x="467" y="275" fill="currentColor" font-size="15">35% still right</text>
+  </g>
+  <g id="axis"><text x="540" y="330" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">ten steps</text></g>
+</svg>
