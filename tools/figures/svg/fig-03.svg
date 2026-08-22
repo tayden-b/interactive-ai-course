@@ -1,0 +1,36 @@
+<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="ink3" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="mut3" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="boundary">
+    <rect x="104" y="104" width="336" height="256" rx="14" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="126" y="132" fill="var(--muted-foreground)" font-size="13" text-anchor="start">your code</text>
+  </g>
+
+  <g id="tool">
+    <rect x="240" y="232" width="64" height="64" rx="8" fill="currentColor"/>
+    <polyline points="278,244 264,264 280,264 266,284" fill="none" stroke="var(--background)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="272" y="320" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
+  </g>
+
+  <g id="model">
+    <rect x="640" y="96" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="740" y="162" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="toolcall">
+    <path d="M640 156 H272 V232" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink3)"/>
+    <text x="540" y="143" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool call</text>
+  </g>
+
+  <g id="result">
+    <path d="M304 264 H740 V216" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut3)"/>
+    <text x="540" y="288" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">result</text>
+  </g>
+</svg>

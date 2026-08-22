@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 # sync.sh — the v0 <-> repo bridge.
 #
-#   sync.sh status              show chat, latest version, plan and remaining message budget
-#   sync.sh pull                download the current v0 version into site/  (no message cost)
-#   sync.sh push <file>...      write files into the v0 version, locked    (no message cost)
-#   sync.sh prompt "text"       send an actual generation message          (COSTS 1 of 7/day)
+#   sync.sh status              chat, latest version, and remaining message budget
+#   sync.sh pull                download the current v0 version into site/   (no message cost)
+#   sync.sh diff                show what differs between v0's project and site/
+#   sync.sh prompt "text"       send a real generation message to v0         (COSTS 1 of 7/day)
 #
-# Paths for push are repo-relative, e.g. site/components/figures/course-figures.tsx
+# DIRECTION OF TRUTH — verified 2026-08-22:
+#   v0 -> repo   works (download endpoint, exact).
+#   repo -> v0   DOES NOT WORK. PATCH /versions/{id} records file entries on the version object
+#                but the exported/built project is unaffected, so code written that way never
+#                reaches the preview or a deployment. Do not rely on it.
+#   Therefore this repo is the source of truth and deploys go from here (Vercel/GitHub).
+#   v0 is a design sandbox: prompt it for layout/UI ideas, then `pull` and keep what is good.
+#   `pull` OVERWRITES site/ — commit your work first, then reconcile in git.
+#
 set -euo pipefail
 
 CHAT_ID="015C3OVvAZg"
@@ -45,28 +53,14 @@ pull)
   echo "site/ now matches v0 version $V"
   ;;
 
-push)
-  shift
-  [ $# -gt 0 ] || { echo "usage: sync.sh push <file>..." >&2; exit 1; }
+diff)
   V="$(latest_version)"
-  PAYLOAD="$(python3 - "$REPO" "$@" <<'PY'
-import json,sys,os
-repo=sys.argv[1]; files=[]
-for p in sys.argv[2:]:
-    ap = p if os.path.isabs(p) else os.path.join(repo,p)
-    rel = os.path.relpath(ap, os.path.join(repo,"site"))
-    if rel.startswith(".."):
-        sys.exit(f"refusing: {p} is outside site/")
-    files.append({"name": rel, "content": open(ap).read(), "locked": True})
-    print(f"  {rel}  ({os.path.getsize(ap)} bytes)", file=sys.stderr)
-json.dump({"files":files}, sys.stdout)
-PY
-)"
-  echo "pushing to version $V ..."
-  curl -sf -X PATCH "${AUTH[@]}" -H "Content-Type: application/json" \
-    -d "$PAYLOAD" "$API/chats/$CHAT_ID/versions/$V" \
-    | python3 -c 'import sys,json;v=json.load(sys.stdin);print("ok — version",v.get("id"),"now has",len(v.get("files",[])),"tracked files")'
-  echo "files are locked: v0 generation will not overwrite them."
+  TMP="$(mktemp -d)"
+  curl -sf -L "${AUTH[@]}" "$API/chats/$CHAT_ID/versions/$V/download?includeDefaultFiles=true" -o "$TMP/p.zip"
+  ( cd "$TMP" && unzip -q p.zip -d proj )
+  echo "v0 version $V  vs  site/"
+  diff -rq --exclude node_modules --exclude .next "$TMP/proj" "$REPO/site" || true
+  rm -rf "$TMP"
   ;;
 
 prompt)

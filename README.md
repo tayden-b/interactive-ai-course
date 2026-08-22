@@ -12,19 +12,23 @@ opens with their own AI coding agent, and the site renders traces from their own
 
 ## The v0 ↔ repo contract
 
-The site lives in a v0 chat AND in this repo. They are kept in sync deliberately, not accidentally:
+The site started in a v0 chat and still lives there, but **this repo is the source of truth** and
+deployments go from here. The relationship is deliberately one-way.
 
-| Work | Where it happens | Why |
-|---|---|---|
-| Page/layout/UI generation, design exploration | **v0** | It's genuinely good at this, and it's 7 prompts/day. |
-| Figures, content, trace wiring, anything iterative | **this repo** | Unlimited iteration and a real visual feedback loop. |
+| | |
+|---|---|
+| **v0 → repo** | Works exactly. `tools/figures/sync.sh pull` downloads the current v0 version over `site/`. |
+| **repo → v0** | **Does not work.** Verified 2026-08-22: `PATCH /chats/{id}/versions/{id}` records file entries on the version object, but the exported and built project is unaffected — code written that way never reaches the preview or a deployment. Don't rely on it. |
 
-- **Pull from v0:** `tools/figures/sync.sh pull` — downloads the current v0 version and overwrites `site/`.
-- **Push to v0:** `tools/figures/sync.sh push <file>...` — writes files into the v0 version via
-  `PATCH /chats/{id}/versions/{id}` with `locked: true`, so v0's model will not overwrite them.
-  This costs **no** message budget (it is not a generation).
+So: **v0 is a design sandbox.** Prompt it for layout and UI ideas (it's good at that, and it's capped
+at 7 messages/day), then `pull` and keep what's worth keeping. Figures, content, and anything that
+needs real iteration are built here, where the loop is free and you can actually look at the result.
 
-Always `pull` before starting repo work if anything was prompted in v0 since the last sync.
+```bash
+tools/figures/sync.sh status   # chat, version, remaining message budget
+tools/figures/sync.sh diff     # what differs between v0's project and site/
+tools/figures/sync.sh pull     # OVERWRITES site/ — commit first, reconcile in git
+```
 
 ## Figures
 
