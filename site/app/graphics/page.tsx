@@ -2,7 +2,7 @@ import { AnimatedSphere } from "@/components/landing/animated-sphere"
 import { AnimatedWave } from "@/components/landing/animated-wave"
 import { AnimatedTetrahedron } from "@/components/landing/animated-tetrahedron"
 import { StackFigure } from "@/components/book/lesson-one"
-import { Fig01, Fig02, Fig03, Fig04, Fig05, Fig06, Fig07, Fig08, Fig09, Fig10, Fig11, Fig12, Fig13, Fig14, Fig15, Fig16, Fig17, Fig18, Fig19, Fig20 } from "@/components/figures/course-figures"
+import { Fig01, Fig02, Fig03, Fig04, Fig05, Fig06, Fig07, Fig08, Fig09, Fig10, Fig11, Fig12, Fig13, Fig14 } from "@/components/figures/course-figures"
 
 const figures = [
   ["01", "Text in, text out", "Module 1 · Section 4", Fig01],
@@ -19,12 +19,6 @@ const figures = [
   ["12", "Nearest in meaning", "Module 4 · Section 4", Fig12],
   ["13", "Folding the transcript", "Module 4 · Section 2", Fig13],
   ["14", "The round trip, in order", "Module 3 · Section 3", Fig14],
-  ["15", "What sits inside what", "Orientation", Fig15],
-  ["16", "The four layers", "Orientation · Module 2 · Section 1", Fig16],
-  ["17", "Workflow or agent", "Module 7 · Section 1", Fig17],
-  ["18", "Five shapes", "Module 7 · Section 2", Fig18],
-  ["19", "Who is working when", "Module 7 · Section 3", Fig19],
-  ["20", "The harness", "Module 8 · Section 4", Fig20],
 ] as const
 
 const parts = [
@@ -41,9 +35,9 @@ export default function GraphicsArchive() {
         <p className="font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Parts bin</p>
         <h1 className="mt-4 font-display text-6xl">Graphics archive</h1>
         <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">
-          Twenty figures carry the book. They share one geometry — the model is always the same
+          Fourteen figures carry the book. They share one geometry — the model is always the same
           box, the window always a tray, the loop always a ring — and each one puts exactly one shape
-          in solid ink: the single thing it is teaching. Figures 8–10 open three new families — quantity, state and trace — for claims that are not architectural. Figures 15–20 are the orientation and system-shape set: what a model is inside the wider field, which layer you work in, and how loops get wired together.
+          in solid ink: the single thing it is teaching. Figures 8–10 open three new families — quantity, state and trace — for claims that are not architectural.
         </p>
 
         <div className="mt-14 space-y-12">
