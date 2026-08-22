@@ -13,6 +13,14 @@ const STYLE = `
 .cfig[data-on="true"] > svg > g:nth-of-type(1){transition-delay:0ms}.cfig[data-on="true"] > svg > g:nth-of-type(2){transition-delay:70ms}.cfig[data-on="true"] > svg > g:nth-of-type(3){transition-delay:140ms}.cfig[data-on="true"] > svg > g:nth-of-type(4){transition-delay:210ms}.cfig[data-on="true"] > svg > g:nth-of-type(5){transition-delay:280ms}.cfig[data-on="true"] > svg > g:nth-of-type(6){transition-delay:350ms}.cfig[data-on="true"] > svg > g:nth-of-type(7){transition-delay:420ms}.cfig[data-on="true"] > svg > g:nth-of-type(8){transition-delay:490ms}.cfig[data-on="true"] > svg > g:nth-of-type(9){transition-delay:560ms}.cfig[data-on="true"] > svg > g:nth-of-type(10){transition-delay:630ms}
 @media (prefers-reduced-motion: reduce){
   .cfig > svg > g { opacity:1; transform:none; transition:none; }
+}
+/* On a phone a 960-unit drawing lands at ~343px, which drops 13/15u labels below
+   readability. font-size on SVG text is in USER UNITS, so bumping it here scales
+   the type up relative to the drawing instead of shrinking with it. */
+@media (max-width: 640px){
+  .cfig > svg text[font-size="13"] { font-size: 19px; }
+  .cfig > svg text[font-size="14"] { font-size: 20px; }
+  .cfig > svg text[font-size="15"] { font-size: 21px; }
 }`
 
 function Reveal({ svg, label }: { svg: string; label: string }) {

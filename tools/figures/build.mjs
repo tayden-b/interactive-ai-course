@@ -58,6 +58,14 @@ const STYLE = \`
 ${delays}
 @media (prefers-reduced-motion: reduce){
   .cfig > svg > g { opacity:1; transform:none; transition:none; }
+}
+/* On a phone a 960-unit drawing lands at ~343px, which drops 13/15u labels below
+   readability. font-size on SVG text is in USER UNITS, so bumping it here scales
+   the type up relative to the drawing instead of shrinking with it. */
+@media (max-width: 640px){
+  .cfig > svg text[font-size="13"] { font-size: 19px; }
+  .cfig > svg text[font-size="14"] { font-size: 20px; }
+  .cfig > svg text[font-size="15"] { font-size: 21px; }
 }\`
 
 function Reveal({ svg, label }: { svg: string; label: string }) {
