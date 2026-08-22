@@ -283,7 +283,7 @@ const SVG_05 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fi
     <text x="529" y="364" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">write</text>
   </g>
 </svg>`
-/** Figure 5 — Where memory lives (M4 s1, s3–s6) */
+/** Figure 5 — Where memory lives (M4 s3) */
 export function Fig05() { return <Reveal svg={SVG_05} label={"Memory is a place outside the window that you read in before the call and write back after."} /> }
 
 const SVG_06 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -431,7 +431,7 @@ export const figureCaptions: Record<string, string> = {
   "02": "FIGURE 2 — The model reads all of it, every call, and keeps none of it.",
   "03": "FIGURE 3 — The model asks. Your code is what actually runs.",
   "04": "FIGURE 4 — The loop, and the one way out of it.",
-  "05": "FIGURE 5 — The window is assembled, not accumulated.",
+  "05": "FIGURE 4.3.1 — Memory that survives the window: a file.",
   "06": "FIGURE 6 — Three gates your code owns, around a loop it doesn't.",
   "07": "FIGURE 7 — The Desk. Every part is a loop you have already built.",
 }

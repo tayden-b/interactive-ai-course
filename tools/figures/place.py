@@ -14,7 +14,7 @@ BOOK = pathlib.Path(__file__).resolve().parents[2] / "site" / "components" / "bo
 PLACEMENTS = [
     ("module-three.tsx", "Fig03", 'title: "A model can\'t do anything"'),
     ("module-three.tsx", "Fig04", 'title: "The loop"'),
-    ("module-four.tsx",  "Fig05", 'title: "Context engineering"'),
+    ("module-four.tsx",  "Fig05", 'title: "Long-term memory: notes and files"'),
     ("module-six.tsx",   "Fig06", 'title: "Guardrails"'),
     ("module-eight.tsx", "Fig07", 'title: "What you’re building"'),
 ]

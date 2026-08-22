@@ -44,10 +44,10 @@
       "n": 5,
       "slug": "memory",
       "name": "Where memory lives",
-      "modules": "M4 s1, s3–s6",
-      "target": "module-four.tsx · FIGURE 4.6.1",
+      "modules": "M4 s3",
+      "target": "module-four.tsx · s3 (FIGURE 4.3.1)",
       "one_idea": "Memory is a place outside the window that you read in before the call and write back after.",
-      "caption": "FIGURE 5 — The window is assembled, not accumulated.",
+      "caption": "FIGURE 4.3.1 — Memory that survives the window: a file.",
       "accent": "the arrow up from memory and the bars it becomes inside the window"
     },
     {
