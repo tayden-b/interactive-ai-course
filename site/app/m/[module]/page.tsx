@@ -1,0 +1,25 @@
+import { notFound } from "next/navigation"
+import Link from "next/link"
+import { ReadingFrame, Eyebrow } from "@/components/book/reading-frame"
+import { courseModules } from "@/components/book/course-data"
+import { ModuleTwoHome } from "@/components/book/module-two"
+import { ModuleThreeHome } from "@/components/book/module-three"
+import { ModuleFourHome } from "@/components/book/module-four"
+import { ModuleFiveHome } from "@/components/book/module-five"
+import { ModuleSixHome } from "@/components/book/module-six"
+import { ModuleSevenHome } from "@/components/book/module-seven"
+import { ModuleEightHome } from "@/components/book/module-eight"
+
+export function generateStaticParams() { return courseModules.map((_, i) => ({ module: String(i + 1) })) }
+export default async function ModulePage({ params }: { params: Promise<{ module: string }> }) {
+  const { module: raw } = await params; const index = Number(raw); const item = courseModules[index - 1]; if (!item) notFound()
+  if (index === 1) return <ReadingFrame module={index} lesson={0} title={item.title}><article><Eyebrow>Modules / 01</Eyebrow><h1 className="mt-5 font-display text-6xl">{item.title}</h1><p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">Everything else in this book sits on top of a language model, so this module is about the model itself: what it reads, what it produces, where it came from, and what it gets wrong. No installation, no code, no math beyond a percentage. About ninety minutes.</p><section className="mt-12 border-t border-border pt-6"><Eyebrow>What you'll be able to do</Eyebrow><ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground"><li>Explain what a language model does in one sentence.</li><li>Read a next-word probability chart and say what temperature does to it.</li><li>Say why a model can be confidently wrong, and what that means for everything built on it.</li></ul></section><section className="mt-12 border border-border p-5"><Eyebrow>Project</Eyebrow><h2 className="mt-3 font-display text-3xl">Your first call</h2><p className="mt-3 text-sm leading-6 text-muted-foreground">At the end of this module you set up your lab and make one real call to a model — and the same probability chart you read in Section 3 shows your prompt and your numbers.</p><Link className="mt-4 inline-block font-mono text-[10px] uppercase tracking-[.16em] underline underline-offset-4" href="/m/1/s/11">Open project →</Link></section><section className="mt-12"><Eyebrow>Sections</Eyebrow><div className="mt-4 border-t border-border">{item.sections.map((name, i) => <Link key={name} href={`/m/1/s/${i + 1}`} className="grid grid-cols-[40px_1fr_auto] items-center gap-3 border-b border-border py-4 text-sm hover:bg-secondary"><span className="font-mono text-[10px] text-muted-foreground">{String(i + 1).padStart(2, "0")}</span><span>{name}</span><span className="font-mono text-[10px] text-muted-foreground">~{[6,7,8,6,7,8,6,8,7,5,25][i]} min · Start</span></Link>)}</div></section></article></ReadingFrame>
+  if (index === 2) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleTwoHome /></ReadingFrame>
+  if (index === 3) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleThreeHome /></ReadingFrame>
+  if (index === 4) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleFourHome /></ReadingFrame>
+  if (index === 5) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleFiveHome /></ReadingFrame>
+  if (index === 6) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleSixHome /></ReadingFrame>
+  if (index === 7) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleSevenHome /></ReadingFrame>
+  if (index === 8) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleEightHome /></ReadingFrame>
+  return <ReadingFrame module={index} lesson={1} title={item.title}><article><Eyebrow>Modules / {String(index).padStart(2, "0")}</Eyebrow><h1 className="mt-5 font-display text-6xl">{item.title}</h1><p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">{item.description} Every section is open to read, with a figure slot and a practical project at the end.</p><section className="mt-12 border-t border-border pt-6"><Eyebrow>Project</Eyebrow><h2 className="mt-3 font-display text-3xl">{item.project}</h2></section><section className="mt-12"><Eyebrow>Sections</Eyebrow><div className="mt-4 border-t border-border">{item.sections.map((title, i) => <Link key={title} href={`/m/${index}/s/${i + 1}`} className="grid grid-cols-[40px_1fr_auto] items-center gap-3 border-b border-border py-4 text-sm hover:bg-secondary"><span className="font-mono text-[10px] text-muted-foreground">{String(i + 1).padStart(2, "0")}</span><span>{title}</span><span className="font-mono text-[10px] text-muted-foreground">~{i === item.sections.length - 1 ? "40" : "7"} min · Open</span></Link>)}</div></section></article></ReadingFrame>
+}
