@@ -6,6 +6,7 @@ import { courseModules } from "@/components/book/course-data"
 import { Numbers } from "@/components/figures/kit"
 import { AnimatedWave } from "@/components/landing/animated-wave"
 import { Fig01, Fig03, Fig06, Fig07, Fig09, Fig13 } from "@/components/figures/course-figures"
+import { Pictogram, modulePictogram } from "@/components/figures/pictograms"
 
 const ACC = "var(--figure-accent)"
 const INK = "var(--figure-accent-ink)"
@@ -31,18 +32,21 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
   const next = courseModules[index]
 
   return <ReadingFrame module={index} lesson={0} title={item.title}><article>
-    {/* Opening: the module number large, in the display face, in blue; title and intro beside it. */}
-    <Eyebrow>Modules / {nn}</Eyebrow>
-    <div className="mt-6 grid items-start gap-6 md:grid-cols-[auto_1fr] md:gap-12">
-      <p aria-hidden className="font-display text-[128px] leading-[.82] tracking-tight md:text-[184px]" style={{ color: ACC }}>{nn}</p>
-      <div className="md:pt-2">
-        <h1 className="text-balance font-display text-5xl leading-[.98] tracking-tight md:text-6xl">{item.title}</h1>
-        <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">{item.intro}</p>
+    {/* Opening, on a dot ground: the module number large in blue; its mark, title and intro beside it. */}
+    <div className="dot-ground -mx-5 px-5 pb-10 pt-2 md:-mx-8 md:px-8">
+      <Eyebrow>Modules / {nn}</Eyebrow>
+      <div className="mt-6 grid items-start gap-6 md:grid-cols-[auto_auto_1fr] md:gap-x-10">
+        <p aria-hidden className="font-display text-[128px] leading-[.82] tracking-tight md:text-[184px]" style={{ color: ACC }}>{nn}</p>
+        <Pictogram name={modulePictogram[index]} size={72} className="md:mt-3" style={{ color: ACC }} />
+        <div className="md:pt-2">
+          <h1 className="text-balance font-display text-5xl leading-[.96] tracking-tight md:text-7xl">{item.title}</h1>
+          <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">{item.intro}</p>
+        </div>
       </div>
     </div>
 
     {/* Hero figure, when the module has one: same frame as a section figure. */}
-    {hero && <figure className="mt-12 border border-border bg-secondary/30 p-4">
+    {hero && <figure className="mt-4 border border-border bg-secondary/30 p-4">
       <div className="mx-auto max-w-[880px]"><hero.Fig /></div>
       <figcaption className="mt-3 flex flex-wrap justify-between gap-x-6 gap-y-1 font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground"><span>Figure {hero.n} — {hero.title}</span><span>Section {hero.section}</span></figcaption>
     </figure>}
@@ -62,8 +66,8 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
       <Link className="mt-4 inline-block font-mono text-[10px] uppercase tracking-[.16em] underline underline-offset-4" href={projectHref}>{item.projectCta}</Link>
     </section>
 
-    {/* Sections: blue mono numerals; the project row carries the rule. */}
-    <section className="mt-12"><Eyebrow>Sections</Eyebrow><div className="mt-4 border-t border-border">{item.sections.map((name, i) => { const isProject = i + 1 === item.projectSection; return <Link key={name} href={`/m/${index}/s/${i + 1}`} className="grid grid-cols-[40px_1fr_auto] items-center gap-3 border-b border-border py-4 text-sm hover:bg-secondary" style={isProject ? { boxShadow: `inset 2px 0 0 ${ACC}`, paddingLeft: 12 } : undefined}><span className="font-mono text-[10px]" style={{ color: INK }}>{String(i + 1).padStart(2, "0")}</span><span>{name}{isProject && <span className="ml-3 font-mono text-[10px] uppercase tracking-[.16em]" style={{ color: INK }}>Project</span>}</span><span className="font-mono text-[10px] text-muted-foreground">~{item.minutes[i]} min · {i === 0 ? "Start" : "Open"}</span></Link> })}</div></section>
+    {/* Sections: blue mono numerals; the project row carries the rule; the verb at the end is blue. */}
+    <section className="mt-12"><Eyebrow>Sections</Eyebrow><div className="mt-4 border-t border-border">{item.sections.map((name, i) => { const isProject = i + 1 === item.projectSection; return <Link key={name} href={`/m/${index}/s/${i + 1}`} className="grid grid-cols-[40px_1fr_auto] items-center gap-3 border-b border-border py-4 text-sm hover:bg-secondary" style={isProject ? { boxShadow: `inset 2px 0 0 ${ACC}`, paddingLeft: 12 } : undefined}><span className="font-mono text-[10px]" style={{ color: INK }}>{String(i + 1).padStart(2, "0")}</span><span>{name}{isProject && <span className="ml-3 font-mono text-[10px] uppercase tracking-[.16em]" style={{ color: INK }}>Project</span>}</span><span className="font-mono text-[10px] text-muted-foreground">~{item.minutes[i]} min · <span style={{ color: INK }}>{i === 0 ? "Start" : "Open"}</span></span></Link> })}</div></section>
 
     {next && <p className="mt-8 font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">Then — <Link href={`/m/${index + 1}`} style={{ color: INK }}>Module {String(index + 1).padStart(2, "0")}: {next.title} →</Link></p>}
 

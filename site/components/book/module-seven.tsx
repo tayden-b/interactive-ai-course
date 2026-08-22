@@ -3,7 +3,8 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Check, Eyebrow, Figure, LessonHeader, Prose } from "./reading-frame"
-import { Code, Compare, Flow, KV, Numbers, Stack, Steps, Table } from "@/components/figures/kit"
+import { Code, Compare, Flow, KV, Stack, Steps, Table } from "@/components/figures/kit"
+import { Bars, Timeline } from "@/components/figures/charts"
 
 const lessons = [
   {
@@ -92,12 +93,28 @@ workflow: fixed path          workflow: no path matches
     figure: "In → summarize A | summarize B | summarize C → aggregate → Out\n\nsectioning: each box does a different part\nvoting: each box does the same task; majority wins\nsequential: 3 × 2 s    parallel: 2 s",
     node: (
       <Stack>
-        <Flow items={["in", { label: "summarize A | summarize B | summarize C", sub: "at the same time" }, { label: "aggregate", accent: true, sub: "the step to eval" }, "out"]} />
+        <Flow items={[
+          "in",
+          { label: "summarize A | summarize B | summarize C", sub: "at the same time" },
+          { label: "aggregate", sub: "the step to eval" },
+          "out",
+        ]} />
         <KV rows={[
           { k: "sectioning", v: "each box does a different part — split the work, run it at once, combine" },
           { k: "voting", v: "each box does the same task; the majority wins — costs more tokens, buys reliability" },
         ]} />
-        <Numbers items={[{ value: "3 × 2 s", label: "sequential" }, { value: "2 s", label: "parallel" }]} />
+        <Timeline
+          title="sequential vs parallel · seconds"
+          total={6}
+          ticks={3}
+          rows={[
+            { label: "summarize A", start: 0, end: 2 },
+            { label: "summarize B", start: 2, end: 4 },
+            { label: "summarize C", start: 4, end: 6 },
+            { label: "A · B · C at once", start: 0, end: 2, accent: true },
+          ]}
+          note="Three calls at two seconds each: six seconds in sequence, two at once. Same total tokens."
+        />
       </Stack>
     ),
     caption: "FIGURE 7.3.1 — Independent work doesn't have to wait.",
@@ -120,10 +137,20 @@ workflow: fixed path          workflow: no path matches
     figure: "              ORCHESTRATOR\n             /       |       \\\n        WORKER A  WORKER B  WORKER C\n             \\       |       /\n                SYNTHESIZE\n\nno worker sees another's window",
     node: (
       <Stack>
-        <Flow items={[{ label: "orchestrator", sub: "reads the task, breaks it into parts" }, { label: "worker A | worker B | worker C", sub: "no worker sees another's window" }, { label: "synthesize", sub: "from compact results" }]} />
-        <Compare
-          left={{ title: "What a worker reads", children: <Numbers items={[{ value: "30,000", label: "tokens — one document" }]} />, note: "its own window, its own narrow instructions, only the tools it needs" }}
-          right={{ title: "What the orchestrator sees", accent: true, children: <Numbers items={[{ value: "300", label: "tokens — the worker's summary" }]} />, note: "isolation is the win; parallelism is the bonus" }}
+        <Flow items={[
+          { label: "orchestrator", sub: "reads the task, breaks it into parts" },
+          { label: "worker A | worker B | worker C", sub: "no worker sees another's window" },
+          { label: "synthesize", sub: "from compact results" },
+        ]} />
+        <Bars
+          title="window per agent · tokens"
+          data={[
+            { label: "orchestrator", value: 300, display: "300", accent: true },
+            { label: "worker A", value: 30000, display: "30k" },
+            { label: "worker B", value: 30000, display: "30k" },
+            { label: "worker C", value: 30000, display: "30k" },
+          ]}
+          note="Each worker reads a 30,000-token document; the orchestrator sees only the 300-token summaries. Isolation is the win; parallelism is the bonus."
         />
       </Stack>
     ),

@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Check, Eyebrow, Figure, LessonHeader, Prose } from "./reading-frame"
 import { Fig07, Fig10 } from "@/components/figures/course-figures"
 import { Code, Flow, KV, Note, Stack, Steps, Table } from "@/components/figures/kit"
+import { Line } from "@/components/figures/charts"
 
 type Lesson = { node?: React.ReactNode; title: string; time: string; line: string; figure: string; caption: string; library?: string; paragraphs: string[]; idea: string; check?: { prompt: string; options: string[]; correct: number; feedback: string[] }; deeper: [string, string]; project?: boolean; bullets?: string[]; end?: string }
 
@@ -68,7 +69,7 @@ def on_plan(question, user, store):
     return orchestrator.plan(question, context=[*past, prefs])`}</Code>, title: "Memory across runs", time: "~6 min", line: "The Desk remembers what it has researched and what each user prefers, so the second question is better than the first.", figure: `MEMORY STORE\nresearch memory: questions → checked claims + sources + dates\nuser memory: depth · format · preferred sources\n                 ↕ read at plan time · write at run end`, caption: "FIGURE 8.5.1 — What the Desk writes down for next time.", paragraphs: ["Module 4 gave one agent notes. The Desk gives the system two kinds.", "Research memory: every completed run stores its question, its checked claims, and its sources. When a new question arrives, the orchestrator retrieves related past runs and includes their summaries in the plan’s context — so a follow-up question doesn’t re-research what’s already known, and a contradiction with last month’s brief is visible.", "User memory: preferences that should persist — how long a brief should be, which sources to prefer or avoid, what format. Written when a user says so, read at plan time.", "The rule from Module 4 holds: notes are short, structured, and maintained, and only the relevant ones enter the window."], idea: "Two memories, both outside the window: what’s been researched and what the user wants.", check: { prompt: "A user asks a follow-up to last week’s question. What should the orchestrator see?", options: ["Nothing from last week.", "Last week’s checked summary, retrieved into the plan context.", "Last week’s full sources."], correct: 1, feedback: ["Then it re-researches.", "Yes.", "Too large; the summary is enough."] }, deeper: ["Grootendorst, ‘A Visual Guide to LLM Agents,’ Memory.", "https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-llm-agents"] },
  { node: <Fig10 />, title: "Observability", time: "~8 min", line: "Every model call and tool call in a run is a span with tokens, cost, and timing; rendered as a tree with a waterfall, it’s how you debug, bill, and demo the Desk.", figure: `run ├─ orchestrator: plan      [██████] 2.1s\n    ├─ researcher A ─ model [██] ─ search [███]\n    ├─ researcher B ─ model [██] ─ fetch  [████]\n    ├─ researcher C ─ model [██] ─ read   [██]\n    ├─ checker                         [███]\n    └─ writer                          [██]   tokens · cost`, caption: "FIGURE 8.6.1 — One run, fully visible. This is the page people will stare at.", library: "agent-prism, OpenTelemetry GenAI conventions.", paragraphs: ["You’ve been writing traces since Module 1. The Desk is where they become the product’s face.", "Every span — a model call, a tool call, a whole agent’s run — is recorded with its parent, its timing, its tokens, and its cost, in a standard shape (OpenTelemetry’s conventions for AI), so any trace viewer can render it. The view that works is a tree with an inline waterfall: nesting shows who called whom, the bars show when and how long, the numbers show what it cost.", "Three uses. Debugging: a bad brief is traced to the worker, the tool call, and the page that misled it. Billing: cost per run, per component, over time — so you know the checker is a tenth of the bill and the researchers are the rest. Demoing: the live trace on the public page is the most convincing thing a visitor will see, because it shows the work instead of asserting it."], idea: "The trace is the system’s memory of what it did; render it, and debugging, billing, and demoing are the same screen.", check: { prompt: "A brief contains a wrong figure. Where do you look first?", options: ["The writer’s prompt.", "The trace: which researcher, which tool call, which source.", "The model’s settings."], correct: 1, feedback: ["The writer only formats checked claims.", "Yes.", "Not until the trace points there."] }, deeper: ["Langfuse’s trace UI documentation — tree and timeline views of agent runs.", "https://langfuse.com/docs/observability/features/trace-ui"] },
  { node: <Stack>
-    <Code lang="python" title="tests/test_desk.py" mark={[16]}>{`
+    <Code lang="python" title="tests/test_desk.py">{`
 # runs in CI on every commit; the number is recorded; a drop blocks the merge
 import pytest
 from desk import orchestrator, researcher, checker, writer
@@ -88,6 +89,13 @@ def test_checker_precision(g):     # grader: no unsupported claim survives
 
 def test_brief_format(g):          # grader: exact match
     assert writer.run(g.checked).format == g.expected_format`}</Code>
+    <Line
+      title="suite pass rate · per commit · illustrative"
+      series={[{ points: [85, 90, 90, 95, 95, 65, 95, 95, 100, 100], accent: true }]}
+      xLabels={["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10"]}
+      yMax={100} unit="%"
+      note="c6 drops the number: CI blocks that merge; c7 restores it."
+    />
     <Table head={["gate", "runs on", "does"]} rows={[
       ["Input", "every request", "Rejects off-topic or injection-shaped requests; enforces length."],
       ["Action", "every tool call", "Allow-lists tools per role; requires approval for anything that sends or spends."],

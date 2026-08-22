@@ -4,7 +4,10 @@ import Link from "next/link"
 import { useState } from "react"
 import { Check, Eyebrow, Figure, LessonHeader, Prose } from "./reading-frame"
 import { Fig03, Fig04, Fig14 } from "@/components/figures/course-figures"
-import { Code, Compare, Flow, KV, Mark, Stack, Steps, Table, Transcript } from "@/components/figures/kit"
+import {
+  Code, Compare, Flow, KV, Mark, Stack, Steps, Table,
+} from "@/components/figures/kit"
+import { Line } from "@/components/figures/charts"
 
 /* ---------- typeset figures for the slots that are not drawings ---------- */
 
@@ -52,16 +55,22 @@ if call.name == "get_weather":
   />
 )
 
-// 3.5 — the window is the loop variable. Every call re-sends the whole stack.
+// 3.5 — the window grows every turn; whole pages fill it fast.
+const note35 =
+  "Every result stays in the window for every later call. " +
+  "Return the summary, not the page."
 const fig35 = (
-  <Transcript
-    title="Every call sends the whole stack"
-    turns={[
-      { role: "user", text: "What's the weather in Austin?", note: "call 1 sends one message" },
-      { role: "assistant", text: 'get_weather(city="Austin")' },
-      { role: "tool", text: "84°F, partly cloudy", note: "call 2 sends three. The result is a message now, and it goes back in on every call from here." },
-      { role: "assistant", text: "It's 84°F and partly cloudy in Austin.", note: "a call 3 would send four — and so on, until the earliest messages fall out" },
+  <Line
+    title="Window size per turn · k tokens · illustrative"
+    series={[
+      { name: "summaries", points: [2, 3, 4, 5, 6, 7, 8, 9], accent: true },
+      { name: "whole pages", points: [2, 8, 14, 20, 26, 32], dashed: true },
     ]}
+    xLabels={["1", "2", "3", "4", "5", "6", "7", "8"]}
+    cap={32}
+    capLabel="window fills"
+    yMax={40}
+    note={note35}
   />
 )
 

@@ -4,9 +4,34 @@ import Link from "next/link"
 import { useState } from "react"
 import { Check, Eyebrow, Figure, LessonHeader, Prose } from "./reading-frame"
 import { Fig09 } from "@/components/figures/course-figures"
-import { Code, Compare, Flow, KV, Mark, Note, Numbers, Stack, Table } from "@/components/figures/kit"
+import { Code, Compare, KV, Numbers, Stack, Table } from "@/components/figures/kit"
+import { Bars, Line } from "@/components/figures/charts"
 
 type Lesson = { node?: React.ReactNode; title: string; time: string; line: string; figure: string; caption: string; paragraphs: string[]; idea: string; question?: string; options?: string[]; feedback?: string[]; deeper: string; url: string; project?: boolean; build?: string[]; end?: string }
+
+// s3 — the three graders, and what each costs per case (illustrative).
+const MONO_CELL = "whitespace-nowrap font-mono text-[12px] text-foreground"
+const GRADE_NOTE =
+  "Use the strictest grader that fits. " +
+  "Reach for a judge only when nothing mechanical will do."
+const CODE_USE =
+  "one property that matters — " +
+  "three items, owners non-empty, the JSON parses"
+
+// s6 — pass rate per CI run. Only #41 (91%) and #42 (80%) are stated;
+// the runs before them are drawn to show the shape.
+const PASS_RATES = [90, 91, 89, 91, 90, 91, 80]
+const RUN_LABELS = ["#36", "#37", "#38", "#39", "#40", "#41", "#42"]
+const CI_NOTE =
+  "#42 is a prompt change. " +
+  "The change is the suspect; the traces are the evidence."
+const CI_ROWS = [
+  { k: "when", v: "every change to the prompt, the tools, or the model" },
+  { k: "record", v: "the pass rate, next to the change that produced it" },
+  { k: "on a drop", v: "the change is the suspect; the traces are the evidence" },
+  { k: "wobble", v: "outputs vary — run the suite a few times, or the average" },
+  { k: "speed", v: "fast enough that people actually run it" },
+]
 
 const lessons: Lesson[] = [
   {
@@ -57,25 +82,68 @@ const lessons: Lesson[] = [
         <Table
           head={["grader", "passes when", "use it for", "cost"]}
           rows={[
-            [<span key="g" className="whitespace-nowrap">Exact match</span>, <code key="v" className="whitespace-nowrap font-mono text-[12px] text-foreground">expected == got</code>, "structured fields — a date is either right or it isn't", "cheap, strict"],
-            [<span key="g" className="whitespace-nowrap">Code check</span>, <code key="v" className="whitespace-nowrap font-mono text-[12px] text-foreground">len(actions) == 3</code>, "one property that matters — three items, owners non-empty, the JSON parses", "cheap, strict"],
-            [<span key="g" className="whitespace-nowrap">Model as judge</span>, <code key="v" className="whitespace-nowrap font-mono text-[12px] text-foreground">rubric → score 0–2 + reason</code>, "prose, summaries, “is this action really in the notes?”", "expensive, flexible, least trustworthy"],
+            [
+              <span key="g" className="whitespace-nowrap">Exact match</span>,
+              <code key="v" className={MONO_CELL}>expected == got</code>,
+              "structured fields — a date is either right or it isn't",
+              "cheap, strict",
+            ],
+            [
+              <span key="g" className="whitespace-nowrap">Code check</span>,
+              <code key="v" className={MONO_CELL}>len(actions) == 3</code>,
+              CODE_USE,
+              "cheap, strict",
+            ],
+            [
+              <span key="g" className="whitespace-nowrap">Model as judge</span>,
+              <code key="v" className={MONO_CELL}>rubric → score 0–2 + reason</code>,
+              "prose, summaries, “is this action really in the notes?”",
+              "expensive, flexible, least trustworthy",
+            ],
           ]}
         />
-        <Note label="The order">Use the <Mark>strictest grader that fits</Mark>. Reach for a judge only when nothing mechanical will do.</Note>
+        <Bars
+          title="cost per case · illustrative"
+          note={GRADE_NOTE}
+          height={200}
+          data={[
+            { label: "exact match", value: 1, display: "a string compare" },
+            { label: "code check", value: 2, display: "a small function" },
+            {
+              label: "model as judge",
+              value: 100,
+              display: "a model call",
+              accent: true,
+            },
+          ]}
+        />
       </Stack>
     ),
     title: "Three ways to grade", time: "~8 min", line: "Grade with exact match when there's one right answer, with code when a property can be checked, and with a model as judge when only judgment will do.", figure: "EXACT MATCH        CODE CHECK             MODEL AS JUDGE\nexpected = got ✓    len(actions) == 3 ✓    rubric: every action in notes?\n                                             score 0–2 + reason", caption: "FIGURE 5.3.1 — Cheap and strict, to expensive and flexible.", paragraphs: ["Once you have cases, you need a way to say pass or fail without reading each one. There are three, and most suites use all of them.", "Exact match: the output must equal the expected output. Cheap, strict, perfect for structured fields — a date is either right or it isn't. Code check: a small function asserts a property — the list has three items, every owner is non-empty, the JSON parses. You're not checking the whole answer, you're checking what matters. Model as judge: for prose, summaries, or \"is this action really in the notes,\" ask a second model with a clear rubric and a tight scale. It's the most flexible and the least trustworthy, so keep rubrics narrow and spot-check the judge against your own reading.", "The order matters. Use the strictest grader that fits. Reach for a judge only when nothing mechanical will do."], idea: "Prefer the strictest grader that fits; a model judge is the last resort, not the first.", question: "The output must contain exactly the three action owners from the notes. Best grader?", options: ["A model judge.", "A code check on the owners list.", "Exact match on the whole JSON."], feedback: ["Overkill and unreliable for a mechanical check.", "Yes.", "Too brittle — task wording may vary."], deeper: "Arize/DeepLearning.AI, Evaluating AI Agents — graders by type, with traces.", url: "https://www.deeplearning.ai/courses/evaluating-ai-agents" },
   {
     node: (
       <Stack>
-        <Flow items={["model call", "tool call", "tool result", "model call"]} />
+        <Bars
+          title="first wrong step · 20 failing traces · illustrative"
+          note="One row is denser than the others. That row is the next fix."
+          height={200}
+          data={[
+            { label: "plan", value: 3 },
+            { label: "tool choice", value: 2 },
+            { label: "tool args", value: 12, accent: true },
+            { label: "reply", value: 3 },
+          ]}
+        />
         <Table
-          head={["first wrong step", "where it lives in the trace", "the question to ask"]}
+          head={[
+            "first wrong step",
+            "where it lives in the trace",
+            "the question to ask",
+          ]}
           rows={[
             ["plan", "the first model call", "Was the plan bad?"],
             ["tool choice", "the tool call — its name", "Did it pick the wrong tool?"],
-            [<Mark key="s">tool args</Mark>, <Mark key="t">the tool call — its arguments</Mark>, <Mark key="q">Right tool, wrong arguments?</Mark>],
+            ["tool args", "the tool call — its arguments", "Right tool, wrong arguments?"],
             ["reply", "the model call after the result", "Right result, wrong reply?"],
           ]}
         />
@@ -86,14 +154,16 @@ const lessons: Lesson[] = [
   {
     node: (
       <Stack>
-        <Numbers items={[{ value: "91%", label: "CI run #41 · pass rate" }, { value: "80%", label: "CI run #42 · after a prompt change", accent: true }]} />
-        <KV rows={[
-          { k: "when", v: "every change to the prompt, the tools, or the model" },
-          { k: "record", v: "the pass rate, next to the change that produced it" },
-          { k: "on a drop", v: "the change is the suspect; the traces are the evidence" },
-          { k: "wobble", v: "outputs vary — run the suite a few times, or report the average" },
-          { k: "speed", v: "fast enough that people actually run it" },
-        ]} />
+        <Line
+          title="pass rate per CI run · illustrative"
+          note={CI_NOTE}
+          series={[{ name: "80%", points: PASS_RATES, accent: true }]}
+          xLabels={RUN_LABELS}
+          yMin={50}
+          yMax={100}
+          unit="%"
+        />
+        <KV rows={CI_ROWS} />
       </Stack>
     ),
     title: "Every time, automatically", time: "~6 min", line: "Run the eval suite on every change, like tests, so a regression can't ship without someone seeing the number move.", figure: "CI RUNS  pass rate\n#41       91%  ─╮\n#42       80%  ─╯  prompt change · regression", caption: "FIGURE 5.6.1 — The number moves when something breaks.", paragraphs: ["Evals you run once are a report. Evals you run every time are a safety net.", "Put the suite behind a single command. Run it in CI when the prompt, the tools, or the model changes. Record the pass rate with the change that produced it. When the rate drops, the change is the suspect and the traces are the evidence.", "Two practical notes. Model outputs vary, so a single run can wobble; run the suite a few times, or report the average. And keep the suite fast enough that people actually run it — twenty cases in a minute beats two hundred in an hour, because the fast one gets run."], idea: "Evals in CI make regressions visible at the moment they're introduced.", question: "Why run the suite more than once?", options: ["To warm the cache.", "Because model outputs vary, so one run can mislead.", "To make the number bigger."], feedback: ["Not the reason.", "Yes.", "To make it honest."], deeper: "Braintrust docs, Evals in CI.", url: "https://www.braintrust.dev/docs" },

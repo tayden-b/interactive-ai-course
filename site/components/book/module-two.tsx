@@ -3,7 +3,8 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Check, Eyebrow, Figure, LessonHeader, Prose } from "./reading-frame"
-import { Code, Transcript, Compare, Table, Flow, KV, Stack } from "@/components/figures/kit"
+import { Code, Transcript, Compare, Flow, KV, Stack } from "@/components/figures/kit"
+import { Bars, Timeline } from "@/components/figures/charts"
 
 const lessons = [
   {
@@ -101,27 +102,36 @@ for attempt in range(1, 4):                 # up to three attempts
 reply = call(messages)
 print(reply)
 # shown after the last token`}</Code>, note: "wait · wait · wait · the whole reply" }}
-        right={{ title: "Streamed", accent: true, children: <Code lang="python" title="streaming">{`
+        right={{ title: "Streamed", children: <Code lang="python" title="streaming">{`
 for token in stream(messages):
     print(token, end="", flush=True)
 # shown as each token is chosen`}</Code>, note: "first token · token · token · token" }}
       />
-      <KV rows={[
-        { k: "total time", v: "The same." },
-        { k: "first token", v: "Mostly the cost of the model reading your prompt — long prompts make it worse." },
-        { k: "cost", v: "Same tokens, same cost." },
-      ]} />
+      <Timeline
+        title="four seconds, two ways · illustrative"
+        total={4}
+        rows={[
+          { label: "all at once", start: 0, end: 4 },
+          { label: "streamed", start: 0, end: 0.6, accent: true },
+          { label: "words arriving", start: 0.6, end: 4, depth: 1 },
+        ]}
+        note="Blue is time to first token. Both replies take the same four seconds; only one shows anything before the end."
+      />
     </Stack>,
     paragraphs: ["In Module 1 you watched a reply arrive in pieces. From code, you choose whether that happens. Ask for the reply all at once and you wait for the last token before you see the first. Ask for a stream and the provider sends each token as it's chosen.", "The total time is the same. The feeling isn't. People will wait four seconds watching words appear; they won't wait four seconds watching nothing.", "The number to know is time to first token — how long before the first piece arrives. It's mostly the cost of the model reading your prompt, so long prompts make it worse. Section 7 has a trick for that."], key: "Stream when a person is watching; the first token matters more than the last.", question: "Streaming makes the reply…", options: ["Faster overall.", "Feel faster, because the first token arrives sooner.", "Cheaper."], answers: ["Same total time.", "Yes.", "Same tokens, same cost."], deeper: "Vercel AI SDK, Streaming", url: "https://ai-sdk.dev/docs/foundations/streaming" },
   {
     title: "What it costs, and caching", minutes: "6", line: "You pay per token in and per token out, and providers charge much less for a prompt prefix they've already seen.", caption: "FIGURE 2.7.1 — The part that doesn't change is the part that gets cheap.", figure: "system prompt | examples | documents | this message\n  CACHED ~10%  | CACHED ~10% | CACHED ~10% | FULL PRICE\ninput tokens × price + output tokens × price = cost",
     node: <Stack>
-      <Table head={["prompt segment", "changes per call", "price"]} accentCol={2} rows={[
-        ["system prompt", "no", "cached · ~10%"],
-        ["examples", "no", "cached · ~10%"],
-        ["documents", "no", "cached · ~10%"],
-        ["this message", "yes", "full price"],
-      ]} />
+      <Bars
+        title="price per input token · by prompt segment"
+        data={[
+          { label: "system prompt", value: 10, display: "cached · ~10%" },
+          { label: "examples", value: 10, display: "cached · ~10%" },
+          { label: "documents", value: 10, display: "cached · ~10%" },
+          { label: "this message", value: 100, display: "full price", accent: true },
+        ]}
+        note="The first three are identical every call, so the provider has seen them before. Only the last is new."
+      />
       <Code lang="python" title="cost, per response">{`
 usage = response.usage                       # Figure 2.1.1
 cost = usage.input_tokens * PRICE_IN + usage.output_tokens * PRICE_OUT

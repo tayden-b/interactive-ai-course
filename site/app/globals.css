@@ -208,3 +208,22 @@
 :where(div, aside, section):has(> [data-eyebrow="in-one-line"]) {
   border-left: 2px solid var(--figure-accent);
 }
+
+/* Ground texture: a dot grid in the hairline colour, faded toward the bottom and
+   right so it reads as paper grain behind an opening block, not as a pattern.
+   Drawn on a ::before beneath the block's own content (isolation + z-index:-1). */
+.dot-ground { position: relative; isolation: isolate; }
+.dot-ground::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(var(--border) 1px, transparent 1.4px);
+  background-size: 23px 23px;
+  background-position: 0 0;
+  opacity: .7;
+  -webkit-mask-image: radial-gradient(100% 110% at 0% 0%, #000 12%, transparent 68%);
+  mask-image: radial-gradient(100% 110% at 0% 0%, #000 12%, transparent 68%);
+}
+.dot-ground--faint::before { opacity: .4; }

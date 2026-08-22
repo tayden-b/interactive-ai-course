@@ -1,0 +1,68 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+
+// A traced run, typed out once. Labelled DEMO in the eyebrow; the figures are illustrative.
+// Starts when it scrolls into view (it sits below the fold), runs once, and renders the
+// finished state immediately when the reader prefers reduced motion.
+const LINES = [
+  "▸ plan            0.8s",
+  "▸ research ×3     4.1s  (parallel)",
+  "▸ check           0.6s",
+  "▸ write           1.9s",
+  "✓ brief ready — 12 spans recorded",
+]
+const CHAR_MS = 40
+const LINE_GAP_MS = 500
+
+export function TracedRun() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [typed, setTyped] = useState<number[]>(() => LINES.map(() => 0))
+  const [done, setDone] = useState(false)
+  const [active, setActive] = useState(-1)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setTyped(LINES.map((l) => l.length)); setDone(true); return
+    }
+    let timer = 0
+    let started = false
+    const run = () => {
+      if (started) return; started = true
+      let line = 0, ch = 0
+      setActive(0)
+      const step = () => {
+        if (line >= LINES.length) { setDone(true); setActive(-1); return }
+        ch += 1
+        setTyped((t) => { const n = t.slice(); n[line] = ch; return n })
+        if (ch >= LINES[line].length) {
+          line += 1; ch = 0; setActive(line < LINES.length ? line : -1)
+          timer = window.setTimeout(step, LINE_GAP_MS)
+        } else {
+          timer = window.setTimeout(step, CHAR_MS)
+        }
+      }
+      timer = window.setTimeout(step, 300)
+    }
+    if (typeof IntersectionObserver === "undefined") { run(); return () => window.clearTimeout(timer) }
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); run() } }, { rootMargin: "0px 0px -20% 0px" })
+    io.observe(el)
+    return () => { io.disconnect(); window.clearTimeout(timer) }
+  }, [])
+
+  const last = LINES.length - 1
+  return (
+    <div ref={ref} className="border border-border bg-card p-5 md:p-6">
+      <p className="font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">A run, traced · <span className="text-foreground">Demo</span></p>
+      <pre className="mt-4 overflow-x-auto font-mono text-[13px] leading-7 text-foreground md:text-sm" aria-label={LINES.join("\n")}>
+        {LINES.map((l, i) => {
+          const text = l.slice(0, typed[i])
+          const isLast = i === last
+          return <span key={i} className="block whitespace-pre" style={isLast ? { color: "var(--figure-accent-ink)" } : undefined}>{text || " "}{!done && active === i && <span aria-hidden className="inline-block h-[1em] w-[.55em] translate-y-[.15em]" style={{ background: isLast ? "var(--figure-accent)" : "var(--foreground)" }} />}</span>
+        })}
+      </pre>
+    </div>
+  )
+}
