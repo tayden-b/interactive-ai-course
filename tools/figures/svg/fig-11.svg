@@ -1,0 +1,40 @@
+<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="ink11" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="untrusted">
+    <rect x="434" y="96" width="92" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="447" y="108" width="66" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="441" y="120" width="78" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <text x="480" y="154" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">untrusted text</text>
+  </g>
+
+  <g id="private">
+    <rect x="112" y="262" width="116" height="55" fill="var(--fig-bg)"/>
+    <path d="M112 262 V317" stroke="currentColor" stroke-width="2"/>
+    <path d="M228 262 V317" stroke="currentColor" stroke-width="2"/>
+    <path d="M112 317 A58 15 0 0 0 228 317" stroke="currentColor" stroke-width="2"/>
+    <ellipse cx="170" cy="262" rx="58" ry="15" fill="var(--fig-bg)" stroke="currentColor" stroke-width="2"/>
+    <text x="170" y="362" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">private data</text>
+  </g>
+
+  <g id="model">
+    <rect x="380" y="230" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="480" y="296" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="tool">
+    <rect x="760" y="258" width="64" height="64" rx="8" fill="currentColor"/>
+    <polyline points="801,266 785,290 798,290 783,314" fill="none" stroke="var(--fig-bg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="792" y="350" fill="currentColor" font-size="13" text-anchor="middle">a way out</text>
+  </g>
+
+  <g id="path">
+    <path d="M480 172 V230" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink11)"/>
+    <path d="M228 290 H380" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink11)"/>
+    <path d="M580 290 H760" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink11)"/>
+  </g>
+</svg>

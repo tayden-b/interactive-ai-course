@@ -1,0 +1,68 @@
+<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="ink12" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="mut12" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="boundary">
+    <rect x="72" y="88" width="430" height="290" rx="14" stroke="var(--muted-foreground)" opacity=".5" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="94" y="116" fill="var(--muted-foreground)" font-size="13" text-anchor="start">everything you have</text>
+  </g>
+
+  <g id="field" fill="var(--muted-foreground)" opacity=".38">
+    <rect x="96" y="144" width="26" height="8" rx="4"/>
+    <rect x="152" y="132" width="26" height="8" rx="4"/>
+    <rect x="216" y="148" width="26" height="8" rx="4"/>
+    <rect x="330" y="136" width="26" height="8" rx="4"/>
+    <rect x="412" y="152" width="26" height="8" rx="4"/>
+    <rect x="118" y="190" width="26" height="8" rx="4"/>
+    <rect x="186" y="174" width="26" height="8" rx="4"/>
+    <rect x="250" y="172" width="26" height="8" rx="4"/>
+    <rect x="368" y="178" width="26" height="8" rx="4"/>
+    <rect x="444" y="176" width="26" height="8" rx="4"/>
+    <rect x="96" y="240" width="26" height="8" rx="4"/>
+    <rect x="148" y="268" width="26" height="8" rx="4"/>
+    <rect x="100" y="300" width="26" height="8" rx="4"/>
+    <rect x="170" y="226" width="26" height="8" rx="4"/>
+    <rect x="128" y="328" width="26" height="8" rx="4"/>
+    <rect x="196" y="306" width="26" height="8" rx="4"/>
+    <rect x="254" y="334" width="26" height="8" rx="4"/>
+    <rect x="330" y="312" width="26" height="8" rx="4"/>
+    <rect x="400" y="336" width="26" height="8" rx="4"/>
+    <rect x="452" y="300" width="26" height="8" rx="4"/>
+  </g>
+
+  <g id="question">
+    <circle cx="250" cy="250" r="9" fill="var(--fig-bg)" stroke="currentColor" stroke-width="2.5"/>
+    <text x="250" y="300" fill="currentColor" font-size="13" text-anchor="middle">question</text>
+  </g>
+
+  <g id="nearest" fill="currentColor">
+    <rect x="275" y="218" width="26" height="8" rx="4"/>
+    <rect x="283" y="246" width="26" height="8" rx="4"/>
+    <rect x="275" y="274" width="26" height="8" rx="4"/>
+  </g>
+
+  <g id="carry">
+    <path d="M301 222 L600 196" stroke="currentColor" stroke-width="2" marker-end="url(#ink12)"/>
+    <path d="M309 250 L600 222" stroke="currentColor" stroke-width="2" marker-end="url(#ink12)"/>
+    <path d="M301 278 L600 248" stroke="currentColor" stroke-width="2" marker-end="url(#ink12)"/>
+  </g>
+
+  <g id="window">
+    <rect x="600" y="118" width="150" height="230" rx="10" stroke="currentColor" stroke-width="2"/>
+    <rect x="620" y="136" width="110" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="620" y="162" width="110" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <text x="675" y="100" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">window</text>
+  </g>
+
+  <g id="landed" fill="currentColor">
+    <rect x="620" y="188" width="110" height="16" rx="3"/>
+    <rect x="620" y="214" width="110" height="16" rx="3"/>
+    <rect x="620" y="240" width="110" height="16" rx="3"/>
+  </g>
+</svg>
