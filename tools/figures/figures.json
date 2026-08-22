@@ -146,6 +146,72 @@
       "one_idea": "A tool result is just another message in the window — the model reads it, it does not know it.",
       "caption": "FIGURE 3.3.1 — One tool use is two messages and a function call in between.",
       "accent": "the tool-result bar"
+    },
+    {
+      "n": 15,
+      "slug": "containment",
+      "name": "What sits inside what",
+      "modules": "Orientation",
+      "target": "app/map/page.tsx",
+      "family": "architecture",
+      "one_idea": "A language model is one specific thing inside a much larger field, and it is the only part this course starts from.",
+      "caption": "FIGURE 0.1 — Four words people use interchangeably, drawn to scale.",
+      "accent": "the language model, the innermost ring"
+    },
+    {
+      "n": 16,
+      "slug": "layers",
+      "name": "The four layers",
+      "modules": "Orientation, M2 s1",
+      "target": "app/map/page.tsx",
+      "family": "architecture",
+      "one_idea": "You do not build the model or the hardware; you build the orchestration layer between the model and the application.",
+      "caption": "FIGURE 0.2 — Four layers. You work in one of them.",
+      "accent": "the orchestration layer"
+    },
+    {
+      "n": 17,
+      "slug": "workflow-or-agent",
+      "name": "Workflow or agent",
+      "modules": "M7 s1",
+      "target": "module-seven.tsx · s1 (FIGURE 7.1.1)",
+      "family": "architecture",
+      "one_idea": "In a workflow you decide the path in advance; in an agent the model decides it at run time.",
+      "caption": "FIGURE 7.1.1 — Who chooses the next step: you, or the model.",
+      "accent": "the model's choice, and the branch it took"
+    },
+    {
+      "n": 18,
+      "slug": "shapes",
+      "name": "Five shapes",
+      "modules": "M7 s2–s5",
+      "target": "module-seven.tsx · s2 (FIGURE 7.2.1)",
+      "family": "architecture",
+      "one_idea": "Every multi-agent system is one of five wiring patterns, and the one you build is a lead with workers.",
+      "caption": "FIGURE 7.2.1 — Five ways to wire loops together.",
+      "accent": "the three workers running under a lead"
+    },
+    {
+      "n": 19,
+      "slug": "swimlanes",
+      "name": "Who is working when",
+      "modules": "M7 s3, M8 s3",
+      "target": "module-seven.tsx · s3 (FIGURE 7.3.1)",
+      "family": "trace",
+      "one_idea": "Fanning out is a claim about time: two researchers occupy the same stretch of the clock.",
+      "caption": "FIGURE 7.3.1 — The same work, laid out on the clock.",
+      "accent": "the two research lanes that overlap"
+    },
+    {
+      "n": 20,
+      "slug": "harness",
+      "name": "The harness",
+      "modules": "M8 s4",
+      "target": "module-eight.tsx · s4 (FIGURE 8.4.1)",
+      "family": "architecture",
+      "one_idea": "The loop stays the loop; what turns it into a system is four services hanging off it.",
+      "caption": "FIGURE 8.4.1 — One loop, four services. The harness is everything below the line.",
+      "accent": "the loop the harness is built around"
     }
   ]
 }

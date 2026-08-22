@@ -1,0 +1,27 @@
+<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g id="handoffs">
+    <path d="M362 96 V326" stroke="var(--border)" stroke-width="1" stroke-dasharray="5 5"/>
+    <path d="M680 96 V326" stroke="var(--border)" stroke-width="1" stroke-dasharray="5 5"/>
+  </g>
+
+  <g id="plan">
+    <text x="200" y="128" fill="var(--muted-foreground)" font-size="13" text-anchor="end">plan</text>
+    <rect x="224" y="110" width="130" height="26" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+  </g>
+
+  <g id="research">
+    <text x="200" y="188" fill="var(--muted-foreground)" font-size="13" text-anchor="end">research</text>
+    <rect x="370" y="170" width="260" height="26" rx="3" fill="var(--figure-accent)"/>
+    <rect x="370" y="230" width="302" height="26" rx="3" fill="var(--figure-accent)"/>
+  </g>
+
+  <g id="write">
+    <text x="200" y="308" fill="var(--muted-foreground)" font-size="13" text-anchor="end">write</text>
+    <rect x="688" y="290" width="192" height="26" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+  </g>
+
+  <g id="axis">
+    <path d="M224 344 H880" stroke="var(--border)" stroke-width="1"/>
+    <text x="552" y="366" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">time</text>
+  </g>
+</svg>

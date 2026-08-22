@@ -794,6 +794,235 @@ const SVG_14 = `<svg viewBox="0 0 960 440" xmlns="http://www.w3.org/2000/svg" fi
 /** Figure 14 — The round trip, in order (M3 s3) */
 export function Fig14() { return <Reveal svg={SVG_14} label={"A tool result is just another message in the window — the model reads it, it does not know it."} /> }
 
+const SVG_15 = `<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g id="f15-ai">
+    <rect x="140" y="76" width="680" height="268" rx="14" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="162" y="102" fill="var(--muted-foreground)" font-size="13" text-anchor="start">artificial intelligence</text>
+  </g>
+
+  <g id="f15-ml">
+    <rect x="204" y="114" width="552" height="192" rx="14" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <text x="226" y="140" fill="var(--muted-foreground)" font-size="13" text-anchor="start">machine learning</text>
+  </g>
+
+  <g id="f15-dl">
+    <rect x="268" y="152" width="424" height="116" rx="14" stroke="currentColor" stroke-width="2"/>
+    <text x="290" y="178" fill="var(--muted-foreground)" font-size="13" text-anchor="start">deep learning</text>
+  </g>
+
+  <g id="f15-lm">
+    <rect x="350" y="190" width="260" height="52" rx="14" fill="var(--figure-accent)"/>
+    <text x="480" y="222" fill="var(--fig-bg)" font-size="15" text-anchor="middle">language model</text>
+  </g>
+</svg>`
+/** Figure 15 — What sits inside what (Orientation) */
+export function Fig15() { return <Reveal svg={SVG_15} label={"A language model is one specific thing inside a much larger field, and it is the only part this course starts from."} /> }
+
+const SVG_16 = `<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g id="f16-application">
+    <rect x="200" y="84" width="560" height="56" rx="6" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <text x="480" y="118" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">application</text>
+  </g>
+
+  <g id="f16-orchestration">
+    <rect x="200" y="152" width="560" height="56" rx="6" fill="var(--figure-accent)"/>
+    <text x="480" y="186" fill="var(--fig-bg)" font-size="15" text-anchor="middle">orchestration</text>
+  </g>
+
+  <g id="f16-you-write-this">
+    <path d="M776 180 H812" stroke="var(--figure-accent)" stroke-width="2.5"/>
+    <text x="776" y="168" fill="currentColor" font-size="13" text-anchor="start">you write this</text>
+  </g>
+
+  <g id="f16-model">
+    <rect x="200" y="220" width="560" height="56" rx="6" stroke="currentColor" stroke-width="2"/>
+    <text x="480" y="254" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="f16-hardware">
+    <rect x="200" y="288" width="560" height="56" rx="6" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="480" y="322" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">hardware</text>
+  </g>
+</svg>`
+/** Figure 16 — The four layers (Orientation, M2 s1) */
+export function Fig16() { return <Reveal svg={SVG_16} label={"You do not build the model or the hardware; you build the orchestration layer between the model and the application."} /> }
+
+const SVG_17 = `<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f17-mut1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f17-acc1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f17-divider">
+    <path d="M480 92 V336" stroke="var(--border)" stroke-width="1" stroke-dasharray="5 5"/>
+  </g>
+
+  <g id="f17-workflow-label">
+    <text x="260" y="152" fill="currentColor" font-size="15" text-anchor="middle">workflow</text>
+  </g>
+
+  <g id="f17-workflow-steps">
+    <rect x="96" y="186" width="88" height="52" rx="6" stroke="currentColor" stroke-width="2"/>
+    <rect x="216" y="186" width="88" height="52" rx="6" stroke="currentColor" stroke-width="2"/>
+    <rect x="336" y="186" width="88" height="52" rx="6" stroke="currentColor" stroke-width="2"/>
+    <path d="M184 212 H216" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f17-mut1)"/>
+    <path d="M304 212 H336" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f17-mut1)"/>
+    <text x="260" y="274" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">fixed path</text>
+  </g>
+
+  <g id="f17-agent-label">
+    <text x="666" y="122" fill="currentColor" font-size="15" text-anchor="middle">agent</text>
+  </g>
+
+  <g id="f17-agent-model">
+    <rect x="596" y="142" width="140" height="60" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="666" y="178" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="f17-agent-choice">
+    <path d="M666 202 V226" stroke="var(--figure-accent)" stroke-width="2.5"/>
+    <path d="M666 226 L692 252 L666 278 L640 252 Z" fill="var(--figure-accent)"/>
+  </g>
+
+  <g id="f17-agent-branches">
+    <path d="M666 278 L604 312" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f17-acc1)"/>
+    <path d="M666 278 L666 312" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f17-mut1)"/>
+    <path d="M666 278 L728 312" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f17-mut1)"/>
+    <rect x="578" y="318" width="52" height="44" rx="6" stroke="currentColor" stroke-width="2"/>
+    <rect x="640" y="318" width="52" height="44" rx="6" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <rect x="702" y="318" width="52" height="44" rx="6" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+  </g>
+
+  <g id="f17-agent-caption">
+    <text x="820" y="256" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">it chooses</text>
+  </g>
+</svg>`
+/** Figure 17 — Workflow or agent (M7 s1) */
+export function Fig17() { return <Reveal svg={SVG_17} label={"In a workflow you decide the path in advance; in an agent the model decides it at run time."} /> }
+
+const SVG_18 = `<svg viewBox="0 0 960 360" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f18-mut1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f18-one">
+    <rect x="131" y="162" width="22" height="22" rx="4" stroke="currentColor" stroke-width="2"/>
+    <text x="142" y="252" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">one</text>
+  </g>
+
+  <g id="f18-router">
+    <rect x="272" y="162" width="22" height="22" rx="4" stroke="currentColor" stroke-width="2"/>
+    <rect x="330" y="126" width="22" height="22" rx="4" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <rect x="330" y="162" width="22" height="22" rx="4" stroke="currentColor" stroke-width="2"/>
+    <rect x="330" y="198" width="22" height="22" rx="4" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <path d="M294 173 L330 137" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f18-mut1)"/>
+    <path d="M294 173 H330" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f18-mut1)"/>
+    <path d="M294 173 L330 209" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f18-mut1)"/>
+    <text x="312" y="252" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">router</text>
+  </g>
+
+  <g id="f18-chain">
+    <rect x="471" y="126" width="22" height="22" rx="4" stroke="currentColor" stroke-width="2"/>
+    <rect x="471" y="162" width="22" height="22" rx="4" stroke="currentColor" stroke-width="2"/>
+    <rect x="471" y="198" width="22" height="22" rx="4" stroke="currentColor" stroke-width="2"/>
+    <path d="M482 148 V162" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f18-mut1)"/>
+    <path d="M482 184 V198" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f18-mut1)"/>
+    <text x="482" y="252" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">chain</text>
+  </g>
+
+  <g id="f18-workers">
+    <rect x="641" y="126" width="22" height="22" rx="4" stroke="currentColor" stroke-width="2"/>
+    <path d="M652 148 L620 194" stroke="var(--figure-accent)" stroke-width="2.5"/>
+    <path d="M652 148 V194" stroke="var(--figure-accent)" stroke-width="2.5"/>
+    <path d="M652 148 L684 194" stroke="var(--figure-accent)" stroke-width="2.5"/>
+    <rect x="609" y="196" width="22" height="22" rx="4" fill="var(--figure-accent)"/>
+    <rect x="641" y="196" width="22" height="22" rx="4" fill="var(--figure-accent)"/>
+    <rect x="673" y="196" width="22" height="22" rx="4" fill="var(--figure-accent)"/>
+    <text x="652" y="252" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">workers</text>
+  </g>
+
+  <g id="f18-critic">
+    <rect x="779" y="150" width="22" height="22" rx="4" stroke="currentColor" stroke-width="2"/>
+    <rect x="843" y="150" width="22" height="22" rx="4" stroke="currentColor" stroke-width="2"/>
+    <path d="M801 156 H843" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f18-mut1)"/>
+    <path d="M843 166 H801" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f18-mut1)"/>
+    <text x="822" y="252" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">critic</text>
+  </g>
+</svg>`
+/** Figure 18 — Five shapes (M7 s2–s5) */
+export function Fig18() { return <Reveal svg={SVG_18} label={"Every multi-agent system is one of five wiring patterns, and the one you build is a lead with workers."} /> }
+
+const SVG_19 = `<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g id="f19-handoffs">
+    <path d="M362 96 V326" stroke="var(--border)" stroke-width="1" stroke-dasharray="5 5"/>
+    <path d="M680 96 V326" stroke="var(--border)" stroke-width="1" stroke-dasharray="5 5"/>
+  </g>
+
+  <g id="f19-plan">
+    <text x="200" y="128" fill="var(--muted-foreground)" font-size="13" text-anchor="end">plan</text>
+    <rect x="224" y="110" width="130" height="26" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+  </g>
+
+  <g id="f19-research">
+    <text x="200" y="188" fill="var(--muted-foreground)" font-size="13" text-anchor="end">research</text>
+    <rect x="370" y="170" width="260" height="26" rx="3" fill="var(--figure-accent)"/>
+    <rect x="370" y="230" width="302" height="26" rx="3" fill="var(--figure-accent)"/>
+  </g>
+
+  <g id="f19-write">
+    <text x="200" y="308" fill="var(--muted-foreground)" font-size="13" text-anchor="end">write</text>
+    <rect x="688" y="290" width="192" height="26" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+  </g>
+
+  <g id="f19-axis">
+    <path d="M224 344 H880" stroke="var(--border)" stroke-width="1"/>
+    <text x="552" y="366" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">time</text>
+  </g>
+</svg>`
+/** Figure 19 — Who is working when (M7 s3, M8 s3) */
+export function Fig19() { return <Reveal svg={SVG_19} label={"Fanning out is a claim about time: two researchers occupy the same stretch of the clock."} /> }
+
+const SVG_20 = `<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g id="f20-loop">
+    <rect x="400" y="112" width="160" height="64" rx="16" fill="var(--figure-accent)"/>
+    <text x="480" y="151" fill="var(--fig-bg)" font-size="15" text-anchor="middle">loop</text>
+  </g>
+
+  <g id="f20-spine">
+    <path d="M480 176 V252" stroke="var(--figure-accent)" stroke-width="2.5"/>
+  </g>
+
+  <g id="f20-bus">
+    <path d="M136 252 H824" stroke="var(--border)" stroke-width="1" stroke-dasharray="5 5"/>
+  </g>
+
+  <g id="f20-stems">
+    <path d="M206 252 V286" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <path d="M390 252 V286" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <path d="M574 252 V286" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <path d="M758 252 V286" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+  </g>
+
+  <g id="f20-services">
+    <rect x="136" y="286" width="140" height="56" rx="6" stroke="currentColor" stroke-width="2"/>
+    <text x="206" y="320" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">memory</text>
+    <rect x="320" y="286" width="140" height="56" rx="6" stroke="currentColor" stroke-width="2"/>
+    <text x="390" y="320" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tools</text>
+    <rect x="504" y="286" width="140" height="56" rx="6" stroke="currentColor" stroke-width="2"/>
+    <text x="574" y="320" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">checks</text>
+    <rect x="688" y="286" width="140" height="56" rx="6" stroke="currentColor" stroke-width="2"/>
+    <text x="758" y="320" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">traces</text>
+  </g>
+</svg>`
+/** Figure 20 — The harness (M8 s4) */
+export function Fig20() { return <Reveal svg={SVG_20} label={"The loop stays the loop; what turns it into a system is four services hanging off it."} /> }
+
 export const figureCaptions: Record<string, string> = {
   "01": "FIGURE 4.1 — Pick, append, repeat.",
   "02": "FIGURE 2 — The model reads all of it, every call, and keeps none of it.",
@@ -809,4 +1038,10 @@ export const figureCaptions: Record<string, string> = {
   "12": "FIGURE 4.4.1 — Don't load the library; load the three pages that matter.",
   "13": "FIGURE 4.2.1 — Compaction: trade detail for room.",
   "14": "FIGURE 3.3.1 — One tool use is two messages and a function call in between.",
+  "15": "FIGURE 0.1 — Four words people use interchangeably, drawn to scale.",
+  "16": "FIGURE 0.2 — Four layers. You work in one of them.",
+  "17": "FIGURE 7.1.1 — Who chooses the next step: you, or the model.",
+  "18": "FIGURE 7.2.1 — Five ways to wire loops together.",
+  "19": "FIGURE 7.3.1 — The same work, laid out on the clock.",
+  "20": "FIGURE 8.4.1 — One loop, four services. The harness is everything below the line.",
 }

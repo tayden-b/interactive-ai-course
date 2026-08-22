@@ -1,0 +1,26 @@
+<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g id="application">
+    <rect x="200" y="84" width="560" height="56" rx="6" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <text x="480" y="118" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">application</text>
+  </g>
+
+  <g id="orchestration">
+    <rect x="200" y="152" width="560" height="56" rx="6" fill="var(--figure-accent)"/>
+    <text x="480" y="186" fill="var(--fig-bg)" font-size="15" text-anchor="middle">orchestration</text>
+  </g>
+
+  <g id="you-write-this">
+    <path d="M776 180 H812" stroke="var(--figure-accent)" stroke-width="2.5"/>
+    <text x="776" y="168" fill="currentColor" font-size="13" text-anchor="start">you write this</text>
+  </g>
+
+  <g id="model">
+    <rect x="200" y="220" width="560" height="56" rx="6" stroke="currentColor" stroke-width="2"/>
+    <text x="480" y="254" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="hardware">
+    <rect x="200" y="288" width="560" height="56" rx="6" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="480" y="322" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">hardware</text>
+  </g>
+</svg>
