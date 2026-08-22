@@ -9,42 +9,42 @@
   </defs>
 
   <g id="window">
-    <rect x="248" y="56" width="170" height="220" rx="10" stroke="currentColor" stroke-width="2"/>
-    <rect x="268" y="106" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
-    <rect x="268" y="184" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
-    <rect x="268" y="210" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="268" y="56" width="170" height="220" rx="10" stroke="currentColor" stroke-width="2"/>
+    <rect x="288" y="106" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="288" y="132" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="288" y="210" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
   </g>
 
   <g id="placed">
-    <rect x="268" y="132" width="130" height="16" rx="3" fill="currentColor"/>
-    <rect x="268" y="158" width="130" height="16" rx="3" fill="currentColor"/>
+    <rect x="288" y="158" width="130" height="16" rx="3" fill="currentColor"/>
+    <rect x="288" y="184" width="130" height="16" rx="3" fill="currentColor"/>
   </g>
 
   <g id="feed">
-    <path d="M418 166 H528" stroke="currentColor" stroke-width="2" marker-end="url(#ink1)"/>
+    <path d="M438 166 H548" stroke="currentColor" stroke-width="2" marker-end="url(#ink1)"/>
   </g>
 
   <g id="model">
-    <rect x="528" y="106" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
-    <text x="628" y="172" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+    <rect x="548" y="106" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="648" y="172" fill="currentColor" font-size="15" text-anchor="middle">model</text>
   </g>
 
   <g id="memory">
-    <rect x="275" y="350" width="116" height="55" fill="var(--background)"/>
-    <path d="M275 350 V405" stroke="currentColor" stroke-width="2"/>
-    <path d="M391 350 V405" stroke="currentColor" stroke-width="2"/>
-    <path d="M275 405 A58 15 0 0 0 391 405" stroke="currentColor" stroke-width="2"/>
-    <ellipse cx="333" cy="350" rx="58" ry="15" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
-    <text x="253" y="383" fill="currentColor" font-size="15" text-anchor="end">memory</text>
+    <rect x="295" y="350" width="116" height="55" fill="var(--background)"/>
+    <path d="M295 350 V405" stroke="currentColor" stroke-width="2"/>
+    <path d="M411 350 V405" stroke="currentColor" stroke-width="2"/>
+    <path d="M295 405 A58 15 0 0 0 411 405" stroke="currentColor" stroke-width="2"/>
+    <ellipse cx="353" cy="350" rx="58" ry="15" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
+    <text x="271" y="383" fill="currentColor" font-size="15" text-anchor="end">memory</text>
   </g>
 
   <g id="read">
-    <path d="M333 335 V276" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink1)"/>
-    <text x="316" y="312" fill="var(--muted-foreground)" font-size="13" text-anchor="end">retrieved</text>
+    <path d="M353 335 V276" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink1)"/>
+    <text x="334" y="312" fill="var(--muted-foreground)" font-size="13" text-anchor="end">retrieved</text>
   </g>
 
   <g id="write">
-    <path d="M628 226 V378 H391" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#mut1)"/>
-    <text x="509" y="364" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">write</text>
+    <path d="M648 226 V378 H411" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#mut1)"/>
+    <text x="529" y="364" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">write</text>
   </g>
 </svg>

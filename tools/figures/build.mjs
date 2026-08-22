@@ -23,6 +23,13 @@ const entries = files.map(f => {
   // strip any XML prolog / comments; keep just the <svg> element
   svg = svg.replace(/^<\?xml[^>]*\?>\s*/, "").replace(/<!--[\s\S]*?-->/g, "").trim()
   if (!svg.startsWith("<svg")) throw new Error(`${f} does not start with <svg`)
+  // Namespace every id so multiple figures can share one page without colliding
+  // (they all define markers called ink1/mut1). Rewrite defs ids and their url(#...) refs.
+  const ids = [...new Set([...svg.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]))]
+  for (const id of ids) {
+    const safe = `f${n}-${id}`
+    svg = svg.replaceAll(`id="${id}"`, `id="${safe}"`).replaceAll(`url(#${id})`, `url(#${safe})`)
+  }
   const groups = (svg.match(/<g[\s>]/g) || []).length
   return { n, info, svg, groups }
 })

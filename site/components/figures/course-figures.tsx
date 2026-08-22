@@ -9,7 +9,7 @@ const STYLE = `
 .cfig > svg > g { opacity:0; transform:translateY(8px);
   transition:opacity .55s cubic-bezier(.22,1,.36,1), transform .55s cubic-bezier(.22,1,.36,1); }
 .cfig[data-on="true"] > svg > g { opacity:1; transform:none; }
-.cfig[data-on="true"] > svg > g:nth-of-type(1){transition-delay:0ms}.cfig[data-on="true"] > svg > g:nth-of-type(2){transition-delay:70ms}.cfig[data-on="true"] > svg > g:nth-of-type(3){transition-delay:140ms}.cfig[data-on="true"] > svg > g:nth-of-type(4){transition-delay:210ms}.cfig[data-on="true"] > svg > g:nth-of-type(5){transition-delay:280ms}.cfig[data-on="true"] > svg > g:nth-of-type(6){transition-delay:350ms}.cfig[data-on="true"] > svg > g:nth-of-type(7){transition-delay:420ms}
+.cfig[data-on="true"] > svg > g:nth-of-type(1){transition-delay:0ms}.cfig[data-on="true"] > svg > g:nth-of-type(2){transition-delay:70ms}.cfig[data-on="true"] > svg > g:nth-of-type(3){transition-delay:140ms}.cfig[data-on="true"] > svg > g:nth-of-type(4){transition-delay:210ms}.cfig[data-on="true"] > svg > g:nth-of-type(5){transition-delay:280ms}.cfig[data-on="true"] > svg > g:nth-of-type(6){transition-delay:350ms}.cfig[data-on="true"] > svg > g:nth-of-type(7){transition-delay:420ms}.cfig[data-on="true"] > svg > g:nth-of-type(8){transition-delay:490ms}.cfig[data-on="true"] > svg > g:nth-of-type(9){transition-delay:560ms}.cfig[data-on="true"] > svg > g:nth-of-type(10){transition-delay:630ms}
 @media (prefers-reduced-motion: reduce){
   .cfig > svg > g { opacity:1; transform:none; transition:none; }
 }`
@@ -39,51 +39,330 @@ function Reveal({ svg, label }: { svg: string; label: string }) {
 
 const SVG_01 = `<svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" fill="none">
   <defs>
-    <marker id="ink1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="f01-ink1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
-    <marker id="mut1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="f01-mut1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
   </defs>
 
-  <g id="input">
+  <g id="f01-input">
     <rect x="128" y="117" width="52" height="26" rx="13" stroke="var(--muted-foreground)" stroke-width="1.5"/>
     <rect x="188" y="117" width="40" height="26" rx="13" stroke="var(--muted-foreground)" stroke-width="1.5"/>
     <rect x="236" y="117" width="64" height="26" rx="13" stroke="var(--muted-foreground)" stroke-width="1.5"/>
     <rect x="308" y="117" width="34" height="26" rx="13" stroke="var(--muted-foreground)" stroke-width="1.5"/>
   </g>
 
-  <g id="slot">
+  <g id="f01-slot">
     <rect x="350" y="117" width="72" height="26" rx="13" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-dasharray="4 5" opacity=".55"/>
   </g>
 
-  <g id="feed">
-    <path d="M438 130 H470" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut1)"/>
+  <g id="f01-feed">
+    <path d="M438 130 H470" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f01-mut1)"/>
   </g>
 
-  <g id="model">
+  <g id="f01-model">
     <rect x="490" y="70" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
     <text x="590" y="136" fill="currentColor" font-size="15" text-anchor="middle">model</text>
   </g>
 
-  <g id="emit">
-    <path d="M690 130 H738" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink1)"/>
+  <g id="f01-emit">
+    <path d="M690 130 H738" stroke="currentColor" stroke-width="2.5" marker-end="url(#f01-ink1)"/>
   </g>
 
-  <g id="token">
+  <g id="f01-token">
     <text x="788" y="100" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">next token</text>
     <rect x="752" y="116" width="72" height="28" rx="14" fill="currentColor"/>
   </g>
 
-  <g id="append">
-    <path d="M788 144 V258 H386 V152" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink1)"/>
+  <g id="f01-append">
+    <path d="M788 144 V258 H386 V152" stroke="currentColor" stroke-width="2.5" marker-end="url(#f01-ink1)"/>
     <text x="587" y="244" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">append</text>
   </g>
 </svg>`
 /** Figure 1 — Text in, text out (M1 s1–s4) */
 export function Fig01() { return <Reveal svg={SVG_01} label={"The model turns text into one more token, appends it, and does it again."} /> }
 
+const SVG_02 = `<svg viewBox="0 0 960 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f02-ink2" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f02-mut2" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f02-window">
+    <text x="205" y="94" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">window</text>
+    <rect x="120" y="112" width="170" height="200" rx="10" stroke="currentColor" stroke-width="2"/>
+  </g>
+
+  <g id="f02-contents">
+    <rect x="140" y="136" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="140" y="162" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".35"/>
+    <rect x="140" y="188" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".35"/>
+    <rect x="140" y="214" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".35"/>
+    <rect x="140" y="240" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+  </g>
+
+  <g id="f02-all-of-it">
+    <path d="M306 128 H326 V264 H306 V258 H320 V134 H306 Z" fill="currentColor"/>
+    <path d="M326 196 H514" stroke="currentColor" stroke-width="2.5" marker-end="url(#f02-ink2)"/>
+    <text x="420" y="178" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">every call</text>
+  </g>
+
+  <g id="f02-model">
+    <rect x="514" y="136" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="614" y="202" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="f02-reply">
+    <path d="M714 196 H770" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f02-mut2)"/>
+    <rect x="784" y="181" width="88" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="784" y="193" width="62" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="784" y="205" width="74" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <text x="828" y="238" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">reply</text>
+  </g>
+</svg>`
+/** Figure 2 — What the model sees (M1 s7–s8) */
+export function Fig02() { return <Reveal svg={SVG_02} label={"The model keeps nothing between calls; the whole window is re-sent every time."} /> }
+
+const SVG_03 = `<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f03-ink3" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f03-mut3" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f03-boundary">
+    <rect x="112" y="100" width="336" height="240" rx="14" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="134" y="128" fill="var(--muted-foreground)" font-size="13" text-anchor="start">your code</text>
+  </g>
+
+  <g id="f03-tool">
+    <rect x="248" y="222" width="64" height="64" rx="8" fill="currentColor"/>
+    <polyline points="290,232 268,256 281,256 270,278" fill="none" stroke="var(--background)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="280" y="310" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
+  </g>
+
+  <g id="f03-model">
+    <rect x="648" y="88" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="748" y="154" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="f03-toolcall">
+    <path d="M648 148 H280 V210" stroke="currentColor" stroke-width="2.5" marker-end="url(#f03-ink3)"/>
+    <text x="548" y="135" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool call</text>
+  </g>
+
+  <g id="f03-result">
+    <path d="M312 254 H748 V208" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f03-mut3)"/>
+    <text x="548" y="278" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">result</text>
+  </g>
+</svg>`
+/** Figure 3 — Model, your code, tools (M3 s1–s3) */
+export function Fig03() { return <Reveal svg={SVG_03} label={"The model never runs a tool. It asks, and your code runs it."} /> }
+
+const SVG_05 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f05-ink1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f05-mut1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f05-window">
+    <rect x="248" y="56" width="170" height="220" rx="10" stroke="currentColor" stroke-width="2"/>
+    <rect x="268" y="106" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="268" y="132" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="268" y="210" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+  </g>
+
+  <g id="f05-placed">
+    <rect x="268" y="158" width="130" height="16" rx="3" fill="currentColor"/>
+    <rect x="268" y="184" width="130" height="16" rx="3" fill="currentColor"/>
+  </g>
+
+  <g id="f05-feed">
+    <path d="M418 166 H528" stroke="currentColor" stroke-width="2" marker-end="url(#f05-ink1)"/>
+  </g>
+
+  <g id="f05-model">
+    <rect x="528" y="106" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="628" y="172" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="f05-memory">
+    <rect x="275" y="350" width="116" height="55" fill="var(--background)"/>
+    <path d="M275 350 V405" stroke="currentColor" stroke-width="2"/>
+    <path d="M391 350 V405" stroke="currentColor" stroke-width="2"/>
+    <path d="M275 405 A58 15 0 0 0 391 405" stroke="currentColor" stroke-width="2"/>
+    <ellipse cx="333" cy="350" rx="58" ry="15" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
+    <text x="253" y="383" fill="currentColor" font-size="15" text-anchor="end">memory</text>
+  </g>
+
+  <g id="f05-read">
+    <path d="M333 335 V276" stroke="currentColor" stroke-width="2.5" marker-end="url(#f05-ink1)"/>
+    <text x="316" y="312" fill="var(--muted-foreground)" font-size="13" text-anchor="end">retrieved</text>
+  </g>
+
+  <g id="f05-write">
+    <path d="M628 226 V378 H391" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#f05-mut1)"/>
+    <text x="509" y="364" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">write</text>
+  </g>
+</svg>`
+/** Figure 5 — Where memory lives (M4 s1, s3–s6) */
+export function Fig05() { return <Reveal svg={SVG_05} label={"Memory is a place outside the window that you read in before the call and write back after."} /> }
+
+const SVG_06 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f06-ink6" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f06-mut6" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f06-loop">
+    <circle cx="480" cy="163" r="90" stroke="var(--muted-foreground)" stroke-width="2"/>
+    <path d="M464.37 74.37 A90 90 0 0 1 495.63 74.37" stroke="var(--muted-foreground)" stroke-width="2" marker-end="url(#f06-mut6)"/>
+  </g>
+
+  <g id="f06-model">
+    <rect x="422" y="133" width="116" height="60" rx="14" stroke="currentColor" stroke-width="2" fill="var(--background)"/>
+    <text x="480" y="168" fill="currentColor" font-size="14" text-anchor="middle">model</text>
+  </g>
+
+  <g id="f06-entry">
+    <path d="M120 163 H388" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f06-mut6)"/>
+  </g>
+
+  <g id="f06-exit">
+    <path d="M570 163 H840" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f06-mut6)"/>
+  </g>
+
+  <g id="f06-tool-wire">
+    <path d="M480 253 V347" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f06-mut6)"/>
+  </g>
+
+  <g id="f06-tool">
+    <rect x="452" y="349" width="56" height="56" rx="8" stroke="currentColor" stroke-width="2" fill="var(--background)"/>
+    <path d="M484 364 L473 378 L480 378 L477 390 L487 376 L480 376 Z" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-linejoin="round"/>
+    <text x="480" y="423" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
+  </g>
+
+  <g id="f06-gate-in">
+    <path d="M255 141 L277 163 L255 185 L233 163 Z" fill="currentColor"/>
+    <text x="255" y="207" fill="currentColor" font-size="13" text-anchor="middle">check</text>
+  </g>
+
+  <g id="f06-gate-out">
+    <path d="M705 141 L727 163 L705 185 L683 163 Z" fill="currentColor"/>
+    <text x="705" y="207" fill="currentColor" font-size="13" text-anchor="middle">check</text>
+  </g>
+
+  <g id="f06-gate-tool">
+    <path d="M480 279 L502 301 L480 323 L458 301 Z" fill="currentColor"/>
+    <text x="524" y="306" fill="currentColor" font-size="13" text-anchor="start">check</text>
+  </g>
+</svg>`
+/** Figure 6 — Gates around the loop (M6 s6 (M5 s4)) */
+export function Fig06() { return <Reveal svg={SVG_06} label={"Guardrails are checks your code owns on the wires in, out, and to the tools."} /> }
+
+const SVG_07 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f07-ink7" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f07-mut7" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f07-input">
+    <rect x="68" y="155" width="70" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="68" y="167" width="50" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="68" y="179" width="60" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <path d="M152 170 H182" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+  </g>
+
+  <g id="f07-plan">
+    <circle cx="215" cy="170" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
+    <rect x="200" y="162" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
+    <text x="215" y="224" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">plan</text>
+  </g>
+
+  <g id="f07-fan-out">
+    <path d="M242.3 157.6 L368.1 100.5" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <path d="M245 170 H365" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <path d="M242.3 182.4 L368.1 239.5" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+  </g>
+
+  <g id="f07-research">
+    <circle cx="400" cy="86" r="30" fill="currentColor"/>
+    <circle cx="400" cy="170" r="30" fill="currentColor"/>
+    <circle cx="400" cy="254" r="30" fill="currentColor"/>
+    <text x="400" y="310" fill="currentColor" font-size="13" text-anchor="middle">research</text>
+  </g>
+
+  <g id="f07-fan-in">
+    <path d="M427.3 98.4 L557.7 157.6" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <path d="M430 170 H555" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <path d="M427.3 241.6 L557.7 182.4" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+  </g>
+
+  <g id="f07-check">
+    <circle cx="585" cy="170" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
+    <rect x="570" y="162" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
+    <text x="585" y="224" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">check</text>
+    <path d="M615 170 H700" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+  </g>
+
+  <g id="f07-write">
+    <circle cx="730" cy="170" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
+    <rect x="715" y="162" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
+    <text x="730" y="224" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">write</text>
+    <path d="M760 170 H804" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+  </g>
+
+  <g id="f07-output">
+    <rect x="812" y="155" width="80" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="812" y="167" width="56" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="812" y="179" width="68" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <text x="846" y="211" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">brief</text>
+  </g>
+
+  <g id="f07-memory">
+    <path d="M68 332 V370 A44 12 0 0 0 156 370 V332" fill="var(--background)" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <ellipse cx="112" cy="332" rx="44" ry="12" fill="var(--background)" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <text x="112" y="400" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">memory</text>
+    <path d="M112 320 L198.9 195.3" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+  </g>
+
+  <g id="f07-trace">
+    <path d="M330 420 H892" stroke="var(--border)" stroke-width="1"/>
+    <path d="M400 420 V404" stroke="var(--border)" stroke-width="1"/>
+    <path d="M585 420 V404" stroke="var(--border)" stroke-width="1"/>
+    <path d="M730 420 V404" stroke="var(--border)" stroke-width="1"/>
+    <text x="302" y="424" fill="var(--muted-foreground)" font-size="13" text-anchor="end">trace</text>
+  </g>
+</svg>`
+/** Figure 7 — Many loops — the Desk (M7 s3–s4, M8 s1–s3) */
+export function Fig07() { return <Reveal svg={SVG_07} label={"A system is several copies of the same loop, each with its own window, wired in a line."} /> }
+
 export const figureCaptions: Record<string, string> = {
-  "01": "FIGURE 1 — Pick, append, repeat. That loop is all generation is.",
+  "01": "FIGURE 4.1 — Pick, append, repeat.",
+  "02": "FIGURE 2 — The model reads all of it, every call, and keeps none of it.",
+  "03": "FIGURE 3 — The model asks. Your code is what actually runs.",
+  "05": "FIGURE 5 — The window is assembled, not accumulated.",
+  "06": "FIGURE 6 — Three gates your code owns, around a loop it doesn't.",
+  "07": "FIGURE 7 — The Desk. Every part is a loop you have already built.",
 }
