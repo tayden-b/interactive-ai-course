@@ -1,0 +1,74 @@
+{
+  "figures": [
+    {
+      "n": 1,
+      "slug": "generate",
+      "name": "Text in, text out",
+      "modules": "M1 s1–s4",
+      "target": "lesson-one.tsx · lesson 4 (FIGURE 4.1)",
+      "one_idea": "The model turns text into one more token, appends it, and does it again.",
+      "caption": "FIGURE 4.1 — Pick, append, repeat.",
+      "accent": "the new token and the append path"
+    },
+    {
+      "n": 2,
+      "slug": "window",
+      "name": "What the model sees",
+      "modules": "M1 s7–s8",
+      "target": "lesson-one.tsx · FIGURE 7.1",
+      "one_idea": "The model keeps nothing between calls; the whole window is re-sent every time.",
+      "caption": "FIGURE 2 — The model reads all of it, every call, and keeps none of it.",
+      "accent": "the bracket spanning every bar, and the single arrow it feeds"
+    },
+    {
+      "n": 3,
+      "slug": "tools",
+      "name": "Model, your code, tools",
+      "modules": "M3 s1–s3",
+      "target": "module-three.tsx · FIGURE 3.2.1",
+      "one_idea": "The model never runs a tool. It asks, and your code runs it.",
+      "caption": "FIGURE 3 — The model asks. Your code is what actually runs.",
+      "accent": "the tool-call arrow, at the point it crosses into your code"
+    },
+    {
+      "n": 4,
+      "slug": "loop",
+      "name": "The agent loop",
+      "modules": "M3 s4–s6",
+      "target": "module-three.tsx · FIGURE 3.4.1",
+      "one_idea": "An agent is that round trip repeated until the model stops asking.",
+      "caption": "FIGURE 4 — The loop, and the one way out of it.",
+      "accent": "the exit arrow and its reply label — the stop condition"
+    },
+    {
+      "n": 5,
+      "slug": "memory",
+      "name": "Where memory lives",
+      "modules": "M4 s1, s3–s6",
+      "target": "module-four.tsx · FIGURE 4.6.1",
+      "one_idea": "Memory is a place outside the window that you read in before the call and write back after.",
+      "caption": "FIGURE 5 — The window is assembled, not accumulated.",
+      "accent": "the arrow up from memory and the bars it becomes inside the window"
+    },
+    {
+      "n": 6,
+      "slug": "gates",
+      "name": "Gates around the loop",
+      "modules": "M6 s6 (M5 s4)",
+      "target": "module-six.tsx · FIGURE 6.6.1",
+      "one_idea": "Guardrails are checks your code owns on the wires in, out, and to the tools.",
+      "caption": "FIGURE 6 — Three gates your code owns, around a loop it doesn't.",
+      "accent": "the three check diamonds"
+    },
+    {
+      "n": 7,
+      "slug": "desk",
+      "name": "Many loops — the Desk",
+      "modules": "M7 s3–s4, M8 s1–s3",
+      "target": "module-eight.tsx · FIGURE 8.1.1",
+      "one_idea": "A system is several copies of the same loop, each with its own window, wired in a line.",
+      "caption": "FIGURE 7 — The Desk. Every part is a loop you have already built.",
+      "accent": "the three research loops running at once"
+    }
+  ]
+}

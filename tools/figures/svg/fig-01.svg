@@ -1,0 +1,44 @@
+<svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="ink1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="mut1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="input">
+    <rect x="128" y="117" width="52" height="26" rx="13" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <rect x="188" y="117" width="40" height="26" rx="13" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <rect x="236" y="117" width="64" height="26" rx="13" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <rect x="308" y="117" width="34" height="26" rx="13" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+  </g>
+
+  <g id="slot">
+    <rect x="350" y="117" width="72" height="26" rx="13" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-dasharray="4 5" opacity=".55"/>
+  </g>
+
+  <g id="feed">
+    <path d="M438 130 H470" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut1)"/>
+  </g>
+
+  <g id="model">
+    <rect x="490" y="70" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="590" y="136" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="emit">
+    <path d="M690 130 H738" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink1)"/>
+  </g>
+
+  <g id="token">
+    <text x="788" y="100" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">next token</text>
+    <rect x="752" y="116" width="72" height="28" rx="14" fill="currentColor"/>
+  </g>
+
+  <g id="append">
+    <path d="M788 144 V258 H386 V152" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink1)"/>
+    <text x="587" y="244" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">append</text>
+  </g>
+</svg>
