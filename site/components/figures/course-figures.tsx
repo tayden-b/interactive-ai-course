@@ -5,6 +5,7 @@
 import { useEffect, useRef, useState } from "react"
 
 const STYLE = `
+.cfig { --fig-bg: color-mix(in oklab, var(--secondary) 30%, var(--background)); }
 .cfig > svg { display:block; width:100%; height:auto; }
 .cfig > svg > g { opacity:0; transform:translateY(8px);
   transition:opacity .55s cubic-bezier(.22,1,.36,1), transform .55s cubic-bezier(.22,1,.36,1); }
@@ -95,35 +96,35 @@ const SVG_02 = `<svg viewBox="0 0 960 400" xmlns="http://www.w3.org/2000/svg" fi
   </defs>
 
   <g id="f02-window">
-    <text x="205" y="94" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">window</text>
-    <rect x="120" y="112" width="170" height="200" rx="10" stroke="currentColor" stroke-width="2"/>
+    <text x="221" y="104" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">window</text>
+    <rect x="136" y="122" width="170" height="184" rx="10" stroke="currentColor" stroke-width="2"/>
   </g>
 
   <g id="f02-contents">
-    <rect x="140" y="136" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="140" y="162" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".35"/>
-    <rect x="140" y="188" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".35"/>
-    <rect x="140" y="214" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".35"/>
-    <rect x="140" y="240" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="156" y="146" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="156" y="172" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".35"/>
+    <rect x="156" y="198" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".35"/>
+    <rect x="156" y="224" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".35"/>
+    <rect x="156" y="250" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
   </g>
 
   <g id="f02-all-of-it">
-    <path d="M306 128 H326 V264 H306 V258 H320 V134 H306 Z" fill="currentColor"/>
-    <path d="M326 196 H514" stroke="currentColor" stroke-width="2.5" marker-end="url(#f02-ink2)"/>
-    <text x="420" y="178" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">every call</text>
+    <path d="M326 138 H352 V276 H326 V266 H342 V148 H326 Z" fill="currentColor"/>
+    <path d="M352 206 H510" stroke="currentColor" stroke-width="2.5" marker-end="url(#f02-ink2)"/>
+    <text x="431" y="188" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">every call</text>
   </g>
 
   <g id="f02-model">
-    <rect x="514" y="136" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
-    <text x="614" y="202" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+    <rect x="510" y="146" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="610" y="212" fill="currentColor" font-size="15" text-anchor="middle">model</text>
   </g>
 
   <g id="f02-reply">
-    <path d="M714 196 H770" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f02-mut2)"/>
-    <rect x="784" y="181" width="88" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="784" y="193" width="62" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="784" y="205" width="74" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <text x="828" y="238" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">reply</text>
+    <path d="M710 206 H766" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f02-mut2)"/>
+    <rect x="780" y="191" width="88" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="780" y="203" width="62" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="780" y="215" width="74" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <text x="824" y="242" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">reply</text>
   </g>
 </svg>`
 /** Figure 2 — What the model sees (M1 s7–s8) */
@@ -140,33 +141,89 @@ const SVG_03 = `<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fi
   </defs>
 
   <g id="f03-boundary">
-    <rect x="112" y="100" width="336" height="240" rx="14" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="5 5"/>
-    <text x="134" y="128" fill="var(--muted-foreground)" font-size="13" text-anchor="start">your code</text>
+    <rect x="112" y="92" width="336" height="248" rx="14" stroke="var(--muted-foreground)" opacity=".55" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="134" y="120" fill="var(--muted-foreground)" font-size="13" text-anchor="start">your code</text>
   </g>
 
   <g id="f03-tool">
-    <rect x="248" y="222" width="64" height="64" rx="8" fill="currentColor"/>
-    <polyline points="290,232 268,256 281,256 270,278" fill="none" stroke="var(--background)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="280" y="310" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
+    <rect x="248" y="226" width="64" height="64" rx="8" fill="currentColor"/>
+    <polyline points="289,234 273,258 286,258 271,282" fill="none" stroke="var(--fig-bg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="280" y="314" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
   </g>
 
   <g id="f03-model">
-    <rect x="648" y="88" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
-    <text x="748" y="154" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+    <rect x="648" y="92" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="748" y="158" fill="currentColor" font-size="15" text-anchor="middle">model</text>
   </g>
 
   <g id="f03-toolcall">
-    <path d="M648 148 H280 V210" stroke="currentColor" stroke-width="2.5" marker-end="url(#f03-ink3)"/>
-    <text x="548" y="135" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool call</text>
+    <path d="M648 152 H280 V214" stroke="currentColor" stroke-width="2.5" marker-end="url(#f03-ink3)"/>
+    <text x="548" y="139" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool call</text>
   </g>
 
   <g id="f03-result">
-    <path d="M312 254 H748 V208" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f03-mut3)"/>
-    <text x="548" y="278" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">result</text>
+    <path d="M312 258 H748 V212" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f03-mut3)"/>
+    <text x="548" y="282" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">result</text>
   </g>
 </svg>`
 /** Figure 3 — Model, your code, tools (M3 s1–s3) */
 export function Fig03() { return <Reveal svg={SVG_03} label={"The model never runs a tool. It asks, and your code runs it."} /> }
+
+const SVG_04 = `<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f04-ink1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f04-mut1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f04-ring">
+    <path d="M514.8 138.2 A122 122 0 0 1 548.1 195.5" stroke="var(--muted-foreground)" stroke-width="2" marker-end="url(#f04-mut1)"/>
+    <path d="M548.1 256.5 A122 122 0 0 1 475.7 339.1" stroke="var(--muted-foreground)" stroke-width="2"/>
+    <path d="M384.3 339.1 A122 122 0 0 1 311 253" stroke="var(--muted-foreground)" stroke-width="2"/>
+    <path d="M311 199 A122 122 0 0 1 345.2 138.2" stroke="var(--muted-foreground)" stroke-width="2"/>
+  </g>
+
+  <g id="f04-model">
+    <rect x="355" y="60" width="150" height="88" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="430" y="110" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="f04-entry">
+    <path d="M104 104 H355" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f04-mut1)"/>
+    <text x="230" y="90" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">message</text>
+  </g>
+
+  <g id="f04-check">
+    <path d="M552 204 L574 226 L552 248 L530 226 Z" stroke="currentColor" stroke-width="2"/>
+    <text x="600" y="268" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool call?</text>
+  </g>
+
+  <g id="f04-tool">
+    <rect x="398" y="316" width="64" height="64" rx="8" stroke="currentColor" stroke-width="2"/>
+    <path d="M433 331 L421 350 H429 L427 365 L439 346 H431 Z" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-linejoin="round"/>
+    <text x="430" y="400" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
+  </g>
+
+  <g id="f04-result">
+    <rect x="272" y="211" width="74" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="282" y="223" width="54" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="277" y="235" width="64" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <text x="258" y="231" fill="var(--muted-foreground)" font-size="13" text-anchor="end">result</text>
+  </g>
+
+  <g id="f04-exit">
+    <path d="M574 226 H754" stroke="currentColor" stroke-width="3" marker-end="url(#f04-ink1)"/>
+    <rect x="770" y="211" width="84" height="6" rx="3" fill="currentColor"/>
+    <rect x="770" y="223" width="60" height="6" rx="3" fill="currentColor"/>
+    <rect x="770" y="235" width="72" height="6" rx="3" fill="currentColor"/>
+    <text x="809" y="196" fill="currentColor" font-size="13" text-anchor="middle">reply</text>
+  </g>
+</svg>`
+/** Figure 4 — The agent loop (M3 s4–s6) */
+export function Fig04() { return <Reveal svg={SVG_04} label={"An agent is that round trip repeated until the model stops asking."} /> }
 
 const SVG_05 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fill="none">
   <defs>
@@ -179,43 +236,43 @@ const SVG_05 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fi
   </defs>
 
   <g id="f05-window">
-    <rect x="248" y="56" width="170" height="220" rx="10" stroke="currentColor" stroke-width="2"/>
-    <rect x="268" y="106" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
-    <rect x="268" y="132" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
-    <rect x="268" y="210" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="268" y="56" width="170" height="220" rx="10" stroke="currentColor" stroke-width="2"/>
+    <rect x="288" y="106" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="288" y="132" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="288" y="158" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
   </g>
 
   <g id="f05-placed">
-    <rect x="268" y="158" width="130" height="16" rx="3" fill="currentColor"/>
-    <rect x="268" y="184" width="130" height="16" rx="3" fill="currentColor"/>
+    <rect x="288" y="184" width="130" height="16" rx="3" fill="currentColor"/>
+    <rect x="288" y="210" width="130" height="16" rx="3" fill="currentColor"/>
   </g>
 
   <g id="f05-feed">
-    <path d="M418 166 H528" stroke="currentColor" stroke-width="2" marker-end="url(#f05-ink1)"/>
+    <path d="M438 166 H548" stroke="currentColor" stroke-width="2" marker-end="url(#f05-ink1)"/>
   </g>
 
   <g id="f05-model">
-    <rect x="528" y="106" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
-    <text x="628" y="172" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+    <rect x="548" y="106" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="648" y="172" fill="currentColor" font-size="15" text-anchor="middle">model</text>
   </g>
 
   <g id="f05-memory">
-    <rect x="275" y="350" width="116" height="55" fill="var(--background)"/>
-    <path d="M275 350 V405" stroke="currentColor" stroke-width="2"/>
-    <path d="M391 350 V405" stroke="currentColor" stroke-width="2"/>
-    <path d="M275 405 A58 15 0 0 0 391 405" stroke="currentColor" stroke-width="2"/>
-    <ellipse cx="333" cy="350" rx="58" ry="15" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
-    <text x="253" y="383" fill="currentColor" font-size="15" text-anchor="end">memory</text>
+    <rect x="295" y="350" width="116" height="55" fill="var(--fig-bg)"/>
+    <path d="M295 350 V405" stroke="currentColor" stroke-width="2"/>
+    <path d="M411 350 V405" stroke="currentColor" stroke-width="2"/>
+    <path d="M295 405 A58 15 0 0 0 411 405" stroke="currentColor" stroke-width="2"/>
+    <ellipse cx="353" cy="350" rx="58" ry="15" fill="var(--fig-bg)" stroke="currentColor" stroke-width="2"/>
+    <text x="271" y="383" fill="currentColor" font-size="15" text-anchor="end">memory</text>
   </g>
 
   <g id="f05-read">
-    <path d="M333 335 V276" stroke="currentColor" stroke-width="2.5" marker-end="url(#f05-ink1)"/>
-    <text x="316" y="312" fill="var(--muted-foreground)" font-size="13" text-anchor="end">retrieved</text>
+    <path d="M353 335 V276" stroke="currentColor" stroke-width="2.5" marker-end="url(#f05-ink1)"/>
+    <text x="334" y="312" fill="var(--muted-foreground)" font-size="13" text-anchor="end">retrieved</text>
   </g>
 
   <g id="f05-write">
-    <path d="M628 226 V378 H391" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#f05-mut1)"/>
-    <text x="509" y="364" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">write</text>
+    <path d="M648 226 V378 H411" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#f05-mut1)"/>
+    <text x="529" y="364" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">write</text>
   </g>
 </svg>`
 /** Figure 5 — Where memory lives (M4 s1, s3–s6) */
@@ -232,46 +289,46 @@ const SVG_06 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fi
   </defs>
 
   <g id="f06-loop">
-    <circle cx="480" cy="163" r="90" stroke="var(--muted-foreground)" stroke-width="2"/>
-    <path d="M464.37 74.37 A90 90 0 0 1 495.63 74.37" stroke="var(--muted-foreground)" stroke-width="2" marker-end="url(#f06-mut6)"/>
+    <circle cx="480" cy="153" r="90" stroke="var(--muted-foreground)" stroke-width="2"/>
+    <path d="M464.37 64.37 A90 90 0 0 1 495.63 64.37" stroke="var(--muted-foreground)" stroke-width="2" marker-end="url(#f06-mut6)"/>
   </g>
 
   <g id="f06-model">
-    <rect x="422" y="133" width="116" height="60" rx="14" stroke="currentColor" stroke-width="2" fill="var(--background)"/>
-    <text x="480" y="168" fill="currentColor" font-size="14" text-anchor="middle">model</text>
+    <rect x="422" y="123" width="116" height="60" rx="14" stroke="currentColor" stroke-width="2" fill="var(--fig-bg)"/>
+    <text x="480" y="158" fill="currentColor" font-size="15" text-anchor="middle">model</text>
   </g>
 
   <g id="f06-entry">
-    <path d="M120 163 H388" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f06-mut6)"/>
+    <path d="M120 153 H388" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f06-mut6)"/>
   </g>
 
   <g id="f06-exit">
-    <path d="M570 163 H840" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f06-mut6)"/>
+    <path d="M570 153 H840" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f06-mut6)"/>
   </g>
 
   <g id="f06-tool-wire">
-    <path d="M480 253 V347" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f06-mut6)"/>
+    <path d="M480 243 V341" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f06-mut6)"/>
   </g>
 
   <g id="f06-tool">
-    <rect x="452" y="349" width="56" height="56" rx="8" stroke="currentColor" stroke-width="2" fill="var(--background)"/>
-    <path d="M484 364 L473 378 L480 378 L477 390 L487 376 L480 376 Z" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="480" y="423" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
+    <rect x="452" y="343" width="56" height="56" rx="8" stroke="currentColor" stroke-width="2" fill="var(--fig-bg)"/>
+    <path d="M483 354 L471 373 H479 L477 388 L489 369 H481 Z" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-linejoin="round"/>
+    <text x="480" y="422" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
   </g>
 
   <g id="f06-gate-in">
-    <path d="M255 141 L277 163 L255 185 L233 163 Z" fill="currentColor"/>
-    <text x="255" y="207" fill="currentColor" font-size="13" text-anchor="middle">check</text>
+    <path d="M255 131 L277 153 L255 175 L233 153 Z" fill="currentColor"/>
+    <text x="255" y="200" fill="currentColor" font-size="13" text-anchor="middle">check</text>
   </g>
 
   <g id="f06-gate-out">
-    <path d="M705 141 L727 163 L705 185 L683 163 Z" fill="currentColor"/>
-    <text x="705" y="207" fill="currentColor" font-size="13" text-anchor="middle">check</text>
+    <path d="M705 131 L727 153 L705 175 L683 153 Z" fill="currentColor"/>
+    <text x="705" y="200" fill="currentColor" font-size="13" text-anchor="middle">check</text>
   </g>
 
   <g id="f06-gate-tool">
-    <path d="M480 279 L502 301 L480 323 L458 301 Z" fill="currentColor"/>
-    <text x="524" y="306" fill="currentColor" font-size="13" text-anchor="start">check</text>
+    <path d="M480 271 L502 293 L480 315 L458 293 Z" fill="currentColor"/>
+    <text x="524" y="298" fill="currentColor" font-size="13" text-anchor="start">check</text>
   </g>
 </svg>`
 /** Figure 6 — Gates around the loop (M6 s6 (M5 s4)) */
@@ -288,71 +345,74 @@ const SVG_07 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fi
   </defs>
 
   <g id="f07-input">
-    <rect x="68" y="155" width="70" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="68" y="167" width="50" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="68" y="179" width="60" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <path d="M152 170 H182" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <rect x="64" y="160" width="70" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="64" y="172" width="50" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="64" y="184" width="60" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <path d="M146 172 H185" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
   </g>
 
   <g id="f07-plan">
-    <circle cx="215" cy="170" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
-    <rect x="200" y="162" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
-    <text x="215" y="224" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">plan</text>
+    <circle cx="215" cy="172" r="30" fill="var(--fig-bg)" stroke="currentColor" stroke-width="2"/>
+    <rect x="200" y="164" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
+    <text x="215" y="130" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">plan</text>
   </g>
 
   <g id="f07-fan-out">
-    <path d="M242.3 157.6 L368.1 100.5" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
-    <path d="M245 170 H365" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
-    <path d="M242.3 182.4 L368.1 239.5" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <path d="M242.3 159.6 L372.7 100.4" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <path d="M245 172 H370" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <path d="M242.3 184.4 L372.7 243.6" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
   </g>
 
   <g id="f07-research">
-    <circle cx="400" cy="86" r="30" fill="currentColor"/>
-    <circle cx="400" cy="170" r="30" fill="currentColor"/>
-    <circle cx="400" cy="254" r="30" fill="currentColor"/>
-    <text x="400" y="310" fill="currentColor" font-size="13" text-anchor="middle">research</text>
+    <circle cx="400" cy="88" r="30" fill="currentColor"/>
+    <rect x="385" y="80" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
+    <circle cx="400" cy="172" r="30" fill="currentColor"/>
+    <rect x="385" y="164" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
+    <circle cx="400" cy="256" r="30" fill="currentColor"/>
+    <rect x="385" y="248" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
+    <text x="400" y="314" fill="currentColor" font-size="15" text-anchor="middle">research</text>
   </g>
 
   <g id="f07-fan-in">
-    <path d="M427.3 98.4 L557.7 157.6" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
-    <path d="M430 170 H555" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
-    <path d="M427.3 241.6 L557.7 182.4" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <path d="M427.3 100.4 L557.7 159.6" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <path d="M430 172 H555" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <path d="M427.3 243.6 L557.7 184.4" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
   </g>
 
   <g id="f07-check">
-    <circle cx="585" cy="170" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
-    <rect x="570" y="162" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
-    <text x="585" y="224" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">check</text>
-    <path d="M615 170 H700" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <circle cx="585" cy="172" r="30" fill="var(--fig-bg)" stroke="currentColor" stroke-width="2"/>
+    <rect x="570" y="164" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
+    <text x="585" y="130" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">check</text>
+    <path d="M615 172 H700" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
   </g>
 
   <g id="f07-write">
-    <circle cx="730" cy="170" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
-    <rect x="715" y="162" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
-    <text x="730" y="224" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">write</text>
-    <path d="M760 170 H804" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <circle cx="730" cy="172" r="30" fill="var(--fig-bg)" stroke="currentColor" stroke-width="2"/>
+    <rect x="715" y="164" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
+    <text x="730" y="130" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">write</text>
+    <path d="M760 172 H798" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
   </g>
 
   <g id="f07-output">
-    <rect x="812" y="155" width="80" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="812" y="167" width="56" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="812" y="179" width="68" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <text x="846" y="211" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">brief</text>
+    <rect x="808" y="160" width="80" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="808" y="172" width="56" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="808" y="184" width="68" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <text x="844" y="130" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">brief</text>
   </g>
 
   <g id="f07-memory">
-    <path d="M68 332 V370 A44 12 0 0 0 156 370 V332" fill="var(--background)" stroke="var(--muted-foreground)" stroke-width="1.5"/>
-    <ellipse cx="112" cy="332" rx="44" ry="12" fill="var(--background)" stroke="var(--muted-foreground)" stroke-width="1.5"/>
-    <text x="112" y="400" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">memory</text>
-    <path d="M112 320 L198.9 195.3" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
+    <path d="M171 320 V358 A44 12 0 0 0 259 358 V320" fill="var(--fig-bg)" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <ellipse cx="215" cy="320" rx="44" ry="12" fill="var(--fig-bg)" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <text x="215" y="390" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">memory</text>
+    <path d="M215 308 V202" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f07-mut7)"/>
   </g>
 
   <g id="f07-trace">
-    <path d="M330 420 H892" stroke="var(--border)" stroke-width="1"/>
-    <path d="M400 420 V404" stroke="var(--border)" stroke-width="1"/>
-    <path d="M585 420 V404" stroke="var(--border)" stroke-width="1"/>
-    <path d="M730 420 V404" stroke="var(--border)" stroke-width="1"/>
-    <text x="302" y="424" fill="var(--muted-foreground)" font-size="13" text-anchor="end">trace</text>
+    <path d="M370 408 H888" stroke="var(--border)" stroke-width="1.5"/>
+    <path d="M400 408 V300" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 5"/>
+    <path d="M585 408 V216" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 5"/>
+    <path d="M730 408 V216" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 5"/>
+    <text x="352" y="412" fill="var(--muted-foreground)" font-size="13" text-anchor="end">trace</text>
   </g>
 </svg>`
 /** Figure 7 — Many loops — the Desk (M7 s3–s4, M8 s1–s3) */
@@ -362,6 +422,7 @@ export const figureCaptions: Record<string, string> = {
   "01": "FIGURE 4.1 — Pick, append, repeat.",
   "02": "FIGURE 2 — The model reads all of it, every call, and keeps none of it.",
   "03": "FIGURE 3 — The model asks. Your code is what actually runs.",
+  "04": "FIGURE 4 — The loop, and the one way out of it.",
   "05": "FIGURE 5 — The window is assembled, not accumulated.",
   "06": "FIGURE 6 — Three gates your code owns, around a loop it doesn't.",
   "07": "FIGURE 7 — The Desk. Every part is a loop you have already built.",

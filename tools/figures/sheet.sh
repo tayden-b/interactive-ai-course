@@ -15,9 +15,9 @@ cat <<'EOF'
 html,body{margin:0;background:var(--background);color:var(--foreground);
 font-family:'Instrument Sans',system-ui,sans-serif;}
 .wrap{width:860px;margin:0 auto;padding:48px 0;}
-figure{margin:0 0 40px;border:1px solid var(--border);
+figure{--fig-bg:color-mix(in oklab,var(--secondary) 30%,var(--background));margin:0 0 40px;border:1px solid var(--border);
 background:color-mix(in oklch,var(--secondary) 30%,var(--background));padding:16px;}
-svg{display:block;width:100%;height:auto;}
+svg{--fig-bg:color-mix(in oklab,var(--secondary) 30%,var(--background));display:block;width:100%;height:auto;}
 figcaption{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;
 text-transform:uppercase;letter-spacing:.16em;color:var(--muted-foreground);}
 </style></head><body><div class="wrap">

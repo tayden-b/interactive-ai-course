@@ -9,70 +9,73 @@
   </defs>
 
   <g id="input">
-    <rect x="68" y="155" width="70" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="68" y="167" width="50" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="68" y="179" width="60" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <path d="M152 170 H182" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
+    <rect x="64" y="160" width="70" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="64" y="172" width="50" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="64" y="184" width="60" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <path d="M146 172 H185" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
   </g>
 
   <g id="plan">
-    <circle cx="215" cy="170" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
-    <rect x="200" y="162" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
-    <text x="215" y="224" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">plan</text>
+    <circle cx="215" cy="172" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
+    <rect x="200" y="164" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
+    <text x="215" y="130" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">plan</text>
   </g>
 
   <g id="fan-out">
-    <path d="M242.3 157.6 L368.1 100.5" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
-    <path d="M245 170 H365" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
-    <path d="M242.3 182.4 L368.1 239.5" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
+    <path d="M242.3 159.6 L372.7 100.4" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
+    <path d="M245 172 H370" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
+    <path d="M242.3 184.4 L372.7 243.6" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
   </g>
 
   <g id="research">
-    <circle cx="400" cy="86" r="30" fill="currentColor"/>
-    <circle cx="400" cy="170" r="30" fill="currentColor"/>
-    <circle cx="400" cy="254" r="30" fill="currentColor"/>
-    <text x="400" y="310" fill="currentColor" font-size="15" text-anchor="middle">research</text>
+    <circle cx="400" cy="88" r="30" fill="currentColor"/>
+    <rect x="385" y="80" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
+    <circle cx="400" cy="172" r="30" fill="currentColor"/>
+    <rect x="385" y="164" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
+    <circle cx="400" cy="256" r="30" fill="currentColor"/>
+    <rect x="385" y="248" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
+    <text x="400" y="314" fill="currentColor" font-size="15" text-anchor="middle">research</text>
   </g>
 
   <g id="fan-in">
-    <path d="M427.3 98.4 L557.7 157.6" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
-    <path d="M430 170 H555" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
-    <path d="M427.3 241.6 L557.7 182.4" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
+    <path d="M427.3 100.4 L557.7 159.6" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
+    <path d="M430 172 H555" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
+    <path d="M427.3 243.6 L557.7 184.4" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
   </g>
 
   <g id="check">
-    <circle cx="585" cy="170" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
-    <rect x="570" y="162" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
-    <text x="585" y="224" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">check</text>
-    <path d="M615 170 H700" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
+    <circle cx="585" cy="172" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
+    <rect x="570" y="164" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
+    <text x="585" y="130" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">check</text>
+    <path d="M615 172 H700" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
   </g>
 
   <g id="write">
-    <circle cx="730" cy="170" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
-    <rect x="715" y="162" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
-    <text x="730" y="224" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">write</text>
-    <path d="M760 170 H804" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
+    <circle cx="730" cy="172" r="30" fill="var(--background)" stroke="currentColor" stroke-width="2"/>
+    <rect x="715" y="164" width="30" height="16" rx="4" stroke="currentColor" stroke-width="1.5"/>
+    <text x="730" y="130" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">write</text>
+    <path d="M760 172 H798" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
   </g>
 
   <g id="output">
-    <rect x="812" y="155" width="80" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="812" y="167" width="56" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="812" y="179" width="68" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <text x="846" y="211" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">brief</text>
+    <rect x="808" y="160" width="80" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="808" y="172" width="56" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="808" y="184" width="68" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
+    <text x="844" y="130" fill="var(--muted-foreground)" font-size="15" text-anchor="middle">brief</text>
   </g>
 
   <g id="memory">
-    <path d="M68 326 V364 A44 12 0 0 0 156 364 V326" fill="var(--background)" stroke="var(--muted-foreground)" stroke-width="1.5"/>
-    <ellipse cx="112" cy="326" rx="44" ry="12" fill="var(--background)" stroke="var(--muted-foreground)" stroke-width="1.5"/>
-    <text x="112" y="404" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">memory</text>
-    <path d="M112 314 L197.5 194.4" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
+    <path d="M171 320 V358 A44 12 0 0 0 259 358 V320" fill="var(--background)" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <ellipse cx="215" cy="320" rx="44" ry="12" fill="var(--background)" stroke="var(--muted-foreground)" stroke-width="1.5"/>
+    <text x="215" y="390" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">memory</text>
+    <path d="M215 308 V202" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut7)"/>
   </g>
 
   <g id="trace">
-    <path d="M330 400 H892" stroke="var(--border)" stroke-width="1"/>
-    <path d="M400 400 V376" stroke="var(--border)" stroke-width="1"/>
-    <path d="M585 400 V376" stroke="var(--border)" stroke-width="1"/>
-    <path d="M730 400 V376" stroke="var(--border)" stroke-width="1"/>
-    <text x="302" y="404" fill="var(--muted-foreground)" font-size="13" text-anchor="end">trace</text>
+    <path d="M370 408 H888" stroke="var(--border)" stroke-width="1.5"/>
+    <path d="M400 408 V300" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 5"/>
+    <path d="M585 408 V216" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 5"/>
+    <path d="M730 408 V216" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 5"/>
+    <text x="352" y="412" fill="var(--muted-foreground)" font-size="13" text-anchor="end">trace</text>
   </g>
 </svg>

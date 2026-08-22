@@ -25,10 +25,10 @@ cat > "$TMP" <<EOF
 html,body{margin:0;padding:0;background:var(--background);color:var(--foreground);
   font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
 .page{padding:60px;}
-figure{margin:0;border:1px solid var(--border);
+figure{--fig-bg:color-mix(in oklab,var(--secondary) 30%,var(--background));margin:0;border:1px solid var(--border);
   background:color-mix(in oklch, var(--secondary) 30%, var(--background));padding:16px;}
 figure > .box{min-height:208px;overflow:hidden;}
-svg{display:block;width:100%;height:auto;}
+svg{--fig-bg:color-mix(in oklab,var(--secondary) 30%,var(--background));display:block;width:100%;height:auto;}
 figcaption{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;
   text-transform:uppercase;letter-spacing:.16em;color:var(--muted-foreground);}
 </style></head><body><div class="page"><figure><div class="box">

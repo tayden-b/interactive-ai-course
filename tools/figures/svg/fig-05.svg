@@ -12,12 +12,12 @@
     <rect x="268" y="56" width="170" height="220" rx="10" stroke="currentColor" stroke-width="2"/>
     <rect x="288" y="106" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
     <rect x="288" y="132" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
-    <rect x="288" y="210" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="288" y="158" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
   </g>
 
   <g id="placed">
-    <rect x="288" y="158" width="130" height="16" rx="3" fill="currentColor"/>
     <rect x="288" y="184" width="130" height="16" rx="3" fill="currentColor"/>
+    <rect x="288" y="210" width="130" height="16" rx="3" fill="currentColor"/>
   </g>
 
   <g id="feed">

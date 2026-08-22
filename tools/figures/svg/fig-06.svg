@@ -9,45 +9,45 @@
   </defs>
 
   <g id="loop">
-    <circle cx="480" cy="154" r="90" stroke="var(--muted-foreground)" stroke-width="2"/>
-    <path d="M464.37 65.37 A90 90 0 0 1 495.63 65.37" stroke="var(--muted-foreground)" stroke-width="2" marker-end="url(#mut6)"/>
+    <circle cx="480" cy="153" r="90" stroke="var(--muted-foreground)" stroke-width="2"/>
+    <path d="M464.37 64.37 A90 90 0 0 1 495.63 64.37" stroke="var(--muted-foreground)" stroke-width="2" marker-end="url(#mut6)"/>
   </g>
 
   <g id="model">
-    <rect x="422" y="124" width="116" height="60" rx="14" stroke="currentColor" stroke-width="2" fill="var(--background)"/>
-    <text x="480" y="159" fill="currentColor" font-size="14" text-anchor="middle">model</text>
+    <rect x="422" y="123" width="116" height="60" rx="14" stroke="currentColor" stroke-width="2" fill="var(--background)"/>
+    <text x="480" y="158" fill="currentColor" font-size="15" text-anchor="middle">model</text>
   </g>
 
   <g id="entry">
-    <path d="M120 154 H388" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut6)"/>
+    <path d="M120 153 H388" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut6)"/>
   </g>
 
   <g id="exit">
-    <path d="M570 154 H840" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut6)"/>
+    <path d="M570 153 H840" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut6)"/>
   </g>
 
   <g id="tool-wire">
-    <path d="M480 244 V362" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut6)"/>
+    <path d="M480 243 V341" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#mut6)"/>
   </g>
 
   <g id="tool">
-    <rect x="452" y="364" width="56" height="56" rx="8" stroke="currentColor" stroke-width="2" fill="var(--background)"/>
-    <path d="M484 379 L473 393 L480 393 L477 405 L487 391 L480 391 Z" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="524" y="397" fill="var(--muted-foreground)" font-size="13" text-anchor="start">tool</text>
+    <rect x="452" y="343" width="56" height="56" rx="8" stroke="currentColor" stroke-width="2" fill="var(--background)"/>
+    <path d="M483 354 L471 373 H479 L477 388 L489 369 H481 Z" stroke="var(--muted-foreground)" stroke-width="1.5" stroke-linejoin="round"/>
+    <text x="480" y="422" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
   </g>
 
   <g id="gate-in">
-    <path d="M255 132 L277 154 L255 176 L233 154 Z" fill="currentColor"/>
-    <text x="255" y="198" fill="currentColor" font-size="13" text-anchor="middle">check</text>
+    <path d="M255 131 L277 153 L255 175 L233 153 Z" fill="currentColor"/>
+    <text x="255" y="200" fill="currentColor" font-size="13" text-anchor="middle">check</text>
   </g>
 
   <g id="gate-out">
-    <path d="M705 132 L727 154 L705 176 L683 154 Z" fill="currentColor"/>
-    <text x="705" y="198" fill="currentColor" font-size="13" text-anchor="middle">check</text>
+    <path d="M705 131 L727 153 L705 175 L683 153 Z" fill="currentColor"/>
+    <text x="705" y="200" fill="currentColor" font-size="13" text-anchor="middle">check</text>
   </g>
 
   <g id="gate-tool">
-    <path d="M480 282 L502 304 L480 326 L458 304 Z" fill="currentColor"/>
-    <text x="436" y="309" fill="currentColor" font-size="13" text-anchor="end">check</text>
+    <path d="M480 271 L502 293 L480 315 L458 293 Z" fill="currentColor"/>
+    <text x="524" y="298" fill="currentColor" font-size="13" text-anchor="start">check</text>
   </g>
 </svg>

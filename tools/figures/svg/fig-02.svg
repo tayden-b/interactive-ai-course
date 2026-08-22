@@ -22,9 +22,9 @@
   </g>
 
   <g id="all-of-it">
-    <path d="M322 138 H348 V276 H322 V266 H338 V148 H322 Z" fill="currentColor"/>
-    <path d="M348 206 H510" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink2)"/>
-    <text x="429" y="188" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">every call</text>
+    <path d="M326 138 H352 V276 H326 V266 H342 V148 H326 Z" fill="currentColor"/>
+    <path d="M352 206 H510" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink2)"/>
+    <text x="431" y="188" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">every call</text>
   </g>
 
   <g id="model">
