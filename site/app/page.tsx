@@ -37,7 +37,10 @@ export default function Home() {
         <Eyebrow><ScrambleText text="A visual, hands-on guide to AI — from the model up" /></Eyebrow>
         <h1 className="mt-5 text-balance font-display text-7xl leading-[.9] tracking-tight md:text-8xl lg:text-9xl">Understand AI by <span style={{ color: ACC }}>building</span> with it</h1>
         <p className="mt-7 max-w-xl text-base leading-7 text-muted-foreground">Eight modules. Each one explains a building block in plain language, with a diagram for every idea, and ends with something you build.</p>
-        <Link href="/m/1" className="mt-9 inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Start with Module 1</Link>
+        <div className="mt-9 flex flex-wrap gap-3">
+          <Link href="/orientation" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Read the orientation</Link>
+          <Link href="/m/1" className="inline-flex border border-border px-5 py-3 text-sm">Go straight to Module 1</Link>
+        </div>
         <p className="mt-10 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Works with any coding agent — <span className="text-foreground">Claude Code · Cursor · Codex CLI · Gemini CLI</span></p>
       </div>
       <div className="relative -mx-5 h-[520px] overflow-visible md:-mx-16 md:h-[700px]"><AnimatedSphere /></div>
@@ -46,6 +49,17 @@ export default function Home() {
     {/* By the numbers: one row, one blue. */}
     <section className="border-b border-border py-10">
       <Numbers items={[{ value: String(courseTotals.modules), label: "modules" }, { value: String(courseTotals.sections), label: "sections" }, { value: String(courseTotals.figures), label: "figures" }, { value: String(courseTotals.capstones), label: "capstone", accent: true }]} />
+    </section>
+
+    <section className="border-b border-border py-12">
+      <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <Eyebrow>New to the field?</Eyebrow>
+          <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-tight md:text-4xl">Start with the map, not the jargon.</h2>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">The orientation separates AI, machine learning, language models, agents, workflows, and orchestration before the numbered course begins. It uses the original IBM Carbon diagrams from the field guide.</p>
+        </div>
+        <Link href="/orientation" className="inline-flex border border-border px-5 py-3 text-sm">Open orientation →</Link>
+      </div>
     </section>
 
     {/* What a run looks like when it's traced: the thing the capstone ends in, typed out once. */}
