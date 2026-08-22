@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Check, Eyebrow, Figure, LessonHeader, Prose } from "./reading-frame"
+import { Code, Compare, Flow, KV, Numbers, Stack, Steps, Table } from "@/components/figures/kit"
 
 const lessons = [
   {
@@ -15,6 +16,31 @@ AGENT     plan → tool → observe → plan → reply
 answer a support ticket       debug a failing build
 workflow: fixed path          workflow: no path matches
                                agent: proceeds`,
+    node: (
+      <Compare
+        left={{
+          title: "Workflow",
+          accent: true,
+          children: (
+            <>
+              <Flow items={["classify", "look up", "draft", "check", "send"]} />
+              <p className="mt-3 text-[13px] leading-5 text-muted-foreground">A fixed sequence of steps, some of which call a model. The model does the parts that need language; your code does the order.</p>
+            </>
+          ),
+          note: "answer a support ticket — the path is fixed",
+        }}
+        right={{
+          title: "Agent",
+          children: (
+            <>
+              <Flow items={["plan", "tool", "observe", "plan", "reply"]} />
+              <p className="mt-3 text-[13px] leading-5 text-muted-foreground">Decides its own path. Every decision is a model call, every call can be wrong, and errors compound.</p>
+            </>
+          ),
+          note: "debug a failing build — no path matches, so the agent proceeds",
+        }}
+      />
+    ),
     caption: "FIGURE 7.1.1 — Known steps: workflow. Unknown steps: agent.",
     library: "learnaivisually — DAG-vs-loop comparison.",
     paragraphs: [
@@ -33,6 +59,18 @@ workflow: fixed path          workflow: no path matches
     title: "Chaining and routing", time: "~7 min",
     line: "Chaining breaks a task into fixed steps with a check between them; routing classifies the input first and sends it down the right path.",
     figure: "CHAIN: In → step 1 → gate (valid?) → step 2 → step 3 → Out\nROUTE: In → classifier → billing / bugs / general → Out",
+    node: (
+      <Stack>
+        <KV rows={[
+          { k: "chain", v: <Flow items={["in", "step 1", { label: "gate", accent: true, sub: "valid?" }, "step 2", "step 3", "out"]} /> },
+          { k: "route", v: <Flow items={["in", "classifier", "billing / bugs / general", "out"]} /> },
+        ]} />
+        <Table head={["pattern", "shape", "fits when", "cost and payoff"]} rows={[
+          ["Chain", "one call's output is the next call's input, with a check between", "steps are fixed and checkable", "latency, since the steps are sequential; each step is small enough to eval on its own, and each gate catches a failure before it compounds"],
+          ["Route", "classify first, then choose the path", "different inputs need different handling", "one prompt per kind of input; easy cases go to a cheap model, hard ones to an expensive one"],
+        ]} />
+      </Stack>
+    ),
     caption: "FIGURE 7.2.1 — Steps with gates; paths with a switch.",
     library: 'Anthropic, "Building effective agents" — prompt chaining and routing diagrams.',
     paragraphs: [
@@ -52,6 +90,16 @@ workflow: fixed path          workflow: no path matches
     title: "Parallel: fan out, fan in", time: "~6 min",
     line: "When steps don't depend on each other, run them at the same time and combine the results; it's faster, and voting improves accuracy.",
     figure: "In → summarize A | summarize B | summarize C → aggregate → Out\n\nsectioning: each box does a different part\nvoting: each box does the same task; majority wins\nsequential: 3 × 2 s    parallel: 2 s",
+    node: (
+      <Stack>
+        <Flow items={["in", { label: "summarize A | summarize B | summarize C", sub: "at the same time" }, { label: "aggregate", accent: true, sub: "the step to eval" }, "out"]} />
+        <KV rows={[
+          { k: "sectioning", v: "each box does a different part — split the work, run it at once, combine" },
+          { k: "voting", v: "each box does the same task; the majority wins — costs more tokens, buys reliability" },
+        ]} />
+        <Numbers items={[{ value: "3 × 2 s", label: "sequential" }, { value: "2 s", label: "parallel" }]} />
+      </Stack>
+    ),
     caption: "FIGURE 7.3.1 — Independent work doesn't have to wait.",
     library: 'Anthropic, "Building effective agents" — parallelization.',
     paragraphs: [
@@ -70,6 +118,15 @@ workflow: fixed path          workflow: no path matches
     title: "Orchestrator and workers", time: "~8 min",
     line: "A lead agent plans and delegates; worker agents each do one part in their own small window; the lead synthesizes — and the point is context isolation.",
     figure: "              ORCHESTRATOR\n             /       |       \\\n        WORKER A  WORKER B  WORKER C\n             \\       |       /\n                SYNTHESIZE\n\nno worker sees another's window",
+    node: (
+      <Stack>
+        <Flow items={[{ label: "orchestrator", sub: "reads the task, breaks it into parts" }, { label: "worker A | worker B | worker C", sub: "no worker sees another's window" }, { label: "synthesize", sub: "from compact results" }]} />
+        <Compare
+          left={{ title: "What a worker reads", children: <Numbers items={[{ value: "30,000", label: "tokens — one document" }]} />, note: "its own window, its own narrow instructions, only the tools it needs" }}
+          right={{ title: "What the orchestrator sees", accent: true, children: <Numbers items={[{ value: "300", label: "tokens — the worker's summary" }]} />, note: "isolation is the win; parallelism is the bonus" }}
+        />
+      </Stack>
+    ),
     caption: "FIGURE 7.4.1 — One plan, several small windows.",
     library: "Anthropic, How we built our multi-agent research system.",
     paragraphs: [
@@ -89,6 +146,16 @@ workflow: fixed path          workflow: no path matches
     title: "A critic in the loop", time: "~6 min",
     line: "Pair a generator with an evaluator: one produces, the other grades against a rubric, and the generator revises until the grade passes or a cap is hit.",
     figure: "generator → solution → evaluator\n                 ├─ accepted → Out\n                 └─ rejected + feedback → generator\n\nround 2 of 3",
+    node: (
+      <Stack>
+        <Flow items={["generator", "solution", { label: "evaluator", sub: "rubric in hand, no stake in the output" }, { label: "rejected + feedback", sub: "round 2 of 3" }]} loop />
+        <Steps accent={1} items={[
+          { title: "Produce", body: "One call generates a solution." },
+          { title: "Grade", body: "A second call, with a concrete rubric — \"every claim cites a source\", \"under 200 words\", \"valid JSON matching the schema\" — grades it and returns specific feedback. A vague rubric gives vague feedback, and the generator has nothing to act on." },
+          { title: "Revise", body: "The generator revises with that feedback in its window. Accepted goes out; rejected loops, until the grade passes or the cap is hit." },
+        ]} />
+      </Stack>
+    ),
     caption: "FIGURE 7.5.1 — Produce, grade, revise.",
     library: 'Anthropic, "Building effective agents" — evaluator-optimizer.',
     paragraphs: [
@@ -107,6 +174,17 @@ workflow: fixed path          workflow: no path matches
     title: "Humans in the loop", time: "~6 min",
     line: "Put a person at the points where being wrong is expensive — approving risky actions, resolving ambiguity, verifying the final result — and design the pause so it's cheap to answer.",
     figure: "loop → PAUSE: approve send_email? → approve / edit / reject → loop\n\nevery step approved ───── most real systems live here ───── fully autonomous",
+    node: (
+      <Stack>
+        <Flow items={["loop", { label: "pause", accent: true, sub: "approve send_email?" }, { label: "approve / edit / reject", sub: "one screen, exactly what is about to happen" }]} loop />
+        <Table head={["put a person", "when", "because"]} rows={[
+          ["Before risky actions", "anything that sends, deletes, pays, or can't be undone", "it's the action gate from Module 6, with a person behind it"],
+          ["On ambiguity", "the plan depends on a choice the user would have an opinion about", "ask, don't guess"],
+          ["At the end", "anything that will be shown to someone else", "a quick human verification beats a perfect-looking hallucination"],
+        ]} />
+        <Flow items={[{ label: "every step approved", sub: "nobody will use it" }, "most real systems live here", { label: "fully autonomous", sub: "a slider, not a goal" }]} />
+      </Stack>
+    ),
     caption: "FIGURE 7.6.1 — Autonomy is a dial, and the pause is a feature.",
     library: 'Karpathy, "Software 3.0" — the autonomy slider and generation–verification loop.',
     paragraphs: [
@@ -135,13 +213,12 @@ export function ModuleSevenHome() {
 export function ModuleSevenLesson({ section = 1 }: { section?: number }) {
   const project = section === 7
   const lesson = lessons[Math.max(0, Math.min(5, section - 1))]
-  if (project) return <article><LessonHeader eyebrow="Module 07 · Section 7 of 7" meta="~45 min">Project: a two-agent system</LessonHeader><div className="mt-10 border border-border px-4 py-3"><Eyebrow>In one line</Eyebrow><p className="mt-2 text-lg leading-7">Build an orchestrator that routes requests, fans independent work out to a worker in parallel, and synthesizes — and read the trace that shows both agents.</p></div><Figure caption="FIGURE 7.7.1 — Two agents, one task, every window visible." library="agent-prism with nested agent spans."><pre className="whitespace-pre-wrap p-5 font-mono text-xs leading-6 text-muted-foreground">{`ORCHESTRATOR (short window) → WORKER A | WORKER B | WORKER C → SYNTHESIS
-                                   own windows + tool calls
-TRACE TREE: orchestrator
-  ├─ worker A
-  ├─ worker B
-  └─ worker C`}</pre></Figure><section className="border border-border p-5"><Eyebrow>What you&apos;ll build</Eyebrow><ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground"><li>A router that classifies incoming requests into two or three types.</li><li>An orchestrator that breaks a research-style request into parts.</li><li>A worker agent (your Module 6 agent, narrowed) that takes one part, with its own window and tools.</li><li>A parallel fan-out of three workers and an aggregator that synthesizes.</li><li>One human-approval pause on the risky action.</li><li>Traces with nested spans so you can see each worker inside the orchestrator&apos;s run.</li></ul><p className="mt-5 text-sm leading-6 text-muted-foreground"><strong className="text-foreground">What you&apos;ll have at the end —</strong> A small multi-agent system whose trace you can explain — and the shape of the capstone.</p></section><Prose><p>This is the first time you&apos;ll see two context windows in one trace. That&apos;s the thing to look at: how small each one stays.</p><p>Build the router first; it&apos;s a workflow. Then the orchestrator with one worker. Then three in parallel.</p><p>Build steps arriving with the lab.</p></Prose><aside className="mt-10 border border-border p-5"><Eyebrow>Key idea</Eyebrow><p className="mt-2 text-sm leading-6">You&apos;ve built the pattern the capstone scales up: a plan, small windows, a synthesis.</p></aside><details className="mt-8 border-y border-border py-4"><summary className="cursor-pointer font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">GO DEEPER</summary><p className="mt-4 text-sm leading-6"><a className="underline underline-offset-4" href="https://www.anthropic.com/engineering/built-multi-agent-research-system" target="_blank" rel="noreferrer">Anthropic, &quot;How we built our multi-agent research system.&quot; →</a></p></details></article>
-  return <article><LessonHeader eyebrow={`Module 07 · Section ${section} of 7`} meta={lesson.time}>{lesson.title}</LessonHeader><div className="mt-10 border border-border px-4 py-3"><Eyebrow>In one line</Eyebrow><p className="mt-2 text-lg leading-7">{lesson.line}</p></div><Figure caption={lesson.caption} library={lesson.library}><pre className="whitespace-pre-wrap p-5 font-mono text-xs leading-6 text-muted-foreground">{lesson.figure}</pre></Figure><Prose>{lesson.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</Prose><aside className="mt-10 border border-border p-5"><Eyebrow>Key idea</Eyebrow><p className="mt-2 text-sm leading-6">{lesson.key}</p></aside><MiniCheck lesson={lesson}/><details className="mt-8 border-y border-border py-4"><summary className="cursor-pointer font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">GO DEEPER</summary><p className="mt-4 text-sm leading-6"><a className="underline underline-offset-4" href={lesson.url} target="_blank" rel="noreferrer">{lesson.deeper} →</a></p></details></article>
+  if (project) return <article><LessonHeader eyebrow="Module 07 · Section 7 of 7" meta="~45 min">Project: a two-agent system</LessonHeader><div className="mt-10 border border-border px-4 py-3"><Eyebrow>In one line</Eyebrow><p className="mt-2 text-lg leading-7">Build an orchestrator that routes requests, fans independent work out to a worker in parallel, and synthesizes — and read the trace that shows both agents.</p></div><Figure caption="FIGURE 7.7.1 — Two agents, one task, every window visible."><Stack><Flow items={[{ label: "orchestrator", sub: "short window" }, { label: "worker A | worker B | worker C", sub: "own windows + tool calls" }, "synthesis"]} /><Code title="trace tree — nested spans" mark={[1]}>{`
+orchestrator          short window
+  ├─ worker A         own window + tool calls
+  ├─ worker B         own window + tool calls
+  └─ worker C         own window + tool calls`}</Code></Stack></Figure><section className="border border-border p-5"><Eyebrow>What you&apos;ll build</Eyebrow><ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground"><li>A router that classifies incoming requests into two or three types.</li><li>An orchestrator that breaks a research-style request into parts.</li><li>A worker agent (your Module 6 agent, narrowed) that takes one part, with its own window and tools.</li><li>A parallel fan-out of three workers and an aggregator that synthesizes.</li><li>One human-approval pause on the risky action.</li><li>Traces with nested spans so you can see each worker inside the orchestrator&apos;s run.</li></ul><p className="mt-5 text-sm leading-6 text-muted-foreground"><strong className="text-foreground">What you&apos;ll have at the end —</strong> A small multi-agent system whose trace you can explain — and the shape of the capstone.</p></section><Prose><p>This is the first time you&apos;ll see two context windows in one trace. That&apos;s the thing to look at: how small each one stays.</p><p>Build the router first; it&apos;s a workflow. Then the orchestrator with one worker. Then three in parallel.</p><p>Build steps arriving with the lab.</p></Prose><aside className="mt-10 border border-border p-5"><Eyebrow>Key idea</Eyebrow><p className="mt-2 text-sm leading-6">You&apos;ve built the pattern the capstone scales up: a plan, small windows, a synthesis.</p></aside><details className="mt-8 border-y border-border py-4"><summary className="cursor-pointer font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">GO DEEPER</summary><p className="mt-4 text-sm leading-6"><a className="underline underline-offset-4" href="https://www.anthropic.com/engineering/built-multi-agent-research-system" target="_blank" rel="noreferrer">Anthropic, &quot;How we built our multi-agent research system.&quot; →</a></p></details></article>
+  return <article><LessonHeader eyebrow={`Module 07 · Section ${section} of 7`} meta={lesson.time}>{lesson.title}</LessonHeader><div className="mt-10 border border-border px-4 py-3"><Eyebrow>In one line</Eyebrow><p className="mt-2 text-lg leading-7">{lesson.line}</p></div><Figure caption={lesson.caption} library={lesson.node ? undefined : (lesson.library)}>{lesson.node ?? <pre className="whitespace-pre-wrap p-5 font-mono text-xs leading-6 text-muted-foreground">{lesson.figure}</pre>}</Figure><Prose>{lesson.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</Prose><aside className="mt-10 border border-border p-5"><Eyebrow>Key idea</Eyebrow><p className="mt-2 text-sm leading-6">{lesson.key}</p></aside><MiniCheck lesson={lesson}/><details className="mt-8 border-y border-border py-4"><summary className="cursor-pointer font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">GO DEEPER</summary><p className="mt-4 text-sm leading-6"><a className="underline underline-offset-4" href={lesson.url} target="_blank" rel="noreferrer">{lesson.deeper} →</a></p></details></article>
 }
 
 export { ModuleSevenLesson as ModuleSeven }

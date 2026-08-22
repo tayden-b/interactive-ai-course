@@ -102,7 +102,9 @@
 
 @layer utilities {
   .font-display {
-    font-family: var(--font-display);
+    /* --font-display is an @theme inline token: it is NOT emitted as a CSS variable,
+       so var(--font-display) resolved to nothing and every heading fell back to the sans. */
+    font-family: var(--font-instrument-serif), 'Instrument Serif', Georgia, serif;
   }
   
   .text-stroke {
@@ -195,4 +197,14 @@
       linear-gradient(135deg, var(--foreground) 25%, transparent 25%, transparent 50%, var(--foreground) 50%, var(--foreground) 75%, transparent 75%) border-box;
     background-size: 100% 100%, 8px 8px;
   }
+}
+
+/* Page-level accent bridges. Unlayered so they win over the utility layer.
+   - .accent-ink: the book's one blue, for small text.
+   - [data-eyebrow]: <Eyebrow> stamps its label as a slug, so a block authored as
+     <div><Eyebrow>In one line</Eyebrow>…</div> picks up its 2px blue left rule
+     without every module file having to know about it. */
+.accent-ink { color: var(--figure-accent-ink); }
+:where(div, aside, section):has(> [data-eyebrow="in-one-line"]) {
+  border-left: 2px solid var(--figure-accent);
 }

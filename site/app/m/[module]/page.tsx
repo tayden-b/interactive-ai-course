@@ -1,25 +1,73 @@
+import type { ComponentType } from "react"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ReadingFrame, Eyebrow } from "@/components/book/reading-frame"
 import { courseModules } from "@/components/book/course-data"
-import { ModuleTwoHome } from "@/components/book/module-two"
-import { ModuleThreeHome } from "@/components/book/module-three"
-import { ModuleFourHome } from "@/components/book/module-four"
-import { ModuleFiveHome } from "@/components/book/module-five"
-import { ModuleSixHome } from "@/components/book/module-six"
-import { ModuleSevenHome } from "@/components/book/module-seven"
-import { ModuleEightHome } from "@/components/book/module-eight"
+import { Numbers } from "@/components/figures/kit"
+import { AnimatedWave } from "@/components/landing/animated-wave"
+import { Fig01, Fig03, Fig06, Fig07, Fig09, Fig13 } from "@/components/figures/course-figures"
+
+const ACC = "var(--figure-accent)"
+const INK = "var(--figure-accent-ink)"
+
+// The first real figure of each module, shown as the module's hero. Modules 2 and 7 have none yet.
+const HERO: Record<number, { Fig: ComponentType; n: string; title: string; section: number }> = {
+  1: { Fig: Fig01, n: "01", title: "Text in, text out", section: 4 },
+  3: { Fig: Fig03, n: "03", title: "Model, your code, tools", section: 1 },
+  4: { Fig: Fig13, n: "13", title: "Folding the transcript", section: 2 },
+  5: { Fig: Fig09, n: "09", title: "Ninety percent, ten times", section: 5 },
+  6: { Fig: Fig06, n: "06", title: "Gates around the loop", section: 6 },
+  8: { Fig: Fig07, n: "07", title: "Many loops — the Desk", section: 1 },
+}
 
 export function generateStaticParams() { return courseModules.map((_, i) => ({ module: String(i + 1) })) }
+
 export default async function ModulePage({ params }: { params: Promise<{ module: string }> }) {
   const { module: raw } = await params; const index = Number(raw); const item = courseModules[index - 1]; if (!item) notFound()
-  if (index === 1) return <ReadingFrame module={index} lesson={0} title={item.title}><article><Eyebrow>Modules / 01</Eyebrow><h1 className="mt-5 font-display text-6xl">{item.title}</h1><p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">Everything else in this book sits on top of a language model, so this module is about the model itself: what it reads, what it produces, where it came from, and what it gets wrong. No installation, no code, no math beyond a percentage. About ninety minutes.</p><section className="mt-12 border-t border-border pt-6"><Eyebrow>What you'll be able to do</Eyebrow><ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground"><li>Explain what a language model does in one sentence.</li><li>Read a next-word probability chart and say what temperature does to it.</li><li>Say why a model can be confidently wrong, and what that means for everything built on it.</li></ul></section><section className="mt-12 border border-border p-5"><Eyebrow>Project</Eyebrow><h2 className="mt-3 font-display text-3xl">Your first call</h2><p className="mt-3 text-sm leading-6 text-muted-foreground">At the end of this module you set up your lab and make one real call to a model — and the same probability chart you read in Section 3 shows your prompt and your numbers.</p><Link className="mt-4 inline-block font-mono text-[10px] uppercase tracking-[.16em] underline underline-offset-4" href="/m/1/s/11">Open project →</Link></section><section className="mt-12"><Eyebrow>Sections</Eyebrow><div className="mt-4 border-t border-border">{item.sections.map((name, i) => <Link key={name} href={`/m/1/s/${i + 1}`} className="grid grid-cols-[40px_1fr_auto] items-center gap-3 border-b border-border py-4 text-sm hover:bg-secondary"><span className="font-mono text-[10px] text-muted-foreground">{String(i + 1).padStart(2, "0")}</span><span>{name}</span><span className="font-mono text-[10px] text-muted-foreground">~{[6,7,8,6,7,8,6,8,7,5,25][i]} min · Start</span></Link>)}</div></section></article></ReadingFrame>
-  if (index === 2) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleTwoHome /></ReadingFrame>
-  if (index === 3) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleThreeHome /></ReadingFrame>
-  if (index === 4) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleFourHome /></ReadingFrame>
-  if (index === 5) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleFiveHome /></ReadingFrame>
-  if (index === 6) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleSixHome /></ReadingFrame>
-  if (index === 7) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleSevenHome /></ReadingFrame>
-  if (index === 8) return <ReadingFrame module={index} lesson={0} title={item.title}><ModuleEightHome /></ReadingFrame>
-  return <ReadingFrame module={index} lesson={1} title={item.title}><article><Eyebrow>Modules / {String(index).padStart(2, "0")}</Eyebrow><h1 className="mt-5 font-display text-6xl">{item.title}</h1><p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">{item.description} Every section is open to read, with a figure slot and a practical project at the end.</p><section className="mt-12 border-t border-border pt-6"><Eyebrow>Project</Eyebrow><h2 className="mt-3 font-display text-3xl">{item.project}</h2></section><section className="mt-12"><Eyebrow>Sections</Eyebrow><div className="mt-4 border-t border-border">{item.sections.map((title, i) => <Link key={title} href={`/m/${index}/s/${i + 1}`} className="grid grid-cols-[40px_1fr_auto] items-center gap-3 border-b border-border py-4 text-sm hover:bg-secondary"><span className="font-mono text-[10px] text-muted-foreground">{String(i + 1).padStart(2, "0")}</span><span>{title}</span><span className="font-mono text-[10px] text-muted-foreground">~{i === item.sections.length - 1 ? "40" : "7"} min · Open</span></Link>)}</div></section></article></ReadingFrame>
+  const nn = String(index).padStart(2, "0")
+  const hero = HERO[index]
+  const minutes = item.minutes.reduce((a, b) => a + b, 0)
+  const projectHref = item.projectSection > 0 ? `/m/${index}/s/${item.projectSection}` : `/m/${index}/s/1`
+  const next = courseModules[index]
+
+  return <ReadingFrame module={index} lesson={0} title={item.title}><article>
+    {/* Opening: the module number large, in the display face, in blue; title and intro beside it. */}
+    <Eyebrow>Modules / {nn}</Eyebrow>
+    <div className="mt-6 grid items-start gap-6 md:grid-cols-[auto_1fr] md:gap-12">
+      <p aria-hidden className="font-display text-[128px] leading-[.82] tracking-tight md:text-[184px]" style={{ color: ACC }}>{nn}</p>
+      <div className="md:pt-2">
+        <h1 className="text-balance font-display text-5xl leading-[.98] tracking-tight md:text-6xl">{item.title}</h1>
+        <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">{item.intro}</p>
+      </div>
+    </div>
+
+    {/* Hero figure, when the module has one: same frame as a section figure. */}
+    {hero && <figure className="mt-12 border border-border bg-secondary/30 p-4">
+      <div className="mx-auto max-w-[880px]"><hero.Fig /></div>
+      <figcaption className="mt-3 flex flex-wrap justify-between gap-x-6 gap-y-1 font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground"><span>Figure {hero.n} — {hero.title}</span><span>Section {hero.section}</span></figcaption>
+    </figure>}
+
+    {/* By the numbers: bounded by full-width rules, one accent. */}
+    <section className="mt-12 border-y border-border py-7">
+      <Numbers items={[{ value: String(item.sections.length), label: "sections" }, { value: `~${minutes}`, label: "minutes" }, { value: item.build, label: "what you build", accent: true }]} />
+    </section>
+
+    <section className="mt-12"><Eyebrow>What you'll be able to do</Eyebrow><ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground">{item.outcomes.map((o) => <li key={o}>{o}</li>)}</ul></section>
+
+    {/* Project: a callout on the paper — 2px blue rule, label in blue ink, no box. */}
+    <section className="mt-12 pl-5" style={{ borderLeft: `2px solid ${ACC}` }}>
+      <Eyebrow accent>Project</Eyebrow>
+      <h2 className="mt-3 font-display text-3xl">{item.projectTitle}</h2>
+      <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">{item.projectBlurb}</p>
+      <Link className="mt-4 inline-block font-mono text-[10px] uppercase tracking-[.16em] underline underline-offset-4" href={projectHref}>{item.projectCta}</Link>
+    </section>
+
+    {/* Sections: blue mono numerals; the project row carries the rule. */}
+    <section className="mt-12"><Eyebrow>Sections</Eyebrow><div className="mt-4 border-t border-border">{item.sections.map((name, i) => { const isProject = i + 1 === item.projectSection; return <Link key={name} href={`/m/${index}/s/${i + 1}`} className="grid grid-cols-[40px_1fr_auto] items-center gap-3 border-b border-border py-4 text-sm hover:bg-secondary" style={isProject ? { boxShadow: `inset 2px 0 0 ${ACC}`, paddingLeft: 12 } : undefined}><span className="font-mono text-[10px]" style={{ color: INK }}>{String(i + 1).padStart(2, "0")}</span><span>{name}{isProject && <span className="ml-3 font-mono text-[10px] uppercase tracking-[.16em]" style={{ color: INK }}>Project</span>}</span><span className="font-mono text-[10px] text-muted-foreground">~{item.minutes[i]} min · {i === 0 ? "Start" : "Open"}</span></Link> })}</div></section>
+
+    {next && <p className="mt-8 font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">Then — <Link href={`/m/${index + 1}`} style={{ color: INK }}>Module {String(index + 1).padStart(2, "0")}: {next.title} →</Link></p>}
+
+    {/* A quiet field of glyphs above the footer: the template wave, tinted to the paper. */}
+    <div aria-hidden className="mt-20 h-24 md:h-32"><AnimatedWave color="96, 88, 78" alpha={[0.03, 0.22]} fontSize={10} cell={14} /></div>
+  </article></ReadingFrame>
 }
