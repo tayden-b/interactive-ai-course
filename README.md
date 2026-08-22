@@ -32,10 +32,14 @@ tools/figures/sync.sh pull     # OVERWRITES site/ — commit first, reconcile in
 
 ## Figures
 
-Seven architectural figures carry the whole book. They are authored here as static SVG, verified by
-rendering into a pixel-faithful replica of the site's `<Figure>` frame, then pushed to v0 as locked
-files. See `tools/figures/VISUAL-LANGUAGE.md` for the rules — the short version: light warm paper,
-pure monochrome (the site has no accent colour), and exactly one solid-filled shape per figure.
+Fourteen drawn figures carry the book (`tools/figures/svg/`), in five families — architecture,
+quantity, state, sequence, trace (`FAMILIES.md`). They are authored as static SVG, verified by
+rendering into a pixel-faithful replica of the site's `<Figure>` frame (`render.sh`, `sheet.sh`),
+generated into `site/components/figures/course-figures.tsx` by `build.mjs`, and wired into their
+sections by `place.py`. The other figure slots are typeset blocks built on
+`site/components/figures/kit.tsx` (code, transcript, compare, table, steps, note, flow, numbers).
+The rules are in `VISUAL-LANGUAGE.md`: light warm paper, near-black ink, and ONE accent — electric
+blue — on exactly one shape per figure.
 
 ## Run it
 

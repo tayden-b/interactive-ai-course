@@ -10,20 +10,27 @@ letterpressed onto that page.
 - `currentColor`              → main structure the figure is about (= foreground, near-black).
 - `var(--muted-foreground)`   → context, inherited parts, connectors, quiet labels.
 - `var(--border)`             → hairlines, dashed enclosures, grid.
-- `var(--background)`         → knockout text sitting on a filled shape.
+- `var(--fig-bg)`             → knockouts and masks. NOT var(--background): the frame is secondary/30 over the page.
 
 **Never** a hex code, `rgb()`, `hsl()`, a named colour, or `var(--primary)` — primary is
 indistinguishable from foreground and is therefore useless. Opacity is allowed for de-emphasis.
 
-## The accent — how to make ONE thing pop without colour
-Exactly one element per figure is **filled solid**: `fill="currentColor"`, with its label knocked
-out in `fill="var(--background)"`. Everything else in the figure is outline-only. A solid black
-shape on warm paper surrounded by outlines is unmistakable at any size — this is the whole accent
-system. Optionally the accent's connector may be `stroke-width="2.5"` in `currentColor`.
-Never fill two things. Never fill nothing.
+## The accent — one colour, one shape
+*Changed 2026-08-22. The book was pure monochrome; Tayden judged it bleak. It now has ONE accent:
+electric blue, defined in globals.css as `--figure-accent` (shapes, heavy strokes),
+`--figure-accent-ink` (small text on paper), `--figure-accent-soft` (tints).*
 
-Hierarchy, darkest to lightest:
-1. the filled accent shape
+Exactly one element per figure carries `fill="var(--figure-accent)"` — the single thing the figure
+is teaching. Its partner strokes (2.5px+) may carry `stroke="var(--figure-accent)"` with a blue
+arrowhead marker (`acc*`, cloned from `ink*`). Labels knocked out of a filled shape use
+`fill="var(--fig-bg)"`. **Text is never blue inside a figure** — text stays ink; the shape carries the
+colour. Never fill two unrelated things. Never fill nothing.
+
+`tools/figures/recolor.py` applies this rule mechanically and is idempotent: draw with
+`fill="currentColor"` on the accent shape and `stroke-width="2.5"` on its strokes, then run it.
+
+Hierarchy, strongest to quietest:
+1. the blue-filled accent shape (and its blue heavy strokes)
 2. `currentColor` 2px outlines — the parts this figure is about
 3. `var(--muted-foreground)` 1.5px — context carried over from earlier figures
 4. `var(--border)` 1px dashed — enclosures and ground
