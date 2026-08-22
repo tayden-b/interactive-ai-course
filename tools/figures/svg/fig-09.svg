@@ -45,7 +45,7 @@
     <path d="M720 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
     <path d="M780 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
     <path d="M840 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
-    <rect x="240" y="262" width="209" height="16" rx="3" fill="currentColor"/>
+    <rect x="240" y="262" width="209" height="16" rx="3" fill="var(--figure-accent)"/>
     <text x="220" y="275" fill="currentColor" font-size="15" text-anchor="end">90%</text>
     <text x="467" y="275" fill="currentColor" font-size="15">35% still right</text>
   </g>

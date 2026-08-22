@@ -15,7 +15,7 @@
     <rect x="400" y="186" width="212" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
   </g>
   <g id="row5">
-    <rect x="400" y="220" width="318" height="16" rx="3" fill="currentColor"/>
+    <rect x="400" y="220" width="318" height="16" rx="3" fill="var(--figure-accent)"/>
     <text x="734" y="233" fill="currentColor" font-size="13">slowest</text>
   </g>
   <g id="row6">

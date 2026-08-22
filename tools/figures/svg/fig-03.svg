@@ -3,6 +3,9 @@
     <marker id="ink3" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
+    <marker id="acc3" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
     <marker id="mut3" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
@@ -14,7 +17,7 @@
   </g>
 
   <g id="tool">
-    <rect x="248" y="226" width="64" height="64" rx="8" fill="currentColor"/>
+    <rect x="248" y="226" width="64" height="64" rx="8" fill="var(--figure-accent)"/>
     <polyline points="289,234 273,258 286,258 271,282" fill="none" stroke="var(--background)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
     <text x="280" y="314" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
   </g>
@@ -25,7 +28,7 @@
   </g>
 
   <g id="toolcall">
-    <path d="M648 152 H280 V214" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink3)"/>
+    <path d="M648 152 H280 V214" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#acc3)"/>
     <text x="548" y="139" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool call</text>
   </g>
 

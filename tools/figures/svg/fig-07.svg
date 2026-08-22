@@ -28,11 +28,11 @@
   </g>
 
   <g id="research">
-    <circle cx="400" cy="88" r="30" fill="currentColor"/>
+    <circle cx="400" cy="88" r="30" fill="var(--figure-accent)"/>
     <rect x="385" y="80" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
-    <circle cx="400" cy="172" r="30" fill="currentColor"/>
+    <circle cx="400" cy="172" r="30" fill="var(--figure-accent)"/>
     <rect x="385" y="164" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
-    <circle cx="400" cy="256" r="30" fill="currentColor"/>
+    <circle cx="400" cy="256" r="30" fill="var(--figure-accent)"/>
     <rect x="385" y="248" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
     <text x="400" y="314" fill="currentColor" font-size="15" text-anchor="middle">research</text>
   </g>

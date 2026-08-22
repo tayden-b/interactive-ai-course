@@ -51,6 +51,9 @@ const SVG_01 = `<svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" fi
     <marker id="f01-ink1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
+    <marker id="f01-acc1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
     <marker id="f01-mut1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
@@ -77,16 +80,16 @@ const SVG_01 = `<svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" fi
   </g>
 
   <g id="f01-emit">
-    <path d="M690 130 H738" stroke="currentColor" stroke-width="2.5" marker-end="url(#f01-ink1)"/>
+    <path d="M690 130 H738" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f01-acc1)"/>
   </g>
 
   <g id="f01-token">
     <text x="788" y="100" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">next token</text>
-    <rect x="752" y="116" width="72" height="28" rx="14" fill="currentColor"/>
+    <rect x="752" y="116" width="72" height="28" rx="14" fill="var(--figure-accent)"/>
   </g>
 
   <g id="f01-append">
-    <path d="M788 144 V258 H386 V152" stroke="currentColor" stroke-width="2.5" marker-end="url(#f01-ink1)"/>
+    <path d="M788 144 V258 H386 V152" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f01-acc1)"/>
     <text x="587" y="244" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">append</text>
   </g>
 </svg>`
@@ -97,6 +100,9 @@ const SVG_02 = `<svg viewBox="0 0 960 400" xmlns="http://www.w3.org/2000/svg" fi
   <defs>
     <marker id="f02-ink2" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f02-acc2" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
     <marker id="f02-mut2" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -117,8 +123,8 @@ const SVG_02 = `<svg viewBox="0 0 960 400" xmlns="http://www.w3.org/2000/svg" fi
   </g>
 
   <g id="f02-all-of-it">
-    <path d="M326 138 H352 V276 H326 V266 H342 V148 H326 Z" fill="currentColor"/>
-    <path d="M352 206 H510" stroke="currentColor" stroke-width="2.5" marker-end="url(#f02-ink2)"/>
+    <path d="M326 138 H352 V276 H326 V266 H342 V148 H326 Z" fill="var(--figure-accent)"/>
+    <path d="M352 206 H510" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f02-acc2)"/>
     <text x="431" y="188" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">every call</text>
   </g>
 
@@ -143,6 +149,9 @@ const SVG_03 = `<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fi
     <marker id="f03-ink3" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
+    <marker id="f03-acc3" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
     <marker id="f03-mut3" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
@@ -154,7 +163,7 @@ const SVG_03 = `<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fi
   </g>
 
   <g id="f03-tool">
-    <rect x="248" y="226" width="64" height="64" rx="8" fill="currentColor"/>
+    <rect x="248" y="226" width="64" height="64" rx="8" fill="var(--figure-accent)"/>
     <polyline points="289,234 273,258 286,258 271,282" fill="none" stroke="var(--fig-bg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
     <text x="280" y="314" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
   </g>
@@ -165,7 +174,7 @@ const SVG_03 = `<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fi
   </g>
 
   <g id="f03-toolcall">
-    <path d="M648 152 H280 V214" stroke="currentColor" stroke-width="2.5" marker-end="url(#f03-ink3)"/>
+    <path d="M648 152 H280 V214" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f03-acc3)"/>
     <text x="548" y="139" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool call</text>
   </g>
 
@@ -181,6 +190,9 @@ const SVG_04 = `<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" fi
   <defs>
     <marker id="f04-ink1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f04-acc1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
     <marker id="f04-mut1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -223,10 +235,10 @@ const SVG_04 = `<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" fi
   </g>
 
   <g id="f04-exit">
-    <path d="M574 226 H754" stroke="currentColor" stroke-width="3" marker-end="url(#f04-ink1)"/>
-    <rect x="770" y="211" width="84" height="6" rx="3" fill="currentColor"/>
-    <rect x="770" y="223" width="60" height="6" rx="3" fill="currentColor"/>
-    <rect x="770" y="235" width="72" height="6" rx="3" fill="currentColor"/>
+    <path d="M574 226 H754" stroke="var(--figure-accent)" stroke-width="3" marker-end="url(#f04-acc1)"/>
+    <rect x="770" y="211" width="84" height="6" rx="3" fill="var(--figure-accent)"/>
+    <rect x="770" y="223" width="60" height="6" rx="3" fill="var(--figure-accent)"/>
+    <rect x="770" y="235" width="72" height="6" rx="3" fill="var(--figure-accent)"/>
     <text x="809" y="196" fill="currentColor" font-size="13" text-anchor="middle">reply</text>
   </g>
 </svg>`
@@ -237,6 +249,9 @@ const SVG_05 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fi
   <defs>
     <marker id="f05-ink1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f05-acc1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
     <marker id="f05-mut1" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -251,8 +266,8 @@ const SVG_05 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fi
   </g>
 
   <g id="f05-placed">
-    <rect x="288" y="184" width="130" height="16" rx="3" fill="currentColor"/>
-    <rect x="288" y="210" width="130" height="16" rx="3" fill="currentColor"/>
+    <rect x="288" y="184" width="130" height="16" rx="3" fill="var(--figure-accent)"/>
+    <rect x="288" y="210" width="130" height="16" rx="3" fill="var(--figure-accent)"/>
   </g>
 
   <g id="f05-feed">
@@ -274,7 +289,7 @@ const SVG_05 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fi
   </g>
 
   <g id="f05-read">
-    <path d="M353 335 V276" stroke="currentColor" stroke-width="2.5" marker-end="url(#f05-ink1)"/>
+    <path d="M353 335 V276" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f05-acc1)"/>
     <text x="334" y="312" fill="var(--muted-foreground)" font-size="13" text-anchor="end">retrieved</text>
   </g>
 
@@ -325,17 +340,17 @@ const SVG_06 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fi
   </g>
 
   <g id="f06-gate-in">
-    <path d="M255 131 L277 153 L255 175 L233 153 Z" fill="currentColor"/>
+    <path d="M255 131 L277 153 L255 175 L233 153 Z" fill="var(--figure-accent)"/>
     <text x="255" y="200" fill="currentColor" font-size="13" text-anchor="middle">check</text>
   </g>
 
   <g id="f06-gate-out">
-    <path d="M705 131 L727 153 L705 175 L683 153 Z" fill="currentColor"/>
+    <path d="M705 131 L727 153 L705 175 L683 153 Z" fill="var(--figure-accent)"/>
     <text x="705" y="200" fill="currentColor" font-size="13" text-anchor="middle">check</text>
   </g>
 
   <g id="f06-gate-tool">
-    <path d="M480 271 L502 293 L480 315 L458 293 Z" fill="currentColor"/>
+    <path d="M480 271 L502 293 L480 315 L458 293 Z" fill="var(--figure-accent)"/>
     <text x="524" y="298" fill="currentColor" font-size="13" text-anchor="start">check</text>
   </g>
 </svg>`
@@ -372,11 +387,11 @@ const SVG_07 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fi
   </g>
 
   <g id="f07-research">
-    <circle cx="400" cy="88" r="30" fill="currentColor"/>
+    <circle cx="400" cy="88" r="30" fill="var(--figure-accent)"/>
     <rect x="385" y="80" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
-    <circle cx="400" cy="172" r="30" fill="currentColor"/>
+    <circle cx="400" cy="172" r="30" fill="var(--figure-accent)"/>
     <rect x="385" y="164" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
-    <circle cx="400" cy="256" r="30" fill="currentColor"/>
+    <circle cx="400" cy="256" r="30" fill="var(--figure-accent)"/>
     <rect x="385" y="248" width="30" height="16" rx="4" fill="none" stroke="var(--fig-bg)" stroke-width="1.5"/>
     <text x="400" y="314" fill="currentColor" font-size="15" text-anchor="middle">research</text>
   </g>
@@ -443,7 +458,7 @@ const SVG_08 = `<svg viewBox="0 0 960 360" xmlns="http://www.w3.org/2000/svg" fi
   </g>
 
   <g id="f08-bars">
-    <rect x="416" y="90"  width="400" height="16" rx="3" fill="currentColor"/>
+    <rect x="416" y="90"  width="400" height="16" rx="3" fill="var(--figure-accent)"/>
     <rect x="416" y="118" width="210" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
     <rect x="416" y="146" width="138" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
     <rect x="416" y="174" width="84"  height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
@@ -517,7 +532,7 @@ const SVG_09 = `<svg viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg" fi
     <path d="M720 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
     <path d="M780 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
     <path d="M840 264 V276" stroke="var(--muted-foreground)" stroke-width="1.5" opacity=".3"/>
-    <rect x="240" y="262" width="209" height="16" rx="3" fill="currentColor"/>
+    <rect x="240" y="262" width="209" height="16" rx="3" fill="var(--figure-accent)"/>
     <text x="220" y="275" fill="currentColor" font-size="15" text-anchor="end">90%</text>
     <text x="467" y="275" fill="currentColor" font-size="15">35% still right</text>
   </g>
@@ -543,7 +558,7 @@ const SVG_10 = `<svg viewBox="0 0 960 400" xmlns="http://www.w3.org/2000/svg" fi
     <rect x="400" y="186" width="212" height="16" rx="3" fill="var(--muted-foreground)" opacity=".42"/>
   </g>
   <g id="f10-row5">
-    <rect x="400" y="220" width="318" height="16" rx="3" fill="currentColor"/>
+    <rect x="400" y="220" width="318" height="16" rx="3" fill="var(--figure-accent)"/>
     <text x="734" y="233" fill="currentColor" font-size="13">slowest</text>
   </g>
   <g id="f10-row6">
@@ -562,6 +577,223 @@ const SVG_10 = `<svg viewBox="0 0 960 400" xmlns="http://www.w3.org/2000/svg" fi
 /** Figure 10 — One run, read back (M8 s6) */
 export function Fig10() { return <Reveal svg={SVG_10} label={"Nesting shows who called whom, a shared time axis shows what ran at once, one bar shows where the time went."} /> }
 
+const SVG_11 = `<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f11-ink11" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f11-acc11" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f11-untrusted">
+    <text x="480" y="86" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">untrusted text</text>
+    <rect x="428" y="102" width="104" height="8" rx="4" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="443" y="118" width="74" height="8" rx="4" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="435" y="134" width="90" height="8" rx="4" fill="var(--muted-foreground)" opacity=".5"/>
+  </g>
+
+  <g id="f11-private">
+    <rect x="112" y="262" width="116" height="55" fill="var(--fig-bg)"/>
+    <path d="M112 262 V317" stroke="currentColor" stroke-width="2"/>
+    <path d="M228 262 V317" stroke="currentColor" stroke-width="2"/>
+    <path d="M112 317 A58 15 0 0 0 228 317" stroke="currentColor" stroke-width="2"/>
+    <ellipse cx="170" cy="262" rx="58" ry="15" fill="var(--fig-bg)" stroke="currentColor" stroke-width="2"/>
+    <text x="170" y="368" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">private data</text>
+  </g>
+
+  <g id="f11-model">
+    <rect x="380" y="230" width="200" height="120" rx="16" stroke="currentColor" stroke-width="2"/>
+    <text x="480" y="296" fill="currentColor" font-size="15" text-anchor="middle">model</text>
+  </g>
+
+  <g id="f11-tool">
+    <rect x="760" y="258" width="64" height="64" rx="8" fill="var(--figure-accent)"/>
+    <polyline points="801,266 785,290 798,290 783,314" fill="none" stroke="var(--fig-bg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="792" y="356" fill="currentColor" font-size="13" text-anchor="middle">a way out</text>
+  </g>
+
+  <g id="f11-path">
+    <path d="M480 142 V230" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f11-acc11)"/>
+    <path d="M228 290 H380" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f11-acc11)"/>
+    <path d="M580 290 H760" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f11-acc11)"/>
+  </g>
+</svg>`
+/** Figure 11 — The lethal trifecta (M6 s4) */
+export function Fig11() { return <Reveal svg={SVG_11} label={"No single capability is dangerous; the breach is one agent holding private data, untrusted text, and a way out at the same time."} /> }
+
+const SVG_12 = `<svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f12-ink12" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f12-acc12" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f12-mut12" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f12-boundary">
+    <rect x="145" y="92" width="370" height="282" rx="14" stroke="var(--muted-foreground)" opacity=".5" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="167" y="120" fill="var(--muted-foreground)" font-size="13" text-anchor="start">everything you have</text>
+  </g>
+
+  <g id="f12-field" fill="var(--muted-foreground)" opacity=".38">
+    <rect x="172" y="136" width="26" height="8" rx="4"/>
+    <rect x="214" y="162" width="26" height="8" rx="4"/>
+    <rect x="166" y="180" width="26" height="8" rx="4"/>
+    <rect x="256" y="138" width="26" height="8" rx="4"/>
+    <rect x="302" y="164" width="26" height="8" rx="4"/>
+    <rect x="238" y="198" width="26" height="8" rx="4"/>
+    <rect x="344" y="130" width="26" height="8" rx="4"/>
+    <rect x="396" y="158" width="26" height="8" rx="4"/>
+    <rect x="440" y="134" width="26" height="8" rx="4"/>
+    <rect x="470" y="170" width="26" height="8" rx="4"/>
+    <rect x="356" y="184" width="26" height="8" rx="4"/>
+    <rect x="416" y="186" width="26" height="8" rx="4"/>
+    <rect x="168" y="250" width="26" height="8" rx="4"/>
+    <rect x="216" y="220" width="26" height="8" rx="4"/>
+    <rect x="164" y="298" width="26" height="8" rx="4"/>
+    <rect x="252" y="318" width="26" height="8" rx="4"/>
+    <rect x="188" y="334" width="26" height="8" rx="4"/>
+    <rect x="306" y="342" width="26" height="8" rx="4"/>
+    <rect x="356" y="320" width="26" height="8" rx="4"/>
+    <rect x="414" y="344" width="26" height="8" rx="4"/>
+    <rect x="462" y="314" width="26" height="8" rx="4"/>
+  </g>
+
+  <g id="f12-question">
+    <circle cx="302" cy="252" r="11" fill="var(--fig-bg)" stroke="currentColor" stroke-width="3"/>
+    <text x="279" y="257" fill="currentColor" font-size="13" text-anchor="end">question</text>
+  </g>
+
+  <g id="f12-nearest" fill="var(--figure-accent)">
+    <rect x="314" y="207" width="26" height="8" rx="4"/>
+    <rect x="336" y="240" width="26" height="8" rx="4"/>
+    <rect x="312" y="290" width="26" height="8" rx="4"/>
+  </g>
+
+  <g id="f12-carry">
+    <path d="M348 211 L665 228" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f12-acc12)"/>
+    <path d="M370 244 L665 254" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f12-acc12)"/>
+    <path d="M346 294 L665 280" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#f12-acc12)"/>
+  </g>
+
+  <g id="f12-window">
+    <rect x="665" y="118" width="150" height="230" rx="10" stroke="currentColor" stroke-width="2"/>
+    <rect x="685" y="168" width="110" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="685" y="194" width="110" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <text x="740" y="100" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">window</text>
+  </g>
+
+  <g id="f12-landed" fill="var(--figure-accent)">
+    <rect x="685" y="220" width="110" height="16" rx="3"/>
+    <rect x="685" y="246" width="110" height="16" rx="3"/>
+    <rect x="685" y="272" width="110" height="16" rx="3"/>
+  </g>
+</svg>`
+/** Figure 12 — Nearest in meaning (M4 s4) */
+export function Fig12() { return <Reveal svg={SVG_12} label={"Chunks sit in a space of meaning, and only the few nearest the question ever enter the window."} /> }
+
+const SVG_13 = `<svg viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f13-ink13" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f13-mut13" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f13-tray-a">
+    <rect x="195" y="80" width="170" height="260" rx="10" stroke="currentColor" stroke-width="2"/>
+  </g>
+
+  <g id="f13-tray-a-contents">
+    <rect x="215" y="102" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="215" y="127" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="215" y="152" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="215" y="177" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="215" y="202" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="215" y="227" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="215" y="252" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="215" y="277" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="215" y="302" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+  </g>
+
+  <g id="f13-fold">
+    <path d="M365 210 H595" stroke="var(--muted-foreground)" stroke-width="1.5" marker-end="url(#f13-mut13)"/>
+    <text x="480" y="194" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">compact</text>
+  </g>
+
+  <g id="f13-tray-b">
+    <rect x="595" y="80" width="170" height="260" rx="10" stroke="currentColor" stroke-width="2"/>
+  </g>
+
+  <g id="f13-summary">
+    <rect x="615" y="102" width="130" height="44" rx="3" fill="var(--figure-accent)"/>
+  </g>
+
+  <g id="f13-tray-b-contents">
+    <rect x="615" y="170" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="615" y="195" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="615" y="220" width="130" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+  </g>
+
+  <g id="f13-room">
+    <text x="615" y="292" fill="var(--muted-foreground)" font-size="13" text-anchor="start">room</text>
+  </g>
+</svg>`
+/** Figure 13 — Folding the transcript (M4 s2) */
+export function Fig13() { return <Reveal svg={SVG_13} label={"Compaction folds the old turns into one summary block, leaves the recent turns verbatim, and gives the window room again."} /> }
+
+const SVG_14 = `<svg viewBox="0 0 960 440" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="f14-ink14" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="f14-acc14" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="f14-window">
+    <rect x="150" y="96" width="170" height="240" rx="10" stroke="currentColor" stroke-width="2"/>
+    <rect x="172" y="116" width="126" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="172" y="144" width="126" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="172" y="200" width="126" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+  </g>
+
+  <g id="f14-accent">
+    <rect x="172" y="172" width="126" height="16" rx="3" fill="var(--figure-accent)"/>
+  </g>
+
+  <g id="f14-boundary">
+    <rect x="505" y="170" width="310" height="166" rx="14" stroke="var(--muted-foreground)" opacity=".5" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="527" y="198" fill="var(--muted-foreground)" font-size="13" text-anchor="start">your code</text>
+  </g>
+
+  <g id="f14-tool">
+    <rect x="628" y="216" width="64" height="64" rx="8" fill="var(--fig-bg)" stroke="currentColor" stroke-width="2"/>
+    <polyline points="669,224 653,248 666,248 651,272" fill="none" stroke="var(--muted-foreground)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="660" y="304" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
+  </g>
+
+  <g id="f14-out">
+    <path d="M320 152 H660 V215.5" stroke="currentColor" stroke-width="2" marker-end="url(#f14-ink14)"/>
+  </g>
+
+  <g id="f14-back">
+    <path d="M628 248 H430 V180 H323" stroke="var(--figure-accent)" stroke-width="3" marker-end="url(#f14-acc14)"/>
+    <text x="375" y="208" fill="currentColor" font-size="13" text-anchor="middle">result</text>
+  </g>
+</svg>`
+/** Figure 14 — The round trip, in order (M3 s3) */
+export function Fig14() { return <Reveal svg={SVG_14} label={"A tool result is just another message in the window — the model reads it, it does not know it."} /> }
+
 export const figureCaptions: Record<string, string> = {
   "01": "FIGURE 4.1 — Pick, append, repeat.",
   "02": "FIGURE 2 — The model reads all of it, every call, and keeps none of it.",
@@ -573,4 +805,8 @@ export const figureCaptions: Record<string, string> = {
   "08": "FIGURE 3.1 — Not an answer. A list of possible next tokens, with odds.",
   "09": "FIGURE 5.5.1 — Small per-step errors, large end-to-end failure.",
   "10": "FIGURE 8.6.1 — One run, fully visible. This is the page people will stare at.",
+  "11": "FIGURE 6.4.1 — Any two is a risk. All three is a breach waiting to happen.",
+  "12": "FIGURE 4.4.1 — Don't load the library; load the three pages that matter.",
+  "13": "FIGURE 4.2.1 — Compaction: trade detail for room.",
+  "14": "FIGURE 3.3.1 — One tool use is two messages and a function call in between.",
 }

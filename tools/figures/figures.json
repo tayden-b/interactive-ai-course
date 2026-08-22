@@ -102,6 +102,50 @@
       "caption": "FIGURE 8.6.1 — One run, fully visible. This is the page people will stare at.",
       "accent": "the straggler span, filled solid",
       "family": "trace"
+    },
+    {
+      "n": 11,
+      "slug": "trifecta",
+      "name": "The lethal trifecta",
+      "modules": "M6 s4",
+      "target": "module-six.tsx · s4 (FIGURE 6.4.1)",
+      "family": "architecture",
+      "one_idea": "No single capability is dangerous; the breach is one agent holding private data, untrusted text, and a way out at the same time.",
+      "caption": "FIGURE 6.4.1 — Any two is a risk. All three is a breach waiting to happen.",
+      "accent": "the send tool and the one continuous path through the model"
+    },
+    {
+      "n": 12,
+      "slug": "retrieval",
+      "name": "Nearest in meaning",
+      "modules": "M4 s4",
+      "target": "module-four.tsx · s4 (FIGURE 4.4.1)",
+      "family": "architecture",
+      "one_idea": "Chunks sit in a space of meaning, and only the few nearest the question ever enter the window.",
+      "caption": "FIGURE 4.4.1 — Don't load the library; load the three pages that matter.",
+      "accent": "the three nearest chunks and the bars they become"
+    },
+    {
+      "n": 13,
+      "slug": "compaction",
+      "name": "Folding the transcript",
+      "modules": "M4 s2",
+      "target": "module-four.tsx · s2 (FIGURE 4.2.1)",
+      "family": "sequence",
+      "one_idea": "Compaction folds the old turns into one summary block, leaves the recent turns verbatim, and gives the window room again.",
+      "caption": "FIGURE 4.2.1 — Compaction: trade detail for room.",
+      "accent": "the one dense summary block"
+    },
+    {
+      "n": 14,
+      "slug": "round-trip",
+      "name": "The round trip, in order",
+      "modules": "M3 s3",
+      "target": "module-three.tsx · s3 (FIGURE 3.3.1)",
+      "family": "sequence",
+      "one_idea": "A tool result is just another message in the window — the model reads it, it does not know it.",
+      "caption": "FIGURE 3.3.1 — One tool use is two messages and a function call in between.",
+      "accent": "the tool-result bar"
     }
   ]
 }

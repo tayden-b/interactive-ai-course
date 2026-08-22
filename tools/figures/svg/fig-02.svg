@@ -3,6 +3,9 @@
     <marker id="ink2" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
+    <marker id="acc2" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
     <marker id="mut2" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--muted-foreground)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
@@ -22,8 +25,8 @@
   </g>
 
   <g id="all-of-it">
-    <path d="M326 138 H352 V276 H326 V266 H342 V148 H326 Z" fill="currentColor"/>
-    <path d="M352 206 H510" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink2)"/>
+    <path d="M326 138 H352 V276 H326 V266 H342 V148 H326 Z" fill="var(--figure-accent)"/>
+    <path d="M352 206 H510" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#acc2)"/>
     <text x="431" y="188" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">every call</text>
   </g>
 

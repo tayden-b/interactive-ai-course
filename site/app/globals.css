@@ -37,6 +37,13 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* The book's one accent. Electric blue on warm paper. Shapes and rules carry
+     --figure-accent; small text on paper uses the darker --figure-accent-ink
+     so it clears contrast; --figure-accent-soft is a tint for highlights. */
+  --figure-accent: oklch(0.57 0.23 259);
+  --figure-accent-ink: oklch(0.46 0.21 259);
+  --figure-accent-soft: oklch(0.57 0.23 259 / 0.09);
 }
 
 @theme inline {

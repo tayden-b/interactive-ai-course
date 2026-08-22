@@ -11,7 +11,7 @@ cat <<'EOF'
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Instrument+Serif&family=JetBrains+Mono&display=swap" rel="stylesheet">
 <style>
 :root{--background:oklch(0.985 0.002 90);--foreground:oklch(0.12 0.01 60);
---muted-foreground:oklch(0.45 0.02 60);--border:oklch(0.88 0.01 90);--secondary:oklch(0.96 0.005 90);}
+--muted-foreground:oklch(0.45 0.02 60);--border:oklch(0.88 0.01 90);--secondary:oklch(0.96 0.005 90);--figure-accent:oklch(0.57 0.23 259);--figure-accent-ink:oklch(0.46 0.21 259);--figure-accent-soft:oklch(0.57 0.23 259 / 0.09);}
 html,body{margin:0;background:var(--background);color:var(--foreground);
 font-family:'Instrument Sans',system-ui,sans-serif;}
 .wrap{width:860px;margin:0 auto;padding:48px 0;}
@@ -30,5 +30,5 @@ done
 echo '</div></body></html>'
 } > "$TMP"
 "$CHROME" --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
-  --virtual-time-budget=5000 --screenshot="$OUT" --window-size=900,2600 "file://$TMP" >/dev/null 2>&1 || true
+  --virtual-time-budget=5000 --screenshot="$OUT" --window-size=900,5400 "file://$TMP" >/dev/null 2>&1 || true
 echo "sheet -> $OUT"

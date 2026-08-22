@@ -20,7 +20,7 @@ cat > "$TMP" <<EOF
   --muted-foreground:oklch(0.45 0.02 60);
   --border:oklch(0.88 0.01 90);
   --secondary:oklch(0.96 0.005 90);
-  --primary:oklch(0.12 0.01 60);
+  --primary:oklch(0.12 0.01 60);--figure-accent:oklch(0.57 0.23 259);--figure-accent-ink:oklch(0.46 0.21 259);--figure-accent-soft:oklch(0.57 0.23 259 / 0.09);
 }
 html,body{margin:0;padding:0;background:var(--background);color:var(--foreground);
   font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}

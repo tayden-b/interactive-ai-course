@@ -37,17 +37,17 @@
   </g>
 
   <g id="gate-in">
-    <path d="M255 131 L277 153 L255 175 L233 153 Z" fill="currentColor"/>
+    <path d="M255 131 L277 153 L255 175 L233 153 Z" fill="var(--figure-accent)"/>
     <text x="255" y="200" fill="currentColor" font-size="13" text-anchor="middle">check</text>
   </g>
 
   <g id="gate-out">
-    <path d="M705 131 L727 153 L705 175 L683 153 Z" fill="currentColor"/>
+    <path d="M705 131 L727 153 L705 175 L683 153 Z" fill="var(--figure-accent)"/>
     <text x="705" y="200" fill="currentColor" font-size="13" text-anchor="middle">check</text>
   </g>
 
   <g id="gate-tool">
-    <path d="M480 271 L502 293 L480 315 L458 293 Z" fill="currentColor"/>
+    <path d="M480 271 L502 293 L480 315 L458 293 Z" fill="var(--figure-accent)"/>
     <text x="524" y="298" fill="currentColor" font-size="13" text-anchor="start">check</text>
   </g>
 </svg>

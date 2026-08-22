@@ -1,0 +1,41 @@
+<svg viewBox="0 0 960 440" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <marker id="ink14" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="acc14" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="window">
+    <rect x="150" y="96" width="170" height="240" rx="10" stroke="currentColor" stroke-width="2"/>
+    <rect x="172" y="116" width="126" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="172" y="144" width="126" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+    <rect x="172" y="200" width="126" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
+  </g>
+
+  <g id="accent">
+    <rect x="172" y="172" width="126" height="16" rx="3" fill="var(--figure-accent)"/>
+  </g>
+
+  <g id="boundary">
+    <rect x="505" y="170" width="310" height="166" rx="14" stroke="var(--muted-foreground)" opacity=".5" stroke-width="1.5" stroke-dasharray="5 5"/>
+    <text x="527" y="198" fill="var(--muted-foreground)" font-size="13" text-anchor="start">your code</text>
+  </g>
+
+  <g id="tool">
+    <rect x="628" y="216" width="64" height="64" rx="8" fill="var(--fig-bg)" stroke="currentColor" stroke-width="2"/>
+    <polyline points="669,224 653,248 666,248 651,272" fill="none" stroke="var(--muted-foreground)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="660" y="304" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">tool</text>
+  </g>
+
+  <g id="out">
+    <path d="M320 152 H660 V215.5" stroke="currentColor" stroke-width="2" marker-end="url(#ink14)"/>
+  </g>
+
+  <g id="back">
+    <path d="M628 248 H430 V180 H323" stroke="var(--figure-accent)" stroke-width="3" marker-end="url(#acc14)"/>
+    <text x="375" y="208" fill="currentColor" font-size="13" text-anchor="middle">result</text>
+  </g>
+</svg>

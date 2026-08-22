@@ -15,7 +15,7 @@
   </g>
 
   <g id="bars">
-    <rect x="416" y="90"  width="400" height="16" rx="3" fill="currentColor"/>
+    <rect x="416" y="90"  width="400" height="16" rx="3" fill="var(--figure-accent)"/>
     <rect x="416" y="118" width="210" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
     <rect x="416" y="146" width="138" height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>
     <rect x="416" y="174" width="84"  height="16" rx="3" fill="var(--muted-foreground)" opacity=".4"/>

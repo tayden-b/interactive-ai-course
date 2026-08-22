@@ -3,13 +3,16 @@
     <marker id="ink11" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
+    <marker id="acc11" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0.8 1 L8.4 5 L0.8 9" fill="none" stroke="var(--figure-accent)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
   </defs>
 
   <g id="untrusted">
-    <rect x="434" y="96" width="92" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="447" y="108" width="66" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <rect x="441" y="120" width="78" height="6" rx="3" fill="var(--muted-foreground)" opacity=".5"/>
-    <text x="480" y="154" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">untrusted text</text>
+    <text x="480" y="86" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">untrusted text</text>
+    <rect x="428" y="102" width="104" height="8" rx="4" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="443" y="118" width="74" height="8" rx="4" fill="var(--muted-foreground)" opacity=".5"/>
+    <rect x="435" y="134" width="90" height="8" rx="4" fill="var(--muted-foreground)" opacity=".5"/>
   </g>
 
   <g id="private">
@@ -18,7 +21,7 @@
     <path d="M228 262 V317" stroke="currentColor" stroke-width="2"/>
     <path d="M112 317 A58 15 0 0 0 228 317" stroke="currentColor" stroke-width="2"/>
     <ellipse cx="170" cy="262" rx="58" ry="15" fill="var(--fig-bg)" stroke="currentColor" stroke-width="2"/>
-    <text x="170" y="362" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">private data</text>
+    <text x="170" y="368" fill="var(--muted-foreground)" font-size="13" text-anchor="middle">private data</text>
   </g>
 
   <g id="model">
@@ -27,14 +30,14 @@
   </g>
 
   <g id="tool">
-    <rect x="760" y="258" width="64" height="64" rx="8" fill="currentColor"/>
+    <rect x="760" y="258" width="64" height="64" rx="8" fill="var(--figure-accent)"/>
     <polyline points="801,266 785,290 798,290 783,314" fill="none" stroke="var(--fig-bg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="792" y="350" fill="currentColor" font-size="13" text-anchor="middle">a way out</text>
+    <text x="792" y="356" fill="currentColor" font-size="13" text-anchor="middle">a way out</text>
   </g>
 
   <g id="path">
-    <path d="M480 172 V230" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink11)"/>
-    <path d="M228 290 H380" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink11)"/>
-    <path d="M580 290 H760" stroke="currentColor" stroke-width="2.5" marker-end="url(#ink11)"/>
+    <path d="M480 142 V230" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#acc11)"/>
+    <path d="M228 290 H380" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#acc11)"/>
+    <path d="M580 290 H760" stroke="var(--figure-accent)" stroke-width="2.5" marker-end="url(#acc11)"/>
   </g>
 </svg>
