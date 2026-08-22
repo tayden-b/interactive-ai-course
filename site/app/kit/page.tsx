@@ -2,6 +2,7 @@ import { Figure } from "@/components/book/reading-frame"
 import { Code, Transcript, Compare, Table, Steps, Note, Flow, Numbers, KV, Mark, Stack } from "@/components/figures/kit"
 import { Pictogram, modulePictogram } from "@/components/figures/pictograms"
 import { Bars, Line, Timeline, Spark, Stacked } from "@/components/figures/charts"
+import { GoDeeper } from "@/components/figures/resource"
 
 export default function KitPage() {
   return (
@@ -10,6 +11,13 @@ export default function KitPage() {
         <p className="font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Parts bin</p>
         <h1 className="mt-4 font-display text-6xl">Kit</h1>
         <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">The typeset blocks for figure slots that are not drawings. One accent, bold where it helps, structure everywhere.</p>
+
+
+        <div>
+          <p className="mt-16 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Reference cards</p>
+          <GoDeeper title="Andrej Karpathy — Intro to Large Language Models" url="https://www.youtube.com/watch?v=zjkBMFhNj_g" />
+          <GoDeeper title="Simon Willison — The lethal trifecta for AI agents" url="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/" />
+        </div>
 
         <Figure caption="PICTOGRAMS — one per module, from IBM Carbon (Apache-2.0), in the book's blue.">
           <div className="grid grid-cols-4 gap-6 md:grid-cols-8">
