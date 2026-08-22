@@ -1,6 +1,7 @@
 import { Figure } from "@/components/book/reading-frame"
 import { Code, Transcript, Compare, Table, Steps, Note, Flow, Numbers, KV, Mark, Stack } from "@/components/figures/kit"
 import { Pictogram, modulePictogram } from "@/components/figures/pictograms"
+import { Bars, Line, Timeline, Spark, Stacked } from "@/components/figures/charts"
 
 export default function KitPage() {
   return (
@@ -19,6 +20,17 @@ export default function KitPage() {
               </div>
             ))}
           </div>
+        </Figure>
+
+
+        <Figure caption="CHARTS — bars, line with a cap, timeline, stacked. One blue series; mono ticks; one baseline.">
+          <Stack>
+            <Bars title="Window per agent · tokens" data={[{ label: "orchestrator", value: 300, accent: true, display: "300" }, { label: "worker A", value: 30000, display: "30k" }, { label: "worker B", value: 30000, display: "30k" }, { label: "worker C", value: 30000, display: "30k" }]} />
+            <Line title="Steps per run · with and without a cap" cap={10} capLabel="cap · 10" xLabels={["1", "2", "3", "4", "5", "6", "7", "8"]} series={[{ name: "capped", points: [2, 3, 3, 4, 4, 5, 5, 5], accent: true }, { name: "runaway", points: [2, 4, 7, 11, 16, 22, 29, 37], dashed: true }]} />
+            <Timeline title="Sequential vs parallel · seconds" total={6} rows={[{ label: "summarize A", start: 0, end: 2 }, { label: "summarize B", start: 2, end: 4 }, { label: "summarize C", start: 4, end: 6 }, { label: "A · B · C at once", start: 0, end: 2, accent: true }]} />
+            <Stacked title="Where the tokens went · one run" segments={[{ label: "system", value: 900 }, { label: "history", value: 2400, accent: true }, { label: "tool results", value: 1800 }, { label: "reply", value: 300 }]} />
+            <p className="text-[14px] text-muted-foreground">Inline: pass rate, last 12 runs <Spark points={[8, 9, 9, 10, 10, 9, 10, 10, 10, 7, 10, 10]} /></p>
+          </Stack>
         </Figure>
 
         <Figure caption="CODE — a request body, with the line that matters marked.">
