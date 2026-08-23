@@ -98,9 +98,9 @@ export function AgentLoopDiagram() {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-[1fr_320px]">
+      <div className="grid grid-cols-1">
         {/* Diagram */}
-        <div className="overflow-x-auto border-b border-border lg:border-b-0 lg:border-r">
+        <div className="overflow-x-auto border-b border-border">
           <svg
             viewBox="0 0 1120 720"
             className="h-auto w-full min-w-[900px]"
