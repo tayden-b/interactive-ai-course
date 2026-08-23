@@ -44,12 +44,26 @@
   --figure-accent: oklch(0.57 0.23 259);
   --figure-accent-ink: oklch(0.46 0.21 259);
   --figure-accent-soft: oklch(0.57 0.23 259 / 0.09);
+
+  /* IBM Carbon tokens. The imported field-guide diagrams are authored against
+     Carbon's palette, so they carry their own scale rather than the book's warm
+     greys. Kept separate so nothing else on the site shifts colour. */
+  --layer: oklch(0.965 0.003 90);
+  --layer-accent: oklch(0.92 0.005 90);
+  --border-strong: oklch(0.62 0.01 90);
+  --support: #007d79;
+  --grid-line: oklch(0.93 0.004 90);
+  --carbon-1: #0f62fe;
+  --carbon-2: #007d79;
+  --carbon-3: #d02670;
+  --carbon-4: #8a3ffc;
+  --carbon-5: #1192e8;
 }
 
 @theme inline {
   --font-sans: var(--font-instrument), 'Instrument Sans', system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), 'JetBrains Mono', monospace;
-  --font-display: var(--font-instrument-serif), 'Instrument Serif', Georgia, serif;
+  --font-display: var(--font-instrument), 'Instrument Sans', system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -74,6 +88,9 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-layer: var(--layer);
+  --color-layer-accent: var(--layer-accent);
+  --color-border-strong: var(--border-strong);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -231,3 +248,53 @@
   mask-image: radial-gradient(100% 110% at 0% 0%, #000 12%, transparent 68%);
 }
 .dot-ground--faint::before { opacity: .4; }
+
+/* ── Imported field-guide diagrams ───────────────────────────────────────────
+   The diagrams copied from the LLM field guide and the agent-architecture
+   diagram are authored against IBM Carbon's palette. `.carbon-scope` remaps the
+   chart tokens inside those blocks only, so the diagrams look exactly as they
+   did in their source and nothing else on the site changes colour. */
+.carbon-scope {
+  --chart-1: var(--carbon-1);
+  --chart-2: var(--carbon-2);
+  --chart-3: var(--carbon-3);
+  --chart-4: var(--carbon-4);
+  --chart-5: var(--carbon-5);
+  --accent: var(--carbon-1);
+  --accent-foreground: #ffffff;
+  --primary: var(--carbon-1);
+  --primary-foreground: #ffffff;
+  --card: var(--layer);
+  --secondary: var(--layer-accent);
+}
+.carbon-scope :where(.rounded, .rounded-md, .rounded-lg, .rounded-xl) { border-radius: 0; }
+
+@utility fill-support { fill: var(--support); }
+@utility stroke-support { stroke: var(--support); }
+@utility text-support { color: var(--support); }
+
+/* Carbon productive motion. Used by the animated agent-loop diagram. */
+@keyframes carbon-flow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -40; }
+}
+.edge-flow {
+  stroke-dasharray: 4 6;
+  animation: carbon-flow 1.6s linear infinite;
+}
+
+@keyframes carbon-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+.node-pulse { animation: carbon-pulse 1.8s cubic-bezier(0.4, 0.14, 0.3, 1) infinite; }
+
+@keyframes carbon-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: carbon-rise 0.5s cubic-bezier(0, 0, 0.38, 0.9) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .edge-flow, .node-pulse, .rise { animation: none; }
+}

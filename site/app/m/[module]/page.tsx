@@ -19,6 +19,28 @@ const HERO: Record<number, { Fig: ComponentType; n: string; title: string; secti
   8: { Fig: Fig07, n: "07", title: "Many loops — the Desk", section: 1 },
 }
 
+const BRIDGES = [
+  { from: "The orientation map", to: "the model itself", text: "Now that the field and the software layers are separate, start with the one component everything else calls." },
+  { from: "a model call", to: "a useful program", text: "You know what the model does. Now make its output predictable enough for ordinary code to trust." },
+  { from: "structured output", to: "tool use", text: "A tool call is structured output with consequences: your code receives the model's request and does the work." },
+  { from: "one agent loop", to: "managed context", text: "The loop works by replaying its transcript. This module keeps that working memory useful as it grows." },
+  { from: "an agent that remembers", to: "evidence", text: "Once behavior persists across runs, intuition is not enough. Define success and measure it." },
+  { from: "measured behavior", to: "safe behavior", text: "Evals reveal failures; guardrails constrain what can happen when those failures occur." },
+  { from: "one guarded loop", to: "systems of loops", text: "Most tasks need a fixed workflow, not more autonomy. Learn the small set of shapes that scale." },
+  { from: "orchestration patterns", to: "one complete system", text: "The capstone combines every prior artifact into a research service you can trace, test, and explain." },
+] as const
+
+const RUNNING_EXAMPLE = [
+  "Ask a model to turn one messy note into a useful sentence.",
+  "Turn that note into validated action items your code can consume.",
+  "Let the assistant look up missing facts with tools, recording each step.",
+  "Remember prior notes and retrieve only the context this request needs.",
+  "Write golden cases and grade whether the assistant found the right answer.",
+  "Add limits, action checks, and injection tests around the same loop.",
+  "Split independent research across workers and synthesize their results.",
+  "Ship the Desk: plan, research, verify, write, trace, and deploy.",
+] as const
+
 export function generateStaticParams() { return courseModules.map((_, i) => ({ module: String(i + 1) })) }
 
 export default async function ModulePage({ params }: { params: Promise<{ module: string }> }) {
@@ -41,6 +63,19 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
         </div>
       </div>
     </div>
+
+    <section className="mt-8 grid gap-px border border-border bg-border md:grid-cols-[1fr_1.35fr]">
+      <div className="bg-background p-5">
+        <Eyebrow>Bridge</Eyebrow>
+        <p className="mt-3 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">{BRIDGES[index - 1].from} → {BRIDGES[index - 1].to}</p>
+        <p className="mt-3 text-sm leading-6 text-muted-foreground">{BRIDGES[index - 1].text}</p>
+      </div>
+      <div className="bg-background p-5" style={{ boxShadow: `inset 2px 0 0 ${ACC}` }}>
+        <Eyebrow accent>The running example</Eyebrow>
+        <p className="mt-3 text-sm leading-6">{RUNNING_EXAMPLE[index - 1]}</p>
+        <p className="mt-3 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">Stage {index} of {courseModules.length} · The Desk</p>
+      </div>
+    </section>
 
     {/* Hero figure, when the module has one: same frame as a section figure. */}
     {hero && <figure className="mt-4 border border-border bg-secondary/30 p-4">
