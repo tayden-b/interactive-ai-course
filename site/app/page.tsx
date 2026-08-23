@@ -2,20 +2,14 @@ import Link from "next/link"
 import { AnimatedSphere } from "@/components/landing/animated-sphere"
 import { TracedRun } from "@/components/landing/traced-run"
 import { ReadingFrame, Eyebrow } from "@/components/book/reading-frame"
-import { courseModules, courseTotals } from "@/components/book/course-data"
-import { Fig01, Fig04, Fig07 } from "@/components/figures/course-figures"
+import { courseModules } from "@/components/book/course-data"
+import { Fig01, Fig07 } from "@/components/figures/course-figures"
 
 /** The hero particle globe. Flip to true to bring it back. */
 const SHOW_SPHERE = false
 
 const ACC = "var(--figure-accent)"
 const INK = "var(--figure-accent-ink)"
-
-const previews = [
-  { Fig: Fig01, n: "01", title: "Text in, text out", where: "Module 1 · Section 4" },
-  { Fig: Fig04, n: "04", title: "The agent loop", where: "Module 3 · Section 4" },
-  { Fig: Fig07, n: "07", title: "Many loops — the Deep Research Agent", where: "Module 8 · Section 1" },
-]
 
 /** The text a module card carries: mark, numeral, title, blurb, what you build, open. */
 function CardBody({ index, title, description, build }: { index: number; title: string; description: string; build: string }) {
@@ -78,12 +72,5 @@ export default function Home() {
       </div>
     </section>
 
-    {/* Three of the figures, at a third of their size, in the frame the book uses. */}
-    <section className="border-b border-border py-16">
-      <div className="flex flex-wrap items-baseline justify-between gap-4"><Eyebrow>A diagram for every idea</Eyebrow><p className="font-mono text-[10px] text-muted-foreground">{courseTotals.figures} figures · one geometry · <Link href="/graphics" className="underline underline-offset-4" style={{ color: INK }}>see them all →</Link></p></div>
-      <div className="mt-6 grid gap-4 md:grid-cols-3">{previews.map((p) => <figure key={p.n} className="flex flex-col border border-border bg-secondary/30 p-3"><div className="flex flex-1 items-center"><div className="w-full"><p.Fig /></div></div><figcaption className="mt-3 font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground"><span style={{ color: INK }}>Fig. {p.n}</span> — {p.title}<span className="mt-1 block normal-case tracking-normal">{p.where}</span></figcaption></figure>)}</div>
-    </section>
-
-    <section className="py-20"><p className="max-w-4xl text-balance font-display text-4xl leading-[1.02] tracking-tight md:text-6xl">Read a section, look at its figure, build the thing. Eight times.</p><Link href="/m/1" className="mt-10 inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Start with Module 1</Link></section>
   </main></ReadingFrame>
 }
