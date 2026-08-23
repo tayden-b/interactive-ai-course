@@ -3,8 +3,10 @@ import { AnimatedSphere } from "@/components/landing/animated-sphere"
 import { TracedRun } from "@/components/landing/traced-run"
 import { ReadingFrame, Eyebrow } from "@/components/book/reading-frame"
 import { courseModules, courseTotals } from "@/components/book/course-data"
-import { Numbers } from "@/components/figures/kit"
 import { Fig01, Fig04, Fig07 } from "@/components/figures/course-figures"
+
+/** The hero particle globe. Flip to true to bring it back. */
+const SHOW_SPHERE = false
 
 const ACC = "var(--figure-accent)"
 const INK = "var(--figure-accent-ink)"
@@ -28,8 +30,10 @@ function CardBody({ index, title, description, build }: { index: number; title: 
 
 export default function Home() {
   return <ReadingFrame><main>
-    {/* Hero: the particle globe stays; the text column sits on a faint dot ground. */}
-    <section className="grid min-h-[min(calc(100vh-90px),820px)] items-center gap-10 border-b border-border py-14 md:grid-cols-2 md:py-20">
+    {/* Hero: the text column on a faint dot ground; the particle globe rides SHOW_SPHERE. */}
+    <section className={SHOW_SPHERE
+      ? "grid min-h-[min(calc(100vh-90px),820px)] items-center gap-10 border-b border-border py-14 md:grid-cols-2 md:py-20"
+      : "border-b border-border py-16 md:py-24"}>
       <div className="dot-ground dot-ground--faint -mx-5 px-5 py-8 md:-mx-8 md:px-8">
         <Eyebrow>A visual, hands-on guide to AI — from the model up</Eyebrow>
         <h1 className="mt-5 text-balance font-display text-7xl leading-[.9] tracking-tight md:text-8xl lg:text-9xl">Understand AI by <span style={{ color: ACC }}>building</span> with it</h1>
@@ -40,12 +44,7 @@ export default function Home() {
         </div>
         <p className="mt-10 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Works with any coding agent — <span className="text-foreground">Claude Code · Cursor · Codex CLI · Gemini CLI</span></p>
       </div>
-      <div className="relative -mx-5 h-[520px] overflow-visible md:-mx-16 md:h-[700px]"><AnimatedSphere /></div>
-    </section>
-
-    {/* By the numbers: one row, one blue. */}
-    <section className="border-b border-border py-10">
-      <Numbers items={[{ value: String(courseTotals.modules), label: "modules" }, { value: String(courseTotals.sections), label: "sections" }, { value: String(courseTotals.figures), label: "figures" }, { value: String(courseTotals.capstones), label: "capstone", accent: true }]} />
+      {SHOW_SPHERE && <div className="relative -mx-5 h-[520px] overflow-visible md:-mx-16 md:h-[700px]"><AnimatedSphere /></div>}
     </section>
 
     <section className="border-b border-border py-12">
