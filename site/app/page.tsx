@@ -33,7 +33,7 @@ export default function Home() {
         <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Eight modules of content, with built-in projects to build your portfolio.</p>
         <div className="mt-9 flex flex-wrap gap-3">
           <Link href="/orientation" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Read the orientation</Link>
-          <Link href="/m/1" className="inline-flex border border-border px-5 py-3 text-sm">Go straight to Module 1</Link>
+          <Link href="/start" className="inline-flex border border-border px-5 py-3 text-sm">Set up your lab</Link>
         </div>
         <p className="mt-10 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Works with any coding agent — <span className="text-foreground">Claude Code · Cursor · Codex CLI · Gemini CLI</span></p>
       </div>
@@ -50,6 +50,17 @@ export default function Home() {
           <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">Covers the foundations: what AI, machine learning, LLMs, agents, workflows, and orchestration each mean, and where each one sits in the space.</p>
         </div>
         <Link href="/orientation" className="inline-flex border border-border px-5 py-3 text-sm">Open orientation →</Link>
+      </div>
+    </section>
+
+    <section className="border-b border-border py-12">
+      <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <Eyebrow>How it works</Eyebrow>
+          <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-tight md:text-4xl">You build locally. This site shows you what you built.</h2>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">Clone the lab, open it in your own editor, and your coding agent becomes the tutor. Each project writes a trace of what your agent actually did — and every diagram here fills in with your own run.</p>
+        </div>
+        <Link href="/start" className="inline-flex border border-border px-5 py-3 text-sm">Set up your lab →</Link>
       </div>
     </section>
 
