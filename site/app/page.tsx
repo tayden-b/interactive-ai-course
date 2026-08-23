@@ -35,9 +35,10 @@ export default function Home() {
       ? "grid min-h-[min(calc(100vh-90px),820px)] items-center gap-10 border-b border-border py-14 md:grid-cols-2 md:py-20"
       : "border-b border-border py-16 md:py-24"}>
       <div className="dot-ground dot-ground--faint -mx-5 px-5 py-8 md:-mx-8 md:px-8">
-        <Eyebrow>A visual, hands-on guide to AI — from the model up</Eyebrow>
-        <h1 className="mt-5 text-balance font-display text-7xl leading-[.9] tracking-tight md:text-8xl lg:text-9xl">Understand AI by <span style={{ color: ACC }}>building</span> with it</h1>
-        <p className="mt-7 max-w-xl text-base leading-7 text-muted-foreground">Eight modules. Each one explains a building block in plain language, with a diagram for every idea, and ends with something you build.</p>
+        <Eyebrow>An interactive book</Eyebrow>
+        <h1 className="mt-5 text-balance font-display text-6xl leading-[.95] tracking-tight md:text-7xl lg:text-8xl">The Model and the <span style={{ color: ACC }}>Loop</span></h1>
+        <p className="mt-6 max-w-xl font-display text-2xl leading-snug md:text-3xl">Your guide to LLMs and agents.</p>
+        <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Eight modules. Each one explains a building block in plain language, with a diagram for every idea, and ends with something you build.</p>
         <div className="mt-9 flex flex-wrap gap-3">
           <Link href="/orientation" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Read the orientation</Link>
           <Link href="/m/1" className="inline-flex border border-border px-5 py-3 text-sm">Go straight to Module 1</Link>

@@ -21,8 +21,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: '[COURSE] — An interactive book on AI agents',
-  description: 'An interactive book on how AI agents actually work.',
+  title: 'The Model and the Loop — your guide to LLMs and agents',
+  description: 'Your guide to LLMs and agents. Eight modules, a diagram for every idea, and something you build at the end of each one.',
   generator: 'v0.app',
 }
 
