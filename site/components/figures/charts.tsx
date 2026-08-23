@@ -88,7 +88,7 @@ export function Line({ series, xLabels, title, note, cap, capLabel, yMax, yMin =
               {s.accent && <path d={`${d} L${x(last).toFixed(1)} ${y(yMin)} L${x(0).toFixed(1)} ${y(yMin)} Z`} fill={SOFT} />}
               <path d={d} stroke={s.accent ? ACC : MUTED} strokeWidth={s.accent ? 2.25 : 1.5} strokeDasharray={s.dashed ? "4 5" : undefined} opacity={s.accent ? 1 : 0.7} strokeLinejoin="round" strokeLinecap="round" />
               <circle cx={x(last)} cy={y(s.points[last])} r={3.5} fill={s.accent ? ACC : MUTED} />
-              {s.name && <text x={x(last) + 9} y={y(s.points[last]) + 4} style={{ ...MONO, fill: s.accent ? INK_ACC : MUTED }}>{s.name}</text>}
+              {s.name && <text x={x(last) + 9} y={y(s.points[last]) + 4 + (cap !== undefined && Math.abs(y(s.points[last]) - y(cap)) < 10 ? -12 : 0)} style={{ ...MONO, fill: s.accent ? INK_ACC : MUTED }}>{s.name}</text>}
             </g>
           )
         })}
