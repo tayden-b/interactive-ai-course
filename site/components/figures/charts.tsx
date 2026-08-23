@@ -160,11 +160,16 @@ export function Stacked({ segments, title, note, unit = "" }: { segments: Seg[];
           const x0 = padL + (W - padL - padR) * (acc / total); acc += s.value
           const w = (W - padL - padR) * (s.value / total)
           const mid = x0 + w / 2
+          // Narrow segments can't carry a label without colliding with their neighbours;
+          // the accented one always gets its label, everything under ~56 units stays quiet.
+          const labelled = s.accent || w >= 56
+          const anchor = mid < padL + 40 ? "start" : mid > W - padR - 40 ? "end" : "middle"
+          const lx = anchor === "start" ? x0 : anchor === "end" ? x0 + w : mid
           return (
             <g key={i}>
               <rect x={x0 + 1} y={barY} width={Math.max(0, w - 2)} height={barH} rx={2} fill={s.accent ? ACC : MUTED} opacity={s.accent ? 1 : 0.22 + 0.08 * (i % 3)} />
-              <text x={mid} y={barY + barH + 20} textAnchor="middle" style={{ ...MONO, fill: s.accent ? INK_ACC : MUTED }}>{s.label}</text>
-              <text x={mid} y={barY + barH + 36} textAnchor="middle" style={MONO}>{`${Math.round((s.value / total) * 100)}%${unit ? ` · ${s.value}${unit}` : ""}`}</text>
+              {labelled && <text x={lx} y={barY + barH + 20} textAnchor={anchor} style={{ ...MONO, fill: s.accent ? INK_ACC : MUTED }}>{s.label}</text>}
+              {labelled && <text x={lx} y={barY + barH + 36} textAnchor={anchor} style={MONO}>{`${Math.round((s.value / total) * 100)}%${unit ? ` · ${s.value}${unit}` : ""}`}</text>}
             </g>
           )
         })}
