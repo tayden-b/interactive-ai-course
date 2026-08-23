@@ -438,7 +438,7 @@ const SVG_07 = `<svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" fi
     <text x="352" y="412" fill="var(--muted-foreground)" font-size="13" text-anchor="end">trace</text>
   </g>
 </svg>`
-/** Figure 7 — Many loops — the Desk (M7 s3–s4, M8 s1–s3) */
+/** Figure 7 — Many loops — the Deep Research Agent (M7 s3–s4, M8 s1–s3) */
 export function Fig07() { return <Reveal svg={SVG_07} label={"A system is several copies of the same loop, each with its own window, wired in a line."} /> }
 
 const SVG_08 = `<svg viewBox="0 0 960 360" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -801,7 +801,7 @@ export const figureCaptions: Record<string, string> = {
   "04": "FIGURE 4 — The loop, and the one way out of it.",
   "05": "FIGURE 4.3.1 — Memory that survives the window: a file.",
   "06": "FIGURE 6 — Three gates your code owns, around a loop it doesn't.",
-  "07": "FIGURE 7 — The Desk. Every part is a loop you have already built.",
+  "07": "FIGURE 7 — The Deep Research Agent. Every part is a loop you have already built.",
   "08": "FIGURE 3.1 — Not an answer. A list of possible next tokens, with odds.",
   "09": "FIGURE 5.5.1 — Small per-step errors, large end-to-end failure.",
   "10": "FIGURE 8.6.1 — One run, fully visible. This is the page people will stare at.",

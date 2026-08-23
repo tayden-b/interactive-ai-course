@@ -16,7 +16,7 @@ const HERO: Record<number, { Fig: ComponentType; n: string; title: string; secti
   4: { Fig: Fig13, n: "13", title: "Folding the transcript", section: 2 },
   5: { Fig: Fig09, n: "09", title: "Ninety percent, ten times", section: 5 },
   6: { Fig: Fig06, n: "06", title: "Gates around the loop", section: 6 },
-  8: { Fig: Fig07, n: "07", title: "Many loops — the Desk", section: 1 },
+  8: { Fig: Fig07, n: "07", title: "Many loops — the Deep Research Agent", section: 1 },
 }
 
 const BRIDGES = [
@@ -38,7 +38,7 @@ const RUNNING_EXAMPLE = [
   "Write golden cases and grade whether the assistant found the right answer.",
   "Add limits, action checks, and injection tests around the same loop.",
   "Split independent research across workers and synthesize their results.",
-  "Ship the Desk: plan, research, verify, write, trace, and deploy.",
+  "Ship the Deep Research Agent: plan, research, verify, write, trace, and deploy.",
 ] as const
 
 export function generateStaticParams() { return courseModules.map((_, i) => ({ module: String(i + 1) })) }
@@ -73,7 +73,7 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
       <div className="bg-background p-5" style={{ boxShadow: `inset 2px 0 0 ${ACC}` }}>
         <Eyebrow accent>The running example</Eyebrow>
         <p className="mt-3 text-sm leading-6">{RUNNING_EXAMPLE[index - 1]}</p>
-        <p className="mt-3 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">Stage {index} of {courseModules.length} · The Desk</p>
+        <p className="mt-3 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">Stage {index} of {courseModules.length} · The Deep Research Agent</p>
       </div>
     </section>
 

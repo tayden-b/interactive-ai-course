@@ -14,7 +14,7 @@ const INK = "var(--figure-accent-ink)"
 const previews = [
   { Fig: Fig01, n: "01", title: "Text in, text out", where: "Module 1 · Section 4" },
   { Fig: Fig04, n: "04", title: "The agent loop", where: "Module 3 · Section 4" },
-  { Fig: Fig07, n: "07", title: "Many loops — the Desk", where: "Module 8 · Section 1" },
+  { Fig: Fig07, n: "07", title: "Many loops — the Deep Research Agent", where: "Module 8 · Section 1" },
 ]
 
 /** The text a module card carries: mark, numeral, title, blurb, what you build, open. */
@@ -59,7 +59,7 @@ export default function Home() {
       </div>
     </section>
 
-    {/* The modules, as a bento: 01 a double with its figure beside the text, 08 a 2×2 with the Desk inside. */}
+    {/* The modules, as a bento: 01 a double with its figure beside the text, 08 a 2×2 with the Deep Research Agent inside. */}
     <section className="border-b border-border py-16"><Eyebrow>The modules</Eyebrow>
       <div className="mt-6 grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
         {courseModules.map((item, i) => {
