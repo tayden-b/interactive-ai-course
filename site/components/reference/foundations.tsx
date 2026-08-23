@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import { ArrowRight, FlowNode, Lane } from '@/components/carbon/flow'
 import { DefinitionList, Note, Section, Tile, TileTitle } from '@/components/carbon/ui'
 
 const layers = [
@@ -72,41 +71,6 @@ export function Foundations() {
         </Tile>
 
         <div className="flex flex-col gap-6">
-          <Tile>
-            <TileTitle meta="Rules vs. learning">The shift that made this possible</TileTitle>
-            <div className="flex flex-col gap-4">
-              <div>
-                <p className="mb-2 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
-                  Classical software
-                </p>
-                <Lane>
-                  <FlowNode kind="input" label="Data" className="w-32" />
-                  <ArrowRight />
-                  <FlowNode kind="human" label="Rules written by hand" tone="neutral" className="w-40" />
-                  <ArrowRight />
-                  <FlowNode kind="output" label="Answers" className="w-32" />
-                </Lane>
-              </div>
-              <div>
-                <p className="mb-2 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
-                  Machine learning
-                </p>
-                <Lane>
-                  <FlowNode kind="input" label="Data + answers" tone="cyan" className="w-32" />
-                  <ArrowRight />
-                  <FlowNode
-                    kind="training"
-                    label="Rules inferred by optimisation"
-                    tone="blue"
-                    className="w-40"
-                  />
-                  <ArrowRight />
-                  <FlowNode kind="artifact" label="A model" tone="teal" className="w-32" />
-                </Lane>
-              </div>
-            </div>
-          </Tile>
-
           <Tile>
             <TileTitle meta="Vocabulary">Terms you will meet later</TileTitle>
             <DefinitionList

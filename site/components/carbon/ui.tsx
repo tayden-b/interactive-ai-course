@@ -5,7 +5,9 @@ export function Container({
   children,
   className,
 }: { children: ReactNode; className?: string }) {
-  return <div className={cn('mx-auto w-full max-w-6xl px-4 md:px-6', className)}>{children}</div>
+  // Full width by design: the page that hosts these sections owns the max-width and the
+  // horizontal padding. Capping here left the Carbon tiles inset and double-padded.
+  return <div className={cn('mx-auto w-full', className)}>{children}</div>
 }
 
 export function Section({

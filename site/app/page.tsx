@@ -30,40 +30,32 @@ function CardBody({ index, title, description, build }: { index: number; title: 
 
 export default function Home() {
   return <ReadingFrame><main>
-    {/* Hero: the text column on a faint dot ground; the particle globe rides SHOW_SPHERE. */}
-    <section className={SHOW_SPHERE
-      ? "grid min-h-[min(calc(100vh-90px),820px)] items-center gap-10 border-b border-border py-14 md:grid-cols-2 md:py-20"
-      : "border-b border-border py-16 md:py-24"}>
+    {/* Hero: the book's name sits in the header, so the H1 is the promise. Right column is the
+        traced run — or the particle globe, when SHOW_SPHERE is turned back on. */}
+    <section className="grid items-center gap-10 border-b border-border py-14 md:grid-cols-[1fr_minmax(0,520px)] md:py-20">
       <div className="dot-ground dot-ground--faint -mx-5 px-5 py-8 md:-mx-8 md:px-8">
         <Eyebrow>An interactive book</Eyebrow>
-        <h1 className="mt-5 text-balance font-display text-6xl leading-[.95] tracking-tight md:text-7xl lg:text-8xl">The Model and the <span style={{ color: ACC }}>Loop</span></h1>
-        <p className="mt-6 max-w-xl font-display text-2xl leading-snug md:text-3xl">Your guide to LLMs and agents.</p>
-        <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Eight modules. Each one explains a building block in plain language, with a diagram for every idea, and ends with something you build.</p>
+        <h1 className="mt-5 text-balance font-display text-5xl leading-[.98] tracking-tight md:text-6xl lg:text-7xl">Your guide to <span style={{ color: ACC }}>LLMs and agents</span></h1>
+        <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Eight modules of content, with built-in projects to build your portfolio.</p>
         <div className="mt-9 flex flex-wrap gap-3">
           <Link href="/orientation" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Read the orientation</Link>
           <Link href="/m/1" className="inline-flex border border-border px-5 py-3 text-sm">Go straight to Module 1</Link>
         </div>
         <p className="mt-10 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Works with any coding agent — <span className="text-foreground">Claude Code · Cursor · Codex CLI · Gemini CLI</span></p>
       </div>
-      {SHOW_SPHERE && <div className="relative -mx-5 h-[520px] overflow-visible md:-mx-16 md:h-[700px]"><AnimatedSphere /></div>}
+      {SHOW_SPHERE
+        ? <div className="relative -mx-5 h-[520px] overflow-visible md:-mx-16 md:h-[700px]"><AnimatedSphere /></div>
+        : <TracedRun />}
     </section>
 
     <section className="border-b border-border py-12">
       <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <Eyebrow>New to the field?</Eyebrow>
-          <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-tight md:text-4xl">Start with the map, not the jargon.</h2>
-          <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">The orientation separates AI, machine learning, language models, agents, workflows, and orchestration before the numbered course begins. It uses the original IBM Carbon diagrams from the field guide.</p>
+          <Eyebrow>Start here</Eyebrow>
+          <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-tight md:text-4xl">Orientation</h2>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">Covers the foundations: what AI, machine learning, LLMs, agents, workflows, and orchestration each mean, and where each one sits in the space.</p>
         </div>
         <Link href="/orientation" className="inline-flex border border-border px-5 py-3 text-sm">Open orientation →</Link>
-      </div>
-    </section>
-
-    {/* What a run looks like when it's traced: the thing the capstone ends in, typed out once. */}
-    <section className="border-b border-border py-16">
-      <div className="grid gap-8 md:grid-cols-[1fr_minmax(0,560px)] md:items-center">
-        <div><Eyebrow>Where it ends</Eyebrow><p className="mt-4 max-w-md font-display text-3xl leading-tight md:text-4xl">By the last module, every run you make is a trace you can read.</p><p className="mt-4 max-w-md text-sm leading-6 text-muted-foreground">A plan, three researchers in parallel, a checker, a writer — and a span for each, with the time it took. That's the Desk, and it's where the book is going.</p></div>
-        <TracedRun />
       </div>
     </section>
 
