@@ -46,3 +46,10 @@ blue — on exactly one shape per figure.
 ```bash
 cd site && pnpm install && pnpm dev
 ```
+
+## Deploy
+
+The repo is on GitHub at https://github.com/tayden-b/interactive-ai-course. To make it live:
+import the repo in Vercel, set the **root directory to `site/`**, and accept the Next.js defaults.
+A clean `npm install` and `npm run build` are verified; every later push to `main` deploys itself.
+There is no `vercel` CLI session on this machine, so that one import is a click in the Vercel UI.
