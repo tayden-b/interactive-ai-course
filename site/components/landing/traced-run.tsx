@@ -29,6 +29,8 @@ export function TracedRun() {
     }
     let timer = 0
     let started = false
+    // FALLBACK: if the observer never fires, type anyway rather than showing an empty box.
+    const fallback = window.setTimeout(() => run(), 1200)
     const run = () => {
       if (started) return; started = true
       let line = 0, ch = 0
@@ -49,7 +51,7 @@ export function TracedRun() {
     if (typeof IntersectionObserver === "undefined") { run(); return () => window.clearTimeout(timer) }
     const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); run() } }, { rootMargin: "0px 0px -20% 0px" })
     io.observe(el)
-    return () => { io.disconnect(); window.clearTimeout(timer) }
+    return () => { window.clearTimeout(fallback); io.disconnect(); window.clearTimeout(timer) }
   }, [])
 
   const last = LINES.length - 1

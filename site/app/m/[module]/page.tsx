@@ -3,10 +3,8 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ReadingFrame, Eyebrow } from "@/components/book/reading-frame"
 import { courseModules } from "@/components/book/course-data"
-import { Numbers } from "@/components/figures/kit"
 import { AnimatedWave } from "@/components/landing/animated-wave"
 import { Fig01, Fig03, Fig06, Fig07, Fig09, Fig13 } from "@/components/figures/course-figures"
-import { Pictogram, modulePictogram } from "@/components/figures/pictograms"
 
 const ACC = "var(--figure-accent)"
 const INK = "var(--figure-accent-ink)"
@@ -37,7 +35,6 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
       <Eyebrow>Modules / {nn}</Eyebrow>
       <div className="mt-6 grid items-start gap-6 md:grid-cols-[auto_auto_1fr] md:gap-x-10">
         <p aria-hidden className="font-display text-[128px] leading-[.82] tracking-tight md:text-[184px]" style={{ color: ACC }}>{nn}</p>
-        <Pictogram name={modulePictogram[index]} size={72} className="md:mt-3" style={{ color: ACC }} />
         <div className="md:pt-2">
           <h1 className="text-balance font-display text-5xl leading-[.96] tracking-tight md:text-7xl">{item.title}</h1>
           <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">{item.intro}</p>
@@ -50,11 +47,6 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
       <div className="mx-auto max-w-[880px]"><hero.Fig /></div>
       <figcaption className="mt-3 flex flex-wrap justify-between gap-x-6 gap-y-1 font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground"><span>Figure {hero.n} — {hero.title}</span><span>Section {hero.section}</span></figcaption>
     </figure>}
-
-    {/* By the numbers: bounded by full-width rules, one accent. */}
-    <section className="mt-12 border-y border-border py-7">
-      <Numbers items={[{ value: String(item.sections.length), label: "sections" }, { value: `~${minutes}`, label: "minutes" }, { value: item.build, label: "what you build", accent: true }]} />
-    </section>
 
     <section className="mt-12"><Eyebrow>What you'll be able to do</Eyebrow><ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground">{item.outcomes.map((o) => <li key={o}>{o}</li>)}</ul></section>
 

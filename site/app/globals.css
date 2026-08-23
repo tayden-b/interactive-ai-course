@@ -102,9 +102,13 @@
 
 @layer utilities {
   .font-display {
-    /* --font-display is an @theme inline token: it is NOT emitted as a CSS variable,
-       so var(--font-display) resolved to nothing and every heading fell back to the sans. */
-    font-family: var(--font-instrument-serif), 'Instrument Serif', Georgia, serif;
+    /* Headings are the SANS, on purpose. --font-display is an @theme inline token that is
+       never emitted as a CSS variable, so this class silently fell back to the sans from the
+       start; that fallback is the look the site was designed around and the one we want.
+       Set explicitly here so it does not depend on a variable that never resolves. */
+    font-family: var(--font-instrument), 'Instrument Sans', system-ui, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
   
   .text-stroke {
