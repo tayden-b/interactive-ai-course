@@ -88,7 +88,11 @@ Read `TUTOR.md` in this folder, in full, and follow it for the rest of your work
 person. It governs how you teach: hint-first, never hand over a finished solution, never
 edit anything under `checks/`.
 
-Then read `modules/m1/BUILD.md` and begin Module 1.
+Then read `modules/m<N>/BUILD.md` for the module the user asked for and begin.
+
+**If that folder does not exist**, say so plainly — that module's project has not been
+written yet — and offer them the modules that do have one (run `./course status`; they are
+marked). Do not invent a project. Do not guess at what the build should be.
 
 ## Step 8 — Hand back
 

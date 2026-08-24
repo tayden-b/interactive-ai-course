@@ -22,6 +22,11 @@ from coursekit import detect, server  # noqa: E402
 B, D, R = "\033[1m", "\033[2m", "\033[0m"
 OK, NO, DOT = "\033[32m✓\033[0m", "\033[31m✗\033[0m", "\033[2m·\033[0m"
 
+# Modules whose BUILD.md and checks actually exist. The rest of the book is written and
+# readable on the site; their projects are not built yet, and pretending otherwise would
+# send someone's agent looking for files that are not there.
+AVAILABLE = {1, 3}
+
 MODULES = {
     1: "What is an LLM?", 2: "Working with a model", 3: "Tools and the agent loop",
     4: "Memory and context", 5: "Evals", 6: "Failure modes and guardrails",
@@ -147,7 +152,16 @@ def cmd_init(args) -> int:
         (ROOT / d).mkdir(parents=True, exist_ok=True)
     state["module"] = module
     save_state(state)
-    print(f"  {OK} Set you to Module {module} — {MODULES[module]}")
+    if module in AVAILABLE:
+        print(f"  {OK} Set you to Module {module} — {MODULES[module]}")
+    else:
+        print(f"  {NO} Module {module} — {MODULES[module]} — has no project yet")
+        print(f"      Built so far: {', '.join(str(m) for m in sorted(AVAILABLE))}. "
+              f"Read the module on the site; come back for the build.")
+        module = 1
+        state["module"] = module
+        save_state(state)
+        print(f"  {OK} Set you to Module 1 — {MODULES[1]} instead")
 
     print(f"\n{B}Next{R}\n")
     print(f"  1. Put your API key in {B}.env{R}")
@@ -162,7 +176,8 @@ def cmd_check(args) -> int:
     module = args.module or state.get("module", 1)
     mod = load_check_module(module)
     if mod is None:
-        print(f"\n  {DOT} No checks for Module {module} yet.\n")
+        print(f"\n  {DOT} Module {module} has no project yet. "
+              f"Built so far: {', '.join(str(m) for m in sorted(AVAILABLE))}.\n")
         return 0
 
     trace = load_trace()
@@ -223,7 +238,8 @@ def cmd_status(args) -> int:
         rec = state.get("modules", {}).get(str(n))
         mark = OK if rec and rec["passed"] else (f"{B}▸{R}" if n == current else DOT)
         style = B if n == current else (D if not (rec and rec["passed"]) else "")
-        print(f"  {mark} {style}{n:02d}  {title}{R if style else ''}")
+        tail = "" if n in AVAILABLE else f"  {D}· project not written yet{R}"
+        print(f"  {mark} {style}{n:02d}  {title}{R if style else ''}{tail}")
     if trace:
         t = trace["totals"]
         print(f"\n{D}Last run · module {trace['module']} · {t['llm_calls']} model calls, "
