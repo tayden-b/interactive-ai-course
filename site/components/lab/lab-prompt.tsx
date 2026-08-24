@@ -3,7 +3,7 @@
 /**
  * The entire setup experience: one sentence you paste into the agent you already have.
  *
- * There is deliberately no setup page. Setup is not a destination — it appears inline at
+ * There is deliberately no setup page. Setup is not a destination. It appears inline at
  * the moment someone first needs it (a module's project section), and collapses to a
  * single line once their lab is running.
  *
@@ -14,6 +14,7 @@
 
 import { useState } from "react"
 import { useLab } from "@/lib/lab"
+import { BRAND } from "@/lib/brand"
 
 const ACC = "var(--figure-accent)"
 const INK = "var(--figure-accent-ink)"
@@ -27,7 +28,7 @@ const SETUP_URL = "https://the-model-and-the-loop.vercel.app/setup.md"
 const REPO = "https://github.com/tayden-b/interactive-ai-course"
 
 export function promptFor(module: number) {
-  return `Set up The Model and the Loop and start Module ${module}: read ${SETUP_URL} and follow it exactly.`
+  return `Set up ${BRAND} and start Module ${module}: read ${SETUP_URL} and follow it exactly.`
 }
 
 export function LabPrompt({ module = 1 }: { module?: number }) {
@@ -76,13 +77,13 @@ export function LabPrompt({ module = 1 }: { module?: number }) {
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
         Your agent clones the course, sets it up, asks you for an API key, and becomes your
-        tutor — one that won&rsquo;t write your code for you. Works with Claude Code, Cursor,
+        tutor: one that won&rsquo;t write your code for you. Works with Claude Code, Cursor,
         Codex CLI, Gemini CLI, or Copilot.
       </p>
 
       <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">
         <button type="button" onClick={refresh} className="underline underline-offset-4 hover:text-foreground">
-          {status === "probing" ? "Looking for your lab…" : "I've done this — check again"}
+          {status === "probing" ? "Looking for your lab…" : "I've done this, check again"}
         </button>
         <a href={REPO} target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-foreground">
           Or set it up by hand

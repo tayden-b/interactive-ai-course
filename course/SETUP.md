@@ -1,6 +1,6 @@
 # Setup — instructions for the coding agent
 
-You are setting up **The Model and the Loop**, an interactive course on LLMs and agents,
+You are setting up **textbook.ai**, an interactive course on LLMs and agents,
 for the person you are talking to. Follow these steps in order. Do not improvise, do not
 skip ahead, and do not substitute your own idea of how a course folder should look.
 

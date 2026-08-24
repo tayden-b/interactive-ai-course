@@ -30,7 +30,7 @@ const siteUrl =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : 'http://localhost:3077')
 
-const TITLE = 'The Model and the Loop — your guide to LLMs and agents'
+const TITLE = 'textbook.ai · Your guide to LLMs and agents'
 const DESCRIPTION =
   'An interactive book on LLMs and agents. Eight modules, a diagram for every idea, and a project you build locally with your own coding agent — then the site shows you your own run.'
 
@@ -38,11 +38,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: TITLE,
   description: DESCRIPTION,
-  applicationName: 'The Model and the Loop',
+  applicationName: 'textbook.ai',
   authors: [{ name: 'Tayden Barretto', url: 'https://tayden.dev' }],
   openGraph: {
     type: 'website',
-    siteName: 'The Model and the Loop',
+    siteName: 'textbook.ai',
     title: TITLE,
     description: DESCRIPTION,
     url: siteUrl,

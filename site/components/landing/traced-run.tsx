@@ -2,15 +2,15 @@
 
 import { useEffect, useRef, useState } from "react"
 
-// A traced run, typed out once. Labelled DEMO in the eyebrow; the figures are illustrative.
-// Starts when it scrolls into view (it sits below the fold), runs once, and renders the
-// finished state immediately when the reader prefers reduced motion.
+// What happens after you paste the one line into your own coding agent, typed out once.
+// Labelled DEMO in the eyebrow; the timings are illustrative. Starts when it scrolls into
+// view, runs once, and renders the finished state immediately for reduced motion.
 const LINES = [
-  "▸ plan            0.8s",
-  "▸ research ×3     4.1s  (parallel)",
-  "▸ check           0.6s",
-  "▸ write           1.9s",
-  "✓ brief ready — 12 spans recorded",
+  "▸ agent reads setup.md      0.4s",
+  "▸ course cloned locally     1.2s",
+  "▸ tutor ready · module 1    0.3s",
+  "▸ your agent makes a call   0.9s",
+  "✓ trace received · now on this page",
 ]
 const CHAR_MS = 40
 const LINE_GAP_MS = 500
@@ -57,7 +57,7 @@ export function TracedRun() {
   const last = LINES.length - 1
   return (
     <div ref={ref} className="border border-border bg-card p-5 md:p-6">
-      <p className="font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">A run, traced · <span className="text-foreground">Demo</span></p>
+      <p className="font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Your agent, setting up · <span className="text-foreground">Demo</span></p>
       <pre className="mt-4 overflow-x-auto font-mono text-[13px] leading-7 text-foreground md:text-sm" aria-label={LINES.join("\n")}>
         {LINES.map((l, i) => {
           const text = l.slice(0, typed[i])

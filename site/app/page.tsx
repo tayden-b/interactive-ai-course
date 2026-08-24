@@ -36,7 +36,7 @@ export default function Home() {
           <Link href="/orientation" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Read the orientation</Link>
           <Link href="/m/1" className="inline-flex border border-border px-5 py-3 text-sm">Go straight to Module 1</Link>
         </div>
-        <p className="mt-10 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Works with any coding agent — <span className="text-foreground">Claude Code · Cursor · Codex CLI · Gemini CLI</span></p>
+        <p className="mt-10 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Works with any coding agent. <span className="text-foreground">Claude Code · Cursor · Codex CLI · Gemini CLI</span></p>
       </div>
       {SHOW_SPHERE
         ? <div className="relative -mx-5 h-[520px] overflow-visible md:-mx-16 md:h-[700px]"><AnimatedSphere /></div>
@@ -44,29 +44,18 @@ export default function Home() {
     </section>
 
     <section className="border-b border-border py-12">
-      <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
-        <div>
-          <Eyebrow>Start here</Eyebrow>
-          <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-tight md:text-4xl">Orientation</h2>
-          <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">Covers the foundations: what AI, machine learning, LLMs, agents, workflows, and orchestration each mean, and where each one sits in the space.</p>
-        </div>
-        <Link href="/orientation" className="inline-flex border border-border px-5 py-3 text-sm">Open orientation →</Link>
-      </div>
-    </section>
-
-    <section className="border-b border-border py-12">
       <div className="grid gap-8 md:grid-cols-[1fr_minmax(0,520px)] md:items-center">
         <div>
           <Eyebrow>How it works</Eyebrow>
           <h2 className="mt-4 max-w-xl text-balance font-display text-3xl leading-tight md:text-4xl">You build it locally. This site shows you what you built.</h2>
-          <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">There is nothing to install and no setup to work through. Every module ends in a project, and each one starts with a single line pasted into the coding agent you already use — it fetches the course, sets it up, and turns itself into your tutor.</p>
+          <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">There is nothing to install and no setup to work through. Every module ends in a project, and each one starts with a single line pasted into the coding agent you already use. It fetches the course, sets it up, and turns itself into your tutor.</p>
           <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">Your agent records what it does. The diagrams here then fill in with your own run.</p>
         </div>
         <LabPrompt module={1} />
       </div>
     </section>
 
-    {/* The modules, as a bento: 01 a double with its figure beside the text, 08 a 2×2 with the Deep Research Agent inside. */}
+    {/* The modules, as a bento: 01 a double with its figure beside the text, 08 a 2x2 with the Deep Research Agent inside. */}
     <section className="border-b border-border py-16"><Eyebrow>The modules</Eyebrow>
       <div className="mt-6 grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
         {courseModules.map((item, i) => {
@@ -85,5 +74,15 @@ export default function Home() {
       </div>
     </section>
 
+    <section className="border-b border-border py-12">
+      <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <Eyebrow>Before Module 01</Eyebrow>
+          <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-tight md:text-4xl">Start with the orientation</h2>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">Covers the foundations: what AI, machine learning, LLMs, agents, workflows, and orchestration each mean, and where each one sits in the space.</p>
+        </div>
+        <Link href="/orientation" className="inline-flex border border-border px-5 py-3 text-sm">Open orientation →</Link>
+      </div>
+    </section>
   </main></ReadingFrame>
 }

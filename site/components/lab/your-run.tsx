@@ -125,8 +125,8 @@ export function YourRun({ module = 3 }: { module?: number }) {
           {live
             ? <>Live · module {shown.module} · {traceCount} run{traceCount === 1 ? "" : "s"} recorded</>
             : status === "probing" ? "Looking for your lab…"
-            : status === "on" ? "Example data — your lab is connected, but you have not run anything yet"
-            : "Example data — your lab is not connected"}
+            : status === "on" ? "Example data. Your lab is connected, but you have not run anything yet"
+            : "Example data. Your lab is not connected"}
         </span>
       </figcaption>
 
@@ -142,13 +142,13 @@ export function YourRun({ module = 3 }: { module?: number }) {
       <p className="mt-4 border-t border-border pt-3 text-sm leading-6 text-muted-foreground">
         {shown.totals.tool_calls === 0 ? (
           <>One call: {t.input_tokens} tokens in, {t.output_tokens} back. Everything the model
-            knew for that reply was in the {t.input_tokens} — there is no memory between calls.</>
+            knew for that reply was in the {t.input_tokens}. There is no memory between calls.</>
         ) : closed ? (
           <>The loop closed: the model asked for <span className="text-foreground">{shown.spans.find((s) => s.kind === "tool")?.name ?? "a tool"}</span>,
             your code ran it, and the result went back for another turn. That second model call is
             what makes this an agent rather than a single call.</>
         ) : (
-          <>This run has a tool call, but the result never went back to the model — so it is not
+          <>This run has a tool call, but the result never went back to the model, so it is not
             yet a loop.</>
         )}
       </p>
