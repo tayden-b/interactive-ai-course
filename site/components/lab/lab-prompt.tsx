@@ -19,11 +19,10 @@ const ACC = "var(--figure-accent)"
 const INK = "var(--figure-accent-ink)"
 
 /**
- * Points at the raw file on GitHub rather than the site's own /setup.md because this has to
- * work before the site is deployed, and keep working if it ever moves. Swap to
- * https://themodelandtheloop.com/setup.md once the domain is live.
+ * The site serves SETUP.md itself, so onboarding can be fixed by editing one file and
+ * pushing — nobody re-copies the prompt. Update this if a custom domain is attached.
  */
-const SETUP_URL = "https://raw.githubusercontent.com/tayden-b/interactive-ai-course/main/course/SETUP.md"
+const SETUP_URL = "https://the-model-and-the-loop.vercel.app/setup.md"
 
 const REPO = "https://github.com/tayden-b/interactive-ai-course"
 
