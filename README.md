@@ -1,4 +1,6 @@
-# Interactive AI Course
+# The Model and the Loop
+
+**Live: https://the-model-and-the-loop.vercel.app**
 
 A visual, hands-on book on how LLMs and agents actually work — for technically-minded people who
 aren't yet AI-fluent. The site is the textbook; a local `course/` folder is the workbook the learner
