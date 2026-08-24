@@ -11,6 +11,7 @@ import {
 import { Line } from "@/components/figures/charts"
 import { AgentLoopDiagram } from "@/components/reference/agent-loop-diagram"
 import { YourRun } from "@/components/lab/your-run"
+import { LabPrompt } from "@/components/lab/lab-prompt"
 
 /* ---------- typeset figures for the slots that are not drawings ---------- */
 
@@ -147,6 +148,7 @@ const fig38 = (
       { label: "model call", sub: "decide" },
       { label: "reply", sub: "done" },
     ]} />
+    <LabPrompt module={3} />
     <YourRun module={3} />
   </Stack>
 )

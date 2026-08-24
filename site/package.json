@@ -6,7 +6,10 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "next start",
+    "sync:setup": "node -e \"require('fs').copyFileSync('../course/SETUP.md','public/setup.md')\"",
+    "prebuild": "npm run sync:setup",
+    "predev": "npm run sync:setup"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

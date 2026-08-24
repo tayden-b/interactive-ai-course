@@ -8,28 +8,42 @@
  * trace, labelled as such, so the page is never empty and never lies about whose run it is.
  */
 
-import { useLab, type Span, type Trace, SERVE_CMD } from "@/lib/lab"
-import { Copy } from "./copy"
+import { useLab, type Span, type Trace } from "@/lib/lab"
 
 const ACC = "var(--figure-accent)"
 const INK = "var(--figure-accent-ink)"
 
-/** Stand-in so the panel reads correctly before anyone has run anything. */
-const DEMO: Trace = {
-  schema: "modelandloop.trace/v1",
-  trace_id: "demo",
-  module: 3,
-  agent: "my-agent",
-  started_at: "", ended_at: "",
-  totals: { llm_calls: 2, tool_calls: 1, errors: 0, input_tokens: 932, output_tokens: 152, usd_estimate: 0.000231, duration_ms: 1840 },
-  spans: [
-    { id: "a", parent_id: null, kind: "llm", name: "chat gpt-4o-mini", started_at: "", duration_ms: 812,
-      attributes: { "gen_ai.request.model": "gpt-4o-mini", "gen_ai.usage.input_tokens": 412, "gen_ai.usage.output_tokens": 88, "gen_ai.response.finish_reasons": ["tool_calls"] } },
-    { id: "b", parent_id: null, kind: "tool", name: "get_time", started_at: "", duration_ms: 41,
-      attributes: { "gen_ai.tool.name": "get_time" } },
-    { id: "c", parent_id: null, kind: "llm", name: "chat gpt-4o-mini", started_at: "", duration_ms: 987,
-      attributes: { "gen_ai.request.model": "gpt-4o-mini", "gen_ai.usage.input_tokens": 520, "gen_ai.usage.output_tokens": 64, "gen_ai.response.finish_reasons": ["stop"] } },
-  ],
+/**
+ * Stand-in data so the panel reads correctly before anyone has run anything. It is
+ * per-module on purpose: Module 1's project is a single call, and showing it a loop would
+ * promise the wrong thing.
+ */
+function demoFor(module: number): Trace {
+  const span = (id: string, kind: Span["kind"], name: string, ms: number, attrs: Record<string, unknown>): Span =>
+    ({ id, parent_id: null, kind, name, started_at: "", duration_ms: ms, attributes: attrs })
+
+  if (module <= 2) {
+    return {
+      schema: "modelandloop.trace/v1", trace_id: "demo", module, agent: "my-agent",
+      started_at: "", ended_at: "",
+      totals: { llm_calls: 1, tool_calls: 0, errors: 0, input_tokens: 24, output_tokens: 96, usd_estimate: 0.0000616, duration_ms: 940 },
+      spans: [span("a", "llm", "chat gpt-4o-mini", 940, {
+        "gen_ai.request.model": "gpt-4o-mini", "gen_ai.request.temperature": 0.7,
+        "gen_ai.usage.input_tokens": 24, "gen_ai.usage.output_tokens": 96,
+        "gen_ai.response.finish_reasons": ["stop"],
+      })],
+    }
+  }
+  return {
+    schema: "modelandloop.trace/v1", trace_id: "demo", module, agent: "my-agent",
+    started_at: "", ended_at: "",
+    totals: { llm_calls: 2, tool_calls: 1, errors: 0, input_tokens: 932, output_tokens: 152, usd_estimate: 0.000231, duration_ms: 1840 },
+    spans: [
+      span("a", "llm", "chat gpt-4o-mini", 812, { "gen_ai.request.model": "gpt-4o-mini", "gen_ai.usage.input_tokens": 412, "gen_ai.usage.output_tokens": 88, "gen_ai.response.finish_reasons": ["tool_calls"] }),
+      span("b", "tool", "get_time", 41, { "gen_ai.tool.name": "get_time" }),
+      span("c", "llm", "chat gpt-4o-mini", 987, { "gen_ai.request.model": "gpt-4o-mini", "gen_ai.usage.input_tokens": 520, "gen_ai.usage.output_tokens": 64, "gen_ai.response.finish_reasons": ["stop"] }),
+    ],
+  }
 }
 
 const KIND_LABEL: Record<Span["kind"], string> = { llm: "model", tool: "tool", step: "step" }
@@ -52,6 +66,7 @@ function Waterfall({ spans }: { spans: Span[] }) {
         const width = Math.max(1.5, (s.duration_ms / total) * 100)
         elapsed += s.duration_ms
         const isTool = s.kind === "tool"
+        const wide = width >= 18
         const tokens = num(s.attributes["gen_ai.usage.input_tokens"]) + num(s.attributes["gen_ai.usage.output_tokens"])
         return (
           <li key={s.id} className="grid grid-cols-[64px_minmax(0,1fr)_72px] items-center gap-3">
@@ -60,13 +75,18 @@ function Waterfall({ spans }: { spans: Span[] }) {
             </span>
             <span className="relative block h-5 rounded-none bg-secondary/50">
               <span
-                className="absolute top-0 flex h-5 items-center px-1.5"
+                className="absolute top-0 h-5"
                 style={{
-                  left: `${left}%`, width: `${width}%`, minWidth: 3,
+                  left: `${left}%`, width: `${width}%`, minWidth: 4,
                   background: s.error ? "var(--destructive)" : isTool ? ACC : "var(--foreground)",
                 }}
+              />
+              {/* Below ~18% the bar cannot hold its own label, so the label sits beside it. */}
+              <span
+                className={`absolute top-0 flex h-5 items-center whitespace-nowrap font-mono text-[10px] ${wide ? "text-background" : "text-muted-foreground"}`}
+                style={wide ? { left: `${left}%`, paddingLeft: 6 } : { left: `min(${left + width}%, 78%)`, paddingLeft: 6 }}
               >
-                <span className="truncate font-mono text-[10px] text-background">{s.name}</span>
+                {s.name}
               </span>
             </span>
             <span className="text-right font-mono text-[10px] text-muted-foreground">
@@ -88,10 +108,10 @@ function Stat({ label, value, accent }: { label: string; value: string; accent?:
   )
 }
 
-export function YourRun({ module }: { module?: number }) {
-  const { status, trace, traceCount, refresh } = useLab()
+export function YourRun({ module = 3 }: { module?: number }) {
+  const { status, trace, traceCount } = useLab()
   const live = status === "on" && !!trace
-  const shown = live ? (trace as Trace) : DEMO
+  const shown = live ? (trace as Trace) : demoFor(module ?? 3)
   const t = shown.totals
   const closed = loopClosed(shown.spans)
 
@@ -104,7 +124,9 @@ export function YourRun({ module }: { module?: number }) {
         <span className="font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">
           {live
             ? <>Live · module {shown.module} · {traceCount} run{traceCount === 1 ? "" : "s"} recorded</>
-            : status === "probing" ? "Looking for your lab…" : "Example data — your lab is not connected"}
+            : status === "probing" ? "Looking for your lab…"
+            : status === "on" ? "Example data — your lab is connected, but you have not run anything yet"
+            : "Example data — your lab is not connected"}
         </span>
       </figcaption>
 
@@ -118,26 +140,19 @@ export function YourRun({ module }: { module?: number }) {
       </div>
 
       <p className="mt-4 border-t border-border pt-3 text-sm leading-6 text-muted-foreground">
-        {closed ? (
+        {shown.totals.tool_calls === 0 ? (
+          <>One call: {t.input_tokens} tokens in, {t.output_tokens} back. Everything the model
+            knew for that reply was in the {t.input_tokens} — there is no memory between calls.</>
+        ) : closed ? (
           <>The loop closed: the model asked for <span className="text-foreground">{shown.spans.find((s) => s.kind === "tool")?.name ?? "a tool"}</span>,
             your code ran it, and the result went back for another turn. That second model call is
             what makes this an agent rather than a single call.</>
         ) : (
-          <>This run has {t.tool_calls === 0 ? "no tool call" : "a tool call, but the result never went back to the model"} —
-            so it is not yet a loop.</>
+          <>This run has a tool call, but the result never went back to the model — so it is not
+            yet a loop.</>
         )}
       </p>
 
-      {!live && status === "off" && (
-        <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-border pt-3">
-          <span className="text-xs text-muted-foreground">To see your own run here, start the bridge:</span>
-          <Copy text={SERVE_CMD} />
-          <button type="button" onClick={refresh}
-            className="font-mono text-[9px] uppercase tracking-[.16em] text-muted-foreground underline underline-offset-4 hover:text-foreground">
-            Check again
-          </button>
-        </div>
-      )}
     </figure>
   )
 }

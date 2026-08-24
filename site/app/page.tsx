@@ -4,6 +4,7 @@ import { TracedRun } from "@/components/landing/traced-run"
 import { ReadingFrame, Eyebrow } from "@/components/book/reading-frame"
 import { courseModules } from "@/components/book/course-data"
 import { Fig01, Fig07 } from "@/components/figures/course-figures"
+import { LabPrompt } from "@/components/lab/lab-prompt"
 
 /** The hero particle globe. Flip to true to bring it back. */
 const SHOW_SPHERE = false
@@ -33,7 +34,7 @@ export default function Home() {
         <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Eight modules of content, with built-in projects to build your portfolio.</p>
         <div className="mt-9 flex flex-wrap gap-3">
           <Link href="/orientation" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Read the orientation</Link>
-          <Link href="/start" className="inline-flex border border-border px-5 py-3 text-sm">Set up your lab</Link>
+          <Link href="/m/1" className="inline-flex border border-border px-5 py-3 text-sm">Go straight to Module 1</Link>
         </div>
         <p className="mt-10 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Works with any coding agent — <span className="text-foreground">Claude Code · Cursor · Codex CLI · Gemini CLI</span></p>
       </div>
@@ -54,13 +55,14 @@ export default function Home() {
     </section>
 
     <section className="border-b border-border py-12">
-      <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+      <div className="grid gap-8 md:grid-cols-[1fr_minmax(0,520px)] md:items-center">
         <div>
           <Eyebrow>How it works</Eyebrow>
-          <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-tight md:text-4xl">You build locally. This site shows you what you built.</h2>
-          <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">Clone the lab, open it in your own editor, and your coding agent becomes the tutor. Each project writes a trace of what your agent actually did — and every diagram here fills in with your own run.</p>
+          <h2 className="mt-4 max-w-xl text-balance font-display text-3xl leading-tight md:text-4xl">You build it locally. This site shows you what you built.</h2>
+          <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">There is nothing to install and no setup to work through. Every module ends in a project, and each one starts with a single line pasted into the coding agent you already use — it fetches the course, sets it up, and turns itself into your tutor.</p>
+          <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">Your agent records what it does. The diagrams here then fill in with your own run.</p>
         </div>
-        <Link href="/start" className="inline-flex border border-border px-5 py-3 text-sm">Set up your lab →</Link>
+        <LabPrompt module={1} />
       </div>
     </section>
 
