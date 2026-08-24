@@ -11,7 +11,7 @@ const figures = [
   ["04", "The agent loop", "Module 3 · Section 4", Fig04],
   ["05", "Where memory lives", "Module 4 · Section 3", Fig05],
   ["06", "Gates around the loop", "Module 6 · Section 6", Fig06],
-  ["07", "Many loops — the Desk", "Module 8 · Section 1", Fig07],
+  ["07", "Many loops — the Deep Research Agent", "Module 8 · Section 1", Fig07],
   ["08", "A ranked list", "Module 1 · Section 3", Fig08],
   ["09", "Ninety percent, ten times", "Module 5 · Section 5", Fig09],
   ["10", "One run, read back", "Module 8 · Section 6", Fig10],

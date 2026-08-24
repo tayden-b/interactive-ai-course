@@ -59,12 +59,12 @@ export const courseModules = [
     projectTitle: "A two-agent system", projectBlurb: "An orchestrator that routes requests, fans out independent work to a worker in parallel, and synthesizes — with the trace showing both agents.", projectCta: "Open project →",
   },
   {
-    title: "Capstone: The Desk", description: "A production multi-agent research system you deploy, trace, and show.", project: "The whole module.", build: "The Desk",
+    title: "Capstone: The Deep Research Agent", description: "A production multi-agent research system you deploy, trace, and show.", project: "The whole module.", build: "The Deep Research Agent",
     sections: ["What you're building", "The orchestrator", "The specialists", "The harness", "Memory across runs", "Observability", "Evals and guardrails in CI", "Deploy and show it"],
     minutes: [8, 8, 8, 8, 6, 8, 7, 8], projectSection: 0,
-    intro: "Everything in this book, in one system you can show. The Desk is a production multi-agent research service: someone submits a question, an orchestrator plans, specialist agents research in parallel with real tools, a checker verifies every claim against its source, a writer produces the brief, and the whole run is visible as a live trace — with memory across runs, evals and guardrails in CI, a budget, and a public page anyone can use. It's the portfolio piece. It's also the proof that the seven modules before it were one idea.",
+    intro: "Everything in this book, in one system you can show. The Deep Research Agent is a production multi-agent system: someone submits a question, an orchestrator plans, specialist agents research in parallel with real tools, a checker verifies every claim against its source, a writer produces the brief, and the whole run is visible as a live trace — with memory across runs, evals and guardrails in CI, a budget, and a public page anyone can use. It's the portfolio piece. It's also the proof that the seven modules before it were one idea.",
     outcomes: ["Design a multi-agent system from the context windows outward.", "Explain every span in a production trace, and what it cost.", "Deploy an agent service with evals, guardrails, and observability, and talk about it in an interview."],
-    projectTitle: "The Desk", projectBlurb: "Eight sections, one system. At the end it's deployed, traced, tested, and public.", projectCta: "Start capstone →",
+    projectTitle: "The Deep Research Agent", projectBlurb: "Eight sections, one system. At the end it's deployed, traced, tested, and public.", projectCta: "Start capstone →",
   },
 ] as const
 
