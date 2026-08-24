@@ -23,7 +23,7 @@ const INK = "var(--figure-accent-ink)"
  * The site serves SETUP.md itself, so onboarding can be fixed by editing one file and
  * pushing — nobody re-copies the prompt. Update this if a custom domain is attached.
  */
-const SETUP_URL = "https://the-model-and-the-loop.vercel.app/setup.md"
+const SETUP_URL = "https://llm-textbook.vercel.app/setup.md"
 
 const REPO = "https://github.com/tayden-b/interactive-ai-course"
 
