@@ -38,7 +38,12 @@ export function TracedRun() {
       const step = () => {
         if (line >= LINES.length) { setDone(true); setActive(-1); return }
         ch += 1
-        setTyped((t) => { const n = t.slice(); n[line] = ch; return n })
+        // Snapshot line/ch before scheduling the update. React runs this updater later, and
+        // it closes over the mutable loop variables — by then `line` has advanced and `ch`
+        // has reset, so the final character of every line was being written to the wrong
+        // row as 0. That is why each line lost its last letter ("page" rendered as "pag").
+        const atLine = line, atChar = ch
+        setTyped((t) => { const n = t.slice(); n[atLine] = atChar; return n })
         if (ch >= LINES[line].length) {
           line += 1; ch = 0; setActive(line < LINES.length ? line : -1)
           timer = window.setTimeout(step, LINE_GAP_MS)
