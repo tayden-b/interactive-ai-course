@@ -1,4 +1,5 @@
 import React from "react"
+import { BRAND, TAGLINE } from "@/lib/brand"
 import type { Metadata } from 'next'
 import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
@@ -30,7 +31,7 @@ const siteUrl =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : 'http://localhost:3077')
 
-const TITLE = 'textbook.ai · Your guide to LLMs and agents'
+const TITLE = `${BRAND} · ${TAGLINE}`
 const DESCRIPTION =
   'An interactive book on LLMs and agents. Eight modules, a diagram for every idea, and a project you build locally with your own coding agent — then the site shows you your own run.'
 
@@ -38,11 +39,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: TITLE,
   description: DESCRIPTION,
-  applicationName: 'textbook.ai',
+  applicationName: BRAND,
   authors: [{ name: 'Tayden Barretto', url: 'https://tayden.dev' }],
   openGraph: {
     type: 'website',
-    siteName: 'textbook.ai',
+    siteName: BRAND,
     title: TITLE,
     description: DESCRIPTION,
     url: siteUrl,

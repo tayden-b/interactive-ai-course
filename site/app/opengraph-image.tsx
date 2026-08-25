@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og"
+import { BRAND, TAGLINE } from "@/lib/brand"
 
-export const alt = "textbook.ai · Your guide to LLMs and agents"
+export const alt = `${BRAND} · ${TAGLINE}`
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -30,7 +31,7 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <div style={{ display: "flex", width: 10, height: 10, background: blue }} />
           <div style={{ display: "flex", fontSize: 22, letterSpacing: 4, color: muted, textTransform: "uppercase" }}>
-            textbook.ai
+            {BRAND}
           </div>
         </div>
 

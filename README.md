@@ -1,9 +1,9 @@
-# textbook.ai
+# LLM.TEXTBOOK
 
 **Live: https://llm-textbook.vercel.app**
 
 The repo keeps the working name *interactive-ai-course*; the product is displayed as
-**textbook.ai** (see `site/lib/brand.ts`) and deploys to `llm-textbook.vercel.app`.
+**LLM.TEXTBOOK** (see `site/lib/brand.ts`) and deploys to `llm-textbook.vercel.app`.
 
 A visual, hands-on book on how LLMs and agents actually work — for technically-minded people who
 aren't yet AI-fluent. The site is the textbook; a local `course/` folder is the workbook the learner
