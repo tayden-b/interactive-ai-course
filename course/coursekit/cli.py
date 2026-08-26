@@ -141,11 +141,19 @@ def cmd_init(args) -> int:
 
     # 1. .env
     env, example = ROOT / ".env", ROOT / ".env.example"
-    if not env.exists() and example.exists():
-        env.write_text(example.read_text())
-        print(f"  {OK} Created .env {D}(add your API key — it is git-ignored){R}")
-    else:
+    if env.exists():
         print(f"  {OK} .env already present")
+    else:
+        # Fall back to writing the template inline so a clone that somehow lacks
+        # .env.example still ends up with a usable .env.
+        env.write_text(example.read_text() if example.exists() else (
+            "# Put your API key here. This file is git-ignored and never leaves this machine.\n"
+            "OPENAI_API_KEY=\n"
+            "# ANTHROPIC_API_KEY=\n\n"
+            "# Hard spend cap per run, in USD.\n"
+            "MAX_USD=1.00\n"
+        ))
+        print(f"  {OK} Created .env {D}(add your API key — it is git-ignored){R}")
 
     # 2. adapter for whichever agent they actually have
     chosen = args.agent or detect.env_hint() or (detect.installed() or ["codex"])[0]

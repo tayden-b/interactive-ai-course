@@ -1,4 +1,5 @@
 .env
+!.env.example
 traces/
 .course/
 __pycache__/
