@@ -16,8 +16,8 @@ obvious one.
 python3 --version
 ```
 
-Needs 3.9 or newer. If it is missing or older, stop and tell the user to install Python
-from python.org, then start again.
+Needs 3.10 or newer; the lesson notebooks require it. If it is missing or older, stop
+and tell the user to install Python from python.org, then start again.
 
 ## Step 2 — Clone the course
 
@@ -54,7 +54,21 @@ Ask them for it directly and wait. Tell them:
 When they give it to you, write it into `.env` and continue. If they would rather paste it
 themselves, let them — then wait for them to say they are done.
 
-## Step 5 — Verify
+## Step 5 — Create the lesson environment
+
+The lessons are interactive notebooks. Their dependencies live in a virtual
+environment so nothing touches the system Python:
+
+```
+python3 -m venv .venv
+.venv/bin/python -m pip install -q "marimo>=0.24,<0.25" openai matplotlib
+```
+
+If pip itself is broken and `uv` is installed, `uv venv && uv pip install
+"marimo>=0.24,<0.25" openai matplotlib` does the same job. The `./course` command does
+not need any of this; it runs on the system Python with no installs.
+
+## Step 6 — Verify
 
 ```
 ./course doctor
@@ -63,7 +77,7 @@ themselves, let them — then wait for them to say they are done.
 Every line must pass. If one does not, it prints the exact fix — do that, then run it again.
 Do not proceed while `doctor` is failing.
 
-## Step 6 — Start the bridge
+## Step 7 — Start the bridge
 
 ```
 ./course serve &
@@ -82,7 +96,27 @@ curl -s http://localhost:4747/ | head -c 60
 If the port is busy the server picks the next free one (4748–4750) and prints which. That
 is fine; the website tries all four.
 
-## Step 7 — Become the tutor
+## Step 8 — Open the first lesson
+
+Start the notebook server, in the background, and leave it running:
+
+```
+.venv/bin/marimo edit modules/m1/lessons/01_first_call.py -p 2718 --headless --no-token --watch > .course/marimo.log 2>&1 &
+```
+
+Then tell the user: **open http://localhost:2718 in your browser.** That page is the
+lesson. When you edit a lesson file and save it, the change appears and runs in their
+browser on its own; that is how you will teach.
+
+If the user asked to start at a different module, open that module's first notebook
+instead, if it exists.
+
+Optional, Claude Code only: if `npx` is on PATH you may run
+`npx skills add marimo-team/marimo-pair` to gain live-kernel access to the notebook
+(run cells, read variables). If it fails for any reason, skip it. Editing the files
+works for every agent.
+
+## Step 9 — Become the tutor
 
 Read `TUTOR.md` in this folder, in full, and follow it for the rest of your work with this
 person. It governs how you teach: hint-first, never hand over a finished solution, never
@@ -94,11 +128,12 @@ Then read `modules/m<N>/BUILD.md` for the module the user asked for and begin.
 written yet — and offer them the modules that do have one (run `./course status`; they are
 marked). Do not invent a project. Do not guess at what the build should be.
 
-## Step 8 — Hand back
+## Step 10 — Hand back
 
 Tell the user, briefly:
 
 - where the folder is
+- that the lesson is open at http://localhost:2718
 - that the bridge is running, so their runs will appear on the site
 - that you are now their tutor, and you will not write their code for them
 - the first thing you want them to try

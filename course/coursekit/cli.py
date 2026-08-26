@@ -40,6 +40,8 @@ Read `TUTOR.md` in this folder and follow it exactly. It defines how you teach h
 hint-first, never hand over a whole solution, and never edit anything under `checks/`.
 
 The learner is on **Module {module}**. Start by reading `modules/m{module}/BUILD.md`.
+Lessons are marimo notebooks in `modules/m{module}/lessons/`; TUTOR.md says how to
+drive them.
 """
 
 
@@ -113,7 +115,9 @@ def cmd_doctor(args) -> int:
     if venv_marimo.exists():
         print(f"  {OK} Lesson environment ready {D}(.venv with marimo){R}")
     else:
-        print(f"  {DOT} No lesson environment yet {D}(SETUP.md step 5 creates .venv and installs marimo){R}")
+        print(f"  {NO} No lesson environment")
+        problems.append('Run: python3 -m venv .venv && '
+                        '.venv/bin/python -m pip install -q "marimo>=0.24,<0.25" openai matplotlib')
 
     traces = sorted((ROOT / "traces").glob("*.json")) if (ROOT / "traces").exists() else []
     n = len([t for t in traces if t.name != "latest.json"])
@@ -133,7 +137,7 @@ def cmd_init(args) -> int:
     state = load_state()
     module = args.module or state.get("module", 1)
 
-    print(f"\n{B}The Model and the Loop{R} {D}· setting up your lab{R}\n")
+    print(f"\n{B}LLM.TEXTBOOK{R} {D}· setting up your lab{R}\n")
 
     # 1. .env
     env, example = ROOT / ".env", ROOT / ".env.example"
@@ -259,7 +263,7 @@ def cmd_status(args) -> int:
 
 
 def main(argv=None) -> int:
-    p = argparse.ArgumentParser(prog="course", description="The Model and the Loop — local lab.")
+    p = argparse.ArgumentParser(prog="course", description="LLM.TEXTBOOK — local lab.")
     sub = p.add_subparsers(dest="cmd")
 
     i = sub.add_parser("init", help="set up the lab for your coding agent")

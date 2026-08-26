@@ -1,4 +1,4 @@
-# The Model and the Loop — your lab
+# LLM.TEXTBOOK — your lab
 
 This is the folder you build in. The website is the textbook; this is the workbench.
 
@@ -38,6 +38,8 @@ There is no account and no upload. Close the server and the site falls back to e
 ## The parts
 
 ```
+modules/mN/      the module: BUILD.md plus its lessons/ notebooks
+.venv/           the lesson environment (marimo and friends)   (git-ignored)
 tracing.py       the trace library — wire this into the agent you build
 my-agent/        your code. one project, growing across all eight modules
 modules/mN/      what to build, per module
