@@ -164,7 +164,7 @@ def _(logprobs, mo, reweight, sample, t):
         _ax.spines[["top", "right"]].set_visible(False)
         _picks = sample(_probs, 8)
         _line = (
-            mo.md(f"Eight samples at this temperature: **{' · '.join(_picks)}**")
+            mo.md(f"Eight samples at this temperature: **{' · '.join(_p.strip() for _p in _picks)}**")
             if _picks
             else mo.md("*Add your sample function to see picks.*")
         )

@@ -9,7 +9,8 @@
     "start": "next start",
     "sync:setup": "node -e \"const fs=require('fs'),s='../course/SETUP.md';fs.existsSync(s)?fs.copyFileSync(s,'public/setup.md'):console.log('sync:setup - ../course not in build context, using committed public/setup.md')\"",
     "prebuild": "npm run sync:setup",
-    "predev": "npm run sync:setup"
+    "predev": "npm run sync:setup",
+    "demo:export": "echo 'Run on the dev machine, not CI:' && echo '  course/.venv/bin/marimo export html-wasm tools/demo/temperature_explorer.py -o site/public/demo --mode run' && echo 'from the repo root, then commit site/public/demo.'"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
