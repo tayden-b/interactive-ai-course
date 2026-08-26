@@ -12,7 +12,7 @@ __generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     # Setup. Nothing to change here.
     import os
@@ -42,7 +42,7 @@ def _():
     return (mo,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md("""
     # Lesson 4. Out of the window is out of the world
@@ -55,7 +55,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     # The transcript. Turn 1 carries the fact that matters.
     transcript = [
@@ -94,10 +94,9 @@ def _(count_tokens, mo, transcript):
 def _(mo, transcript, window):
     # ---- your turn ----
     #
-    # fit_window(messages, max_tokens): return the messages that fit, keeping the
-    # MOST RECENT ones. Walk the transcript from the end, adding turns while their
-    # running total (use count_tokens on the kept list) stays within max_tokens,
-    # then return them in their original order.
+    # fit_window(messages, max_tokens) returns the newest messages that fit.
+    # Walk the list from the END. Keep adding turns while count_tokens(kept) stays
+    # within max_tokens. Return the kept turns in their original order.
     def fit_window(messages, max_tokens):
         return None
 
@@ -109,7 +108,7 @@ def _(mo, transcript, window):
     return (kept,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(kept, mo, transcript):
     _kept_ids = {id(m) for m in kept}
     _rows = []
@@ -136,17 +135,16 @@ def _(mo):
 def _(ask_go, mo):
     # ---- your turn ----
     #
-    # Ask the model "What is my name?" sending ONLY the kept turns plus that question
-    # as the final user message. Keep the mo.stop line first. Trace it the same way
-    # as lesson 1: with run.llm(MODEL) as span, span.usage(...), run.save(). Set
-    # `answer` to the reply text.
+    # Ask "What is my name?" sending ONLY the kept turns, plus that question as the
+    # final user message. Same traced shape as lesson 1. Set `answer` to the reply
+    # text. Keep the mo.stop line first.
     mo.stop(not ask_go.value, mo.md("*Press the button when your code is ready.*"))
 
     answer = None
     return (answer,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(answer, kept, mo, transcript):
     if answer is None:
         _out = mo.md("*Run the question above at a large window, then again at a small one.*")
@@ -163,7 +161,7 @@ def _(answer, kept, mo, transcript):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md("""
     ## What to notice

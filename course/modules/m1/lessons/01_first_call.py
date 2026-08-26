@@ -12,7 +12,7 @@ __generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     # Setup. Finds the course folder, loads your .env, and imports the trace library.
     # You do not need to change anything here.
@@ -43,7 +43,7 @@ def _():
     return (mo,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md("""
     # Lesson 1. Your first call
@@ -75,28 +75,27 @@ def _(mo):
 def _(go, mo):
     # ---- your turn ----
     #
-    # Make one chat completion call and trace it. Keep the mo.stop line first: it
-    # stops this cell until the Run button is pressed, so a slider drag never spends
-    # your money.
+    # Send your prompt to the model and record what it cost. The shape:
     #
-    # The shape you are after, in plain words:
-    #   1. Create an OpenAI() client.
-    #   2. Open a trace:  run = Run(module=1)
-    #   3. Inside `with run.llm(MODEL, temperature=temp.value) as span:` make the call
-    #      with client.chat.completions.create(...), passing your prompt as one user
-    #      message.
-    #   4. Tell the trace what it cost:
-    #      span.usage(input_tokens=..., output_tokens=..., finish_reason=...)
-    #      Every number comes off the response object. Do not estimate.
-    #   5. run.save(), and set `reply` to the message text.
+    #   run = Run(module=1)
+    #   with run.llm(MODEL, temperature=temp.value) as span:
+    #       response = client.chat.completions.create(...)   your prompt is
+    #           prompt_box.value, sent as one user message
+    #       span.usage(input_tokens=..., output_tokens=..., finish_reason=...)
+    #           the numbers come from response.usage
+    #   run.save()
+    #
+    # Finish with:  reply = response.choices[0].message.content
+    #
+    # Keep the mo.stop line first. It waits for the Run button, so nothing spends
+    # money while you type.
     mo.stop(not go.value, mo.md("*Press **Run the call** when your code is ready.*"))
 
     reply = None
-    usage = None
-    return reply, usage
+    return (reply,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo, reply, temp, usage):
     if reply is None:
         _out = mo.md(
@@ -127,7 +126,7 @@ def _(mo, reply, temp, usage):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md("""
     ## Run it three times

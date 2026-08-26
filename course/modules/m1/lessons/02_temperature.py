@@ -13,7 +13,7 @@ __generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     # Setup. Nothing to change here.
     import json
@@ -48,7 +48,7 @@ def _():
     return DATA, MODEL, Run, json, mo
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md("""
     # Lesson 2. Temperature is how the list gets picked from
@@ -71,7 +71,7 @@ def _(mo):
     return (fetch_go,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(DATA, MODEL, Run, fetch_go, json, mo):
     # Fetches the top 20 next-token candidates for one fixed prompt, once. Cached to
     # data/logprobs.json so the slider below never calls the API.
@@ -120,13 +120,14 @@ def _(logprobs, mo):
     #
     # Two small functions.
     #
-    # reweight(logprobs, t): logprobs is a list of [token, logprob] pairs. Return a
-    # list of [token, probability] pairs after temperature is applied. The recipe:
-    # divide each logprob by t, exponentiate with math.exp, and divide each result by
-    # the sum of all of them so the probabilities add to 1.
+    # reweight(logprobs, t) takes the list of [token, logprob] pairs and a
+    # temperature t, and returns [token, probability] pairs. The recipe, in order:
+    #   1. new_score = logprob / t          for each pair
+    #   2. weight = math.exp(new_score)     for each pair
+    #   3. probability = weight / (sum of all the weights)
     #
-    # sample(probs, k): pick k tokens at random, each with its probability. Look at
-    # random.choices and its weights argument.
+    # sample(probs, k) picks k tokens at random using those probabilities.
+    # random.choices(tokens, weights=..., k=k) does the picking for you.
     mo.stop(logprobs is None, mo.md("*Fetch the list above first.*"))
 
     def reweight(logprobs, t):
@@ -145,7 +146,7 @@ def _(mo):
     return (t,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(logprobs, mo, reweight, sample, t):
     _probs = None if logprobs is None else reweight(logprobs, t.value)
     if _probs is None:
@@ -172,7 +173,7 @@ def _(logprobs, mo, reweight, sample, t):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md("""
     ## What to notice

@@ -12,7 +12,7 @@ __generated_with = "0.24.0"
 app = marimo.App(width="medium")
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     # Setup. Nothing to change here.
     import os
@@ -42,7 +42,7 @@ def _():
     return MODEL, mo
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md("""
     # Lesson 3. The model reads tokens, not letters
@@ -80,15 +80,13 @@ def _(mo, text_in):
 
 
 @app.cell
-def _(MODEL, mo):
+def _(MODEL):
     # ---- your turn ----
     #
-    # estimate_cost(input_tokens, output_tokens, model): return the estimated dollars
-    # for one call. PRICES maps a model name to (dollars per million input tokens,
-    # dollars per million output tokens). Look up the pair for `model`, multiply, and
-    # add. Return a float.
-    mo.stop(False)
-
+    # estimate_cost(input_tokens, output_tokens, model) returns the dollars for one
+    # call. PRICES[model] gives you a pair:
+    #   (dollars per MILLION input tokens, dollars per MILLION output tokens)
+    # Multiply each count by its price, divide by 1_000_000, add the two.
     def estimate_cost(input_tokens, output_tokens, model=MODEL):
         return None
 
@@ -106,18 +104,17 @@ def _(mo):
 def _(count_go, mo):
     # ---- your turn ----
     #
-    # The exact count. Keep the mo.stop line first. Make one call that sends
-    # text_in.value as the user message with max_tokens=1, inside a traced
-    # `with run.llm(MODEL) as span:` block, record span.usage(...) from the
-    # response, run.save(), and set real_counts to
-    # (response.usage.prompt_tokens, response.usage.completion_tokens).
+    # Get the exact count from the API. Same shape as lesson 1: a traced call with
+    # text_in.value as the user message and max_tokens=1. Then:
+    #   real_counts = (response.usage.prompt_tokens, response.usage.completion_tokens)
+    # Keep the mo.stop line first.
     mo.stop(not count_go.value, mo.md("*Press the button when your code is ready.*"))
 
     real_counts = None
     return (real_counts,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(estimate_cost, mo, naive_tokens, real_counts):
     if real_counts is None:
         _out = mo.md("*Waiting for your exact count above.*")
@@ -139,7 +136,7 @@ def _(estimate_cost, mo, naive_tokens, real_counts):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md("""
     ## What to notice
