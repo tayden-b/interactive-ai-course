@@ -28,8 +28,8 @@ git clone https://github.com/tayden-b/interactive-ai-course.git model-and-loop
 cd model-and-loop/course
 ```
 
-If the folder already exists, do not re-clone. `cd` into it and continue — they are
-returning, not starting over.
+If the folder already exists, do not re-clone. `cd` into it, run `git pull` to bring the
+course up to date, and continue. They are returning, not starting over.
 
 ## Step 3 — Run init
 

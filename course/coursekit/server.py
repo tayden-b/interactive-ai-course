@@ -13,8 +13,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 DEFAULT_ORIGINS = [
-    "https://themodelandtheloop.com",
-    "https://www.themodelandtheloop.com",
+    "https://llm-textbook.vercel.app",
     "http://localhost:3077",
     "http://localhost:3000",
 ]

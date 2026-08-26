@@ -22,10 +22,11 @@ from coursekit import detect, server  # noqa: E402
 B, D, R = "\033[1m", "\033[2m", "\033[0m"
 OK, NO, DOT = "\033[32m✓\033[0m", "\033[31m✗\033[0m", "\033[2m·\033[0m"
 
-# Modules whose BUILD.md and checks actually exist. The rest of the book is written and
-# readable on the site; their projects are not built yet, and pretending otherwise would
-# send someone's agent looking for files that are not there.
-AVAILABLE = {1, 3}
+def available() -> set[int]:
+    """Modules whose project actually exists on disk: modules/mN/BUILD.md is the marker.
+    Presence-based on purpose. Later, `course unlock` will drop paid modules into
+    modules/ and everything that consults this updates itself with no code change."""
+    return {n for n in range(1, 9) if (ROOT / "modules" / f"m{n}" / "BUILD.md").exists()}
 
 MODULES = {
     1: "What is an LLM?", 2: "Working with a model", 3: "Tools and the agent loop",
@@ -108,6 +109,12 @@ def cmd_doctor(args) -> int:
     else:
         print(f"  {DOT} No coding agent detected on PATH {D}(fine — any agent that reads files works){R}")
 
+    venv_marimo = ROOT / ".venv" / "bin" / "marimo"
+    if venv_marimo.exists():
+        print(f"  {OK} Lesson environment ready {D}(.venv with marimo){R}")
+    else:
+        print(f"  {DOT} No lesson environment yet {D}(SETUP.md step 5 creates .venv and installs marimo){R}")
+
     traces = sorted((ROOT / "traces").glob("*.json")) if (ROOT / "traces").exists() else []
     n = len([t for t in traces if t.name != "latest.json"])
     print(f"  {OK} {n} trace(s) recorded" if n else f"  {DOT} No traces yet {D}(you have not run your agent){R}")
@@ -152,11 +159,11 @@ def cmd_init(args) -> int:
         (ROOT / d).mkdir(parents=True, exist_ok=True)
     state["module"] = module
     save_state(state)
-    if module in AVAILABLE:
+    if module in available():
         print(f"  {OK} Set you to Module {module} — {MODULES[module]}")
     else:
         print(f"  {NO} Module {module} — {MODULES[module]} — has no project yet")
-        print(f"      Built so far: {', '.join(str(m) for m in sorted(AVAILABLE))}. "
+        print(f"      Built so far: {', '.join(str(m) for m in sorted(available()))}. "
               f"Read the module on the site; come back for the build.")
         module = 1
         state["module"] = module
@@ -177,7 +184,7 @@ def cmd_check(args) -> int:
     mod = load_check_module(module)
     if mod is None:
         print(f"\n  {DOT} Module {module} has no project yet. "
-              f"Built so far: {', '.join(str(m) for m in sorted(AVAILABLE))}.\n")
+              f"Built so far: {', '.join(str(m) for m in sorted(available()))}.\n")
         return 0
 
     trace = load_trace()
@@ -234,11 +241,12 @@ def cmd_status(args) -> int:
     current = state.get("module", 1)
     trace = load_trace()
     print(f"\n{B}Where you are{R}\n")
+    avail = available()
     for n, title in MODULES.items():
         rec = state.get("modules", {}).get(str(n))
         mark = OK if rec and rec["passed"] else (f"{B}▸{R}" if n == current else DOT)
         style = B if n == current else (D if not (rec and rec["passed"]) else "")
-        tail = "" if n in AVAILABLE else f"  {D}· project not written yet{R}"
+        tail = "" if n in avail else f"  {D}· project not written yet{R}"
         print(f"  {mark} {style}{n:02d}  {title}{R if style else ''}{tail}")
     if trace:
         t = trace["totals"]
