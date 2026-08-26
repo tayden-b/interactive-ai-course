@@ -1,31 +1,43 @@
-# Module 1 — Your first call
+# Module 1 — What is an LLM?
 
-**Read first:** Module 1 on the site, sections 1–10. This is section 11.
+**Read first:** Module 1 on the site, sections 1 to 10. This folder is the build.
 
-## What you're building
-One Python file that sends a prompt to a model, prints the reply, and records what happened
-as a trace.
+## How this module works
 
-## Steps
-1. Create `my-agent/call.py`.
-2. Load your key from `.env` (the standard library can do this; you do not need a package).
-3. Make one chat completion call to a small, cheap model.
-4. Wrap the call in a span:
-   ```python
-   run = Run(module=1)
-   with run.llm("gpt-4o-mini", temperature=0.7) as span:
-       ...
-       span.usage(input_tokens=..., output_tokens=..., finish_reason=...)
-   run.save()
-   ```
-   The token counts come off the API response — do not estimate them.
-5. Run it three times, at temperature 0, 0.7, and 1.5. Read the three replies.
+The lessons are marimo notebooks in `lessons/`. Your tutor opens them for you at
+http://localhost:2718 and teaches alongside you: it can write scaffold cells into the
+notebook while you watch, but the cells marked `---- your turn ----` are yours. It will
+not fill them in.
+
+Do them in order:
+
+| | Notebook | You write |
+|---|---|---|
+| 1 | `lessons/01_first_call.py` | one real, traced chat completion call |
+| 2 | `lessons/02_temperature.py` | `reweight()` and `sample()`, softmax with temperature |
+| 3 | `lessons/03_tokens.py` | `estimate_cost()` and one exact-count call |
+| 4 | `lessons/04_context_window.py` | `fit_window()` and the question that exposes it |
+
+Every real call you make is traced to `traces/`, and the course site shows your runs
+back to you while the bridge (`./course serve`) is up.
+
+## Graduation
+
+When the four notebooks are done, prove it outside the notebook: write
+`my-agent/call.py`, a plain script that loads your key from `.env`, makes one traced
+call, and prints the reply. No notebook scaffolding, no help beyond hints. This is the
+file Module 2 builds on.
 
 ## Check
+
 ```
 ./course check 1
 ```
 
+The check reads your trace, not your output. A real call passes; a printed answer does
+not.
+
 ## Explain back
-Without looking at your code: what exactly did you send, and what exactly came back? Where
-did the token numbers come from, and why is the input count larger than your prompt?
+
+Without looking at your code: what exactly did you send the model, what came back, why
+is the input token count bigger than your words, and what did temperature change?

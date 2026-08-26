@@ -1,0 +1,8 @@
+# Lesson-environment configuration. The `course` CLI itself stays stdlib-only; this file
+# exists for marimo, which reads it when opening notebooks under this directory.
+
+[tool.marimo.runtime]
+# When the tutor agent saves a lesson file, re-run the affected cells in the learner's
+# browser instead of only marking them stale. This is what makes "the agent writes a
+# cell and you watch it run" work.
+watcher_on_save = "autorun"
