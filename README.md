@@ -9,6 +9,14 @@ A visual, hands-on book on how LLMs and agents actually work — for technically
 aren't yet AI-fluent. The site is the textbook; a local `course/` folder is the workbook the learner
 opens with their own AI coding agent, and the site renders traces from their own runs.
 
+## How learning works
+
+Read the book on the site. Each module's project happens on your machine: one pasted
+prompt makes your coding agent clone this repo, set up the lab, and become your tutor.
+Lessons are marimo notebooks the tutor drives beside you; checks grade the trace your
+runs produce, and the site shows your runs back to you. The landing page embeds one
+lesson exported to WASM (`tools/demo/`, committed export in `site/public/demo/`).
+
 ## Layout
 
 - `site/` — the Next.js site. Source of truth for code. Originates from a v0 chat (see below).
