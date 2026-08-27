@@ -55,7 +55,7 @@ export default function Home() {
             {[
               { n: "01", t: "Read the module", d: "Sections, diagrams, and a check as you go. All of it here, in the browser." },
               { n: "02", t: "Reach the project", d: "Every module ends in one. Paste the line below into your coding agent." },
-              { n: "03", t: "Build it locally", d: "Your agent sets up a folder on your machine and teaches you through it, hinting instead of solving." },
+              { n: "03", t: "Build it with your agent", d: "It sets up a folder on your machine and leads you through the project step by step, hinting instead of solving." },
             ].map((s2) => (
               <li key={s2.n}>
                 <span className="font-mono text-[10px] tracking-[.18em]" style={{ color: INK }}>{s2.n}</span>

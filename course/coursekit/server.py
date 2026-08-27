@@ -21,6 +21,16 @@ DEFAULT_ORIGINS = [
 PORTS = [4747, 4748, 4749, 4750]
 
 
+def _current_module(root: Path) -> int:
+    f = root / ".course" / "progress.json"
+    if f.exists():
+        try:
+            return int(json.loads(f.read_text()).get("module", 1))
+        except Exception:
+            pass
+    return 1
+
+
 def make_handler(root: Path, origins: list[str]):
     class Handler(BaseHTTPRequestHandler):
         def _send(self, code: int, payload: dict):
@@ -36,6 +46,15 @@ def make_handler(root: Path, origins: list[str]):
             self.end_headers()
             self.wfile.write(body)
 
+        def _send_html(self, body: str):
+            raw = body.encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("Content-Length", str(len(raw)))
+            self.end_headers()
+            self.wfile.write(raw)
+
         def do_OPTIONS(self):
             origin = self.headers.get("Origin", "")
             self.send_response(204)
@@ -50,7 +69,7 @@ def make_handler(root: Path, origins: list[str]):
             path = self.path.split("?")[0].rstrip("/") or "/"
             if path == "/":
                 return self._send(200, {"ok": True, "service": "model-and-loop", "endpoints":
-                                        ["/trace", "/traces", "/progress"]})
+                                        ["/trace", "/traces", "/progress", "/guide"]})
             if path == "/trace":
                 f = root / "traces" / "latest.json"
                 if not f.exists():
@@ -60,6 +79,17 @@ def make_handler(root: Path, origins: list[str]):
                 d = root / "traces"
                 files = sorted(p.name for p in d.glob("*.json") if p.name != "latest.json") if d.exists() else []
                 return self._send(200, {"traces": files})
+            if path == "/guide":
+                from coursekit.cli import MODULES
+                from coursekit.guide import render
+
+                q = self.path.split("?", 1)[1] if "?" in self.path else ""
+                module = _current_module(root)
+                for part in q.split("&"):
+                    if part.startswith("m=") and part[2:].isdigit():
+                        module = max(1, min(8, int(part[2:])))
+                return self._send_html(render(root, module, MODULES))
+
             if path == "/progress":
                 f = root / ".course" / "progress.json"
                 return self._send(200, json.loads(f.read_text()) if f.exists() else {"modules": {}})

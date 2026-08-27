@@ -13,9 +13,9 @@ opens with their own AI coding agent, and the site renders traces from their own
 
 Read the book on the site. Each module's project happens on your machine: one pasted
 prompt makes your coding agent clone this repo, set up the lab, and become your tutor.
-Lessons are marimo notebooks the tutor drives beside you; checks grade the trace your
-runs produce, and the site shows your runs back to you. The landing page embeds one
-lesson exported to WASM (`tools/demo/`, committed export in `site/public/demo/`).
+Your agent leads you through the module's steps one at a time; checks grade the trace
+your runs produce, and the site shows your runs back to you. A plain reading version of
+the current module is served locally at `http://localhost:4747/guide`.
 
 ## Layout
 

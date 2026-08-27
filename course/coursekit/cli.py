@@ -39,9 +39,8 @@ ADAPTER_BODY = """# {label} — course adapter
 Read `TUTOR.md` in this folder and follow it exactly. It defines how you teach here:
 hint-first, never hand over a whole solution, and never edit anything under `checks/`.
 
-The learner is on **Module {module}**. Start by reading `modules/m{module}/BUILD.md`.
-Lessons are marimo notebooks in `modules/m{module}/lessons/`; TUTOR.md says how to
-drive them.
+The learner is on **Module {module}**. Start by reading `modules/m{module}/BUILD.md`
+and teach its steps one at a time. You lead; TUTOR.md says how.
 """
 
 
@@ -110,14 +109,6 @@ def cmd_doctor(args) -> int:
         print(f"  {OK} Coding agent: {', '.join(detect.AGENTS[a][2] for a in agents)}")
     else:
         print(f"  {DOT} No coding agent detected on PATH {D}(fine — any agent that reads files works){R}")
-
-    venv_marimo = ROOT / ".venv" / "bin" / "marimo"
-    if venv_marimo.exists():
-        print(f"  {OK} Lesson environment ready {D}(.venv with marimo){R}")
-    else:
-        print(f"  {NO} No lesson environment")
-        problems.append('Run: python3 -m venv .venv && '
-                        '.venv/bin/python -m pip install -q "marimo>=0.24,<0.25" openai matplotlib')
 
     traces = sorted((ROOT / "traces").glob("*.json")) if (ROOT / "traces").exists() else []
     n = len([t for t in traces if t.name != "latest.json"])
@@ -238,8 +229,9 @@ def cmd_serve(args) -> int:
     origins = server.DEFAULT_ORIGINS + (args.origin or [])
     httpd, port = server.serve(ROOT, origins)
     print(f"\n{B}Bridge running{R} {D}on http://localhost:{port}{R}\n")
-    print(f"  The course site can now read your traces. Nothing is uploaded —")
+    print(f"  The course site can now read your traces. Nothing is uploaded;")
     print(f"  your browser reads this port directly and the data stays here.\n")
+    print(f"  {D}Reading guide for the current module:{R} http://localhost:{port}/guide\n")
     print(f"  {D}Leave this running while you work. Ctrl-C to stop.{R}\n")
     try:
         httpd.serve_forever()

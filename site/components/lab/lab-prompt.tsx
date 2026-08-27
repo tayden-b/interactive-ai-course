@@ -63,8 +63,9 @@ export function LabPrompt({ module = 1, eyebrow }: { module?: number; eyebrow?: 
 
       <p className="mt-4 text-sm leading-6 text-muted-foreground">
         Works with Claude Code, Cursor, Codex CLI, Gemini CLI, or Copilot. Your agent
-        downloads the course to your machine and becomes your tutor. Everything runs
-        and stays there; this site only shows your progress back to you.
+        downloads the course to your machine, then leads you through this project step
+        by step. You build it by talking to it. Everything runs and stays on your
+        machine; this site only shows your runs back to you.
       </p>
 
       <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] uppercase tracking-[.14em] text-muted-foreground">

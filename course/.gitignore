@@ -5,6 +5,3 @@ traces/
 __pycache__/
 *.pyc
 .venv/
-modules/*/lessons/data/*
-!modules/*/lessons/data/.gitignore
-modules/*/lessons/__marimo__/
