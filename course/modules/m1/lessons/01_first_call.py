@@ -128,6 +128,27 @@ def _(mo, reply, temp, usage):
 
 
 @app.cell(hide_code=True)
+def _(mo, reply):
+    # Your runs, read straight from the trace files this notebook writes. The course
+    # site shows the same thing; you do not need it open while you build.
+    from tracing import load_latest
+
+    _t = load_latest()
+    if _t is None:
+        _line = "*No runs recorded yet. Your traced calls will show up here.*"
+    else:
+        _tot = _t["totals"]
+        _line = (
+            f"**Your runs so far:** {_tot['llm_calls']} model call(s) · "
+            f"{_tot['input_tokens'] + _tot['output_tokens']} tokens · "
+            f"about ${_tot['usd_estimate']:.4f}"
+        )
+    _ = reply
+    mo.md(_line)
+    return
+
+
+@app.cell(hide_code=True)
 def _(mo):
     mo.md("""
     ## Run it three times

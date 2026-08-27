@@ -74,8 +74,8 @@ export default function Home() {
           <div className="mb-6 grid gap-4 md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-10">
             <div>
               <span className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: INK }}>Step 3</span>
-              <h3 className="mt-2 font-display text-2xl leading-tight">Learn in two windows</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">Talk to your tutor in one, build in the other. When it writes a hint into your lesson, you see it appear live.</p>
+              <h3 className="mt-2 font-display text-2xl leading-tight">Learn in two windows, side by side</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">Tutor on one half of your screen, lesson on the other. When it writes a hint into your lesson, you see it appear live. You will not need this website while you build; it is for reading the modules, and it shows your runs whenever you come back.</p>
             </div>
           </div>
           <TwoWindows />

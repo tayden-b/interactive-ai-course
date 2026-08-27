@@ -108,6 +108,11 @@ Then tell the user: **open http://localhost:2718 in your browser.** That page is
 lesson. When you edit a lesson file and save it, the change appears and runs in their
 browser on its own; that is how you will teach.
 
+Suggest the arrangement plainly: this window on one half of the screen, the lesson on
+the other half, side by side. Tell them they do not need the course website while
+building; it is for reading the modules, and it will show their runs whenever they go
+back to it.
+
 If the user asked to start at a different module, open that module's first notebook
 instead, if it exists.
 
