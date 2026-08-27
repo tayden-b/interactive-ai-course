@@ -5,8 +5,6 @@ import { ReadingFrame, Eyebrow } from "@/components/book/reading-frame"
 import { courseModules } from "@/components/book/course-data"
 import { Fig01, Fig07 } from "@/components/figures/course-figures"
 import { LabPrompt } from "@/components/lab/lab-prompt"
-import { NotebookDemo } from "@/components/landing/notebook-demo"
-import { TwoWindows } from "@/components/landing/two-windows"
 
 /** The hero particle globe. Flip to true to bring it back. */
 const SHOW_SPHERE = false
@@ -33,10 +31,10 @@ export default function Home() {
       <div className="dot-ground dot-ground--faint -mx-5 px-5 py-8 md:-mx-8 md:px-8">
         <Eyebrow>An interactive book</Eyebrow>
         <h1 className="mt-5 text-balance font-display text-5xl leading-[.98] tracking-tight md:text-6xl lg:text-7xl">Your guide to <span style={{ color: ACC }}>LLMs and agents</span></h1>
-        <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">You read the book here. You build every project on your own machine, and the coding agent you already use becomes your tutor.</p>
+        <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Eight modules you read right here, with a diagram for every idea. Each one ends in a hands-on project you build on your own machine, with the coding agent you already use as your tutor.</p>
         <div className="mt-9 flex flex-wrap gap-3">
-          <a href="#how-it-works" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">How it works</a>
-          <Link href="/m/1" className="inline-flex border border-border px-5 py-3 text-sm">Read Module 1 free</Link>
+          <Link href="/m/1" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Start reading Module 1</Link>
+          <a href="#how-it-works" className="inline-flex border border-border px-5 py-3 text-sm">How it works</a>
         </div>
       </div>
       {SHOW_SPHERE
@@ -44,54 +42,34 @@ export default function Home() {
         : <TracedRun />}
     </section>
 
-    <section id="how-it-works" className="scroll-mt-20 border-b border-border py-16">
-      <Eyebrow>How it works</Eyebrow>
-      <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-tight md:text-4xl">Three steps, five minutes, all on your machine</h2>
-
-      <ol className="mt-10 space-y-12">
-        <li className="grid gap-4 md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-10">
-          <div>
-            <span className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: INK }}>Step 1</span>
-            <h3 className="mt-2 font-display text-2xl leading-tight">Copy one line</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">This is the whole setup. There is nothing to install first and no account to make.</p>
-          </div>
-          <LabPrompt module={1} eyebrow={null} />
-        </li>
-
-        <li className="grid gap-4 md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-10">
-          <div>
-            <span className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: INK }}>Step 2</span>
-            <h3 className="mt-2 font-display text-2xl leading-tight">Paste it into your coding agent</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">The agent does the setup for you and turns into your tutor.</p>
-          </div>
-          <div className="text-sm leading-7 text-muted-foreground">
-            <p>Your agent downloads the course into a folder on your computer, sets up Python, asks you for your API key (the one thing it will not do for you), and opens the first lesson in your browser. From then on it teaches: it asks before it explains, it hints instead of solving, and it grades your work by reading what your code actually did.</p>
-            <p className="mt-3">Nothing is uploaded anywhere. Your code, your key, and your progress stay in that folder.</p>
-          </div>
-        </li>
-
-        <li>
-          <div className="mb-6 grid gap-4 md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-10">
-            <div>
-              <span className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: INK }}>Step 3</span>
-              <h3 className="mt-2 font-display text-2xl leading-tight">Learn in two windows, side by side</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">Tutor on one half of your screen, lesson on the other. When it writes a hint into your lesson, you see it appear live. You will not need this website while you build; it is for reading the modules, and it shows your runs whenever you come back.</p>
-            </div>
-          </div>
-          <TwoWindows />
-        </li>
-      </ol>
-    </section>
-
-    <section className="border-b border-border py-16">
-      <div className="mb-8 grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+    <section id="how-it-works" className="scroll-mt-20 border-b border-border py-12">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-14">
         <div>
-          <Eyebrow>Try a page of it</Eyebrow>
-          <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-tight md:text-4xl">This is what a project feels like</h2>
-          <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">A live piece of Module 1, running Python in your browser with saved data. In the real course this notebook opens on your machine, uses your own numbers, and your agent teaches beside you in it.</p>
+          <Eyebrow>How it works</Eyebrow>
+          <h2 className="mt-4 text-balance font-display text-3xl leading-tight md:text-4xl">Read it here, build it there</h2>
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">The reading lives on this site. The projects live on your machine, and nothing you write is ever uploaded.</p>
+        </div>
+
+        <div>
+          <ol className="grid gap-6 sm:grid-cols-3">
+            {[
+              { n: "01", t: "Read the module", d: "Sections, diagrams, and a check as you go. All of it here, in the browser." },
+              { n: "02", t: "Reach the project", d: "Every module ends in one. Paste the line below into your coding agent." },
+              { n: "03", t: "Build it locally", d: "Your agent sets up a folder on your machine and teaches you through it, hinting instead of solving." },
+            ].map((s2) => (
+              <li key={s2.n}>
+                <span className="font-mono text-[10px] tracking-[.18em]" style={{ color: INK }}>{s2.n}</span>
+                <h3 className="mt-1.5 font-display text-lg leading-tight">{s2.t}</h3>
+                <p className="mt-1.5 text-sm leading-6 text-muted-foreground">{s2.d}</p>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-8">
+            <LabPrompt module={1} eyebrow="The line you paste when you reach a project" />
+          </div>
         </div>
       </div>
-      <NotebookDemo />
     </section>
 
     {/* The modules, as a bento: 01 a double with its figure beside the text, 08 a 2x2 with the Deep Research Agent inside. */}
