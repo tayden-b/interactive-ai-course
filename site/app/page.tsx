@@ -5,6 +5,7 @@ import { ReadingFrame, Eyebrow } from "@/components/book/reading-frame"
 import { courseModules } from "@/components/book/course-data"
 import { Fig01, Fig07 } from "@/components/figures/course-figures"
 import { LabPrompt } from "@/components/lab/lab-prompt"
+import { NotebookDemo } from "@/components/landing/notebook-demo"
 
 /** The hero particle globe. Flip to true to bring it back. */
 const SHOW_SPHERE = false
@@ -31,28 +32,27 @@ export default function Home() {
       <div className="dot-ground dot-ground--faint -mx-5 px-5 py-8 md:-mx-8 md:px-8">
         <Eyebrow>An interactive book</Eyebrow>
         <h1 className="mt-5 text-balance font-display text-5xl leading-[.98] tracking-tight md:text-6xl lg:text-7xl">Your guide to <span style={{ color: ACC }}>LLMs and agents</span></h1>
-        <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Eight modules of content, with built-in projects to build your portfolio.</p>
-        <div className="mt-9 flex flex-wrap gap-3">
-          <Link href="/orientation" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Read the orientation</Link>
-          <Link href="/m/1" className="inline-flex border border-border px-5 py-3 text-sm">Go straight to Module 1</Link>
-        </div>
-        <p className="mt-10 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">Works with any coding agent. <span className="text-foreground">Claude Code · Cursor · Codex CLI · Gemini CLI</span></p>
+        <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Read the book here. Build the projects on your own machine, with the coding agent you already use as your tutor: one pasted line sets everything up, and the site shows you your own runs.</p>
+        <div className="mt-8"><LabPrompt module={1} /></div>
+        <p className="mt-6 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">
+          <Link href="/m/1" className="underline underline-offset-4 hover:text-foreground">Read Module 1 free</Link>
+          <Link href="/orientation" className="underline underline-offset-4 hover:text-foreground">Start with the orientation</Link>
+        </p>
       </div>
       {SHOW_SPHERE
         ? <div className="relative -mx-5 h-[520px] overflow-visible md:-mx-16 md:h-[700px]"><AnimatedSphere /></div>
         : <TracedRun />}
     </section>
 
-    <section className="border-b border-border py-12">
-      <div className="grid gap-8 md:grid-cols-[1fr_minmax(0,520px)] md:items-center">
+    <section className="border-b border-border py-16">
+      <div className="mb-8 grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <Eyebrow>How it works</Eyebrow>
-          <h2 className="mt-4 max-w-xl text-balance font-display text-3xl leading-tight md:text-4xl">You build it locally. This site shows you what you built.</h2>
-          <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">There is nothing to install and no setup to work through. Every module ends in a project, and each one starts with a single line pasted into the coding agent you already use. It fetches the course, sets it up, and turns itself into your tutor.</p>
-          <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">Your agent records what it does. The diagrams here then fill in with your own run.</p>
+          <Eyebrow>Try a page of it</Eyebrow>
+          <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-tight md:text-4xl">This is what a project feels like</h2>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">A live piece of Module 1, running Python in your browser with saved data. In the real course this notebook opens on your machine, uses your own numbers, and your agent teaches beside you in it.</p>
         </div>
-        <LabPrompt module={1} />
       </div>
+      <NotebookDemo />
     </section>
 
     {/* The modules, as a bento: 01 a double with its figure beside the text, 08 a 2x2 with the Deep Research Agent inside. */}
