@@ -82,6 +82,7 @@ def _(mo, text_in):
 @app.cell
 def _(MODEL):
     # ---- your turn ----
+    # Stuck? Ask your tutor in its window. It can read this cell and your last run.
     #
     # estimate_cost(input_tokens, output_tokens, model) returns the dollars for one
     # call. PRICES[model] gives you a pair:
@@ -103,6 +104,7 @@ def _(mo):
 @app.cell
 def _(count_go, mo):
     # ---- your turn ----
+    # Stuck? Ask your tutor in its window. It can read this cell and your last run.
     #
     # Get the exact count from the API. Same shape as lesson 1: a traced call with
     # text_in.value as the user message and max_tokens=1. Then:

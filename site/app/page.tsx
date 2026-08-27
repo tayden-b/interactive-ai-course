@@ -6,6 +6,7 @@ import { courseModules } from "@/components/book/course-data"
 import { Fig01, Fig07 } from "@/components/figures/course-figures"
 import { LabPrompt } from "@/components/lab/lab-prompt"
 import { NotebookDemo } from "@/components/landing/notebook-demo"
+import { TwoWindows } from "@/components/landing/two-windows"
 
 /** The hero particle globe. Flip to true to bring it back. */
 const SHOW_SPHERE = false
@@ -32,16 +33,54 @@ export default function Home() {
       <div className="dot-ground dot-ground--faint -mx-5 px-5 py-8 md:-mx-8 md:px-8">
         <Eyebrow>An interactive book</Eyebrow>
         <h1 className="mt-5 text-balance font-display text-5xl leading-[.98] tracking-tight md:text-6xl lg:text-7xl">Your guide to <span style={{ color: ACC }}>LLMs and agents</span></h1>
-        <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Read the book here. Build the projects on your own machine, with the coding agent you already use as your tutor: one pasted line sets everything up, and the site shows you your own runs.</p>
-        <div className="mt-8"><LabPrompt module={1} /></div>
-        <p className="mt-6 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">
-          <Link href="/m/1" className="underline underline-offset-4 hover:text-foreground">Read Module 1 free</Link>
-          <Link href="/orientation" className="underline underline-offset-4 hover:text-foreground">Start with the orientation</Link>
-        </p>
+        <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">You read the book here. You build every project on your own machine, and the coding agent you already use becomes your tutor.</p>
+        <div className="mt-9 flex flex-wrap gap-3">
+          <a href="#how-it-works" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">How it works</a>
+          <Link href="/m/1" className="inline-flex border border-border px-5 py-3 text-sm">Read Module 1 free</Link>
+        </div>
       </div>
       {SHOW_SPHERE
         ? <div className="relative -mx-5 h-[520px] overflow-visible md:-mx-16 md:h-[700px]"><AnimatedSphere /></div>
         : <TracedRun />}
+    </section>
+
+    <section id="how-it-works" className="scroll-mt-20 border-b border-border py-16">
+      <Eyebrow>How it works</Eyebrow>
+      <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-tight md:text-4xl">Three steps, five minutes, all on your machine</h2>
+
+      <ol className="mt-10 space-y-12">
+        <li className="grid gap-4 md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-10">
+          <div>
+            <span className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: INK }}>Step 1</span>
+            <h3 className="mt-2 font-display text-2xl leading-tight">Copy one line</h3>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">This is the whole setup. There is nothing to install first and no account to make.</p>
+          </div>
+          <LabPrompt module={1} eyebrow={null} />
+        </li>
+
+        <li className="grid gap-4 md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-10">
+          <div>
+            <span className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: INK }}>Step 2</span>
+            <h3 className="mt-2 font-display text-2xl leading-tight">Paste it into your coding agent</h3>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">The agent does the setup for you and turns into your tutor.</p>
+          </div>
+          <div className="text-sm leading-7 text-muted-foreground">
+            <p>Your agent downloads the course into a folder on your computer, sets up Python, asks you for your API key (the one thing it will not do for you), and opens the first lesson in your browser. From then on it teaches: it asks before it explains, it hints instead of solving, and it grades your work by reading what your code actually did.</p>
+            <p className="mt-3">Nothing is uploaded anywhere. Your code, your key, and your progress stay in that folder.</p>
+          </div>
+        </li>
+
+        <li>
+          <div className="mb-6 grid gap-4 md:grid-cols-[minmax(0,280px)_minmax(0,1fr)] md:gap-10">
+            <div>
+              <span className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: INK }}>Step 3</span>
+              <h3 className="mt-2 font-display text-2xl leading-tight">Learn in two windows</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">Talk to your tutor in one, build in the other. When it writes a hint into your lesson, you see it appear live.</p>
+            </div>
+          </div>
+          <TwoWindows />
+        </li>
+      </ol>
     </section>
 
     <section className="border-b border-border py-16">

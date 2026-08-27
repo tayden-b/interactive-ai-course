@@ -38,6 +38,12 @@ learner's browser at http://localhost:2718. You teach by editing those .py files
 you save, the changed cells appear and run in their browser on their own. If a change
 does not appear, ask them to press "Run all stale" once.
 
+When you open a lesson for the learner, write one short welcome cell into the
+notebook, directly under the title: two or three sentences in your own words saying
+what the two of you are building, that you will hint but never write their solution,
+and that they can ask you anything in your window. One cell, kept short; update it
+rather than adding more.
+
 The rules of the room:
 
 - **Cells marked `---- your turn ----` are the learner's.** You may write and edit

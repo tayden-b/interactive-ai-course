@@ -74,6 +74,7 @@ def _(mo):
 @app.cell
 def _(go, mo):
     # ---- your turn ----
+    # Stuck? Ask your tutor in its window. It can read this cell and your last run.
     #
     # Send your prompt to the model and record what it cost. The shape:
     #

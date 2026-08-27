@@ -93,6 +93,7 @@ def _(count_tokens, mo, transcript):
 @app.cell
 def _(mo, transcript, window):
     # ---- your turn ----
+    # Stuck? Ask your tutor in its window. It can read this cell and your last run.
     #
     # fit_window(messages, max_tokens) returns the newest messages that fit.
     # Walk the list from the END. Keep adding turns while count_tokens(kept) stays
@@ -134,6 +135,7 @@ def _(mo):
 @app.cell
 def _(ask_go, mo):
     # ---- your turn ----
+    # Stuck? Ask your tutor in its window. It can read this cell and your last run.
     #
     # Ask "What is my name?" sending ONLY the kept turns, plus that question as the
     # final user message. Same traced shape as lesson 1. Set `answer` to the reply

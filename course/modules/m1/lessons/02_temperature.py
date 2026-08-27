@@ -117,6 +117,7 @@ def _(DATA, MODEL, Run, fetch_go, json, mo):
 @app.cell
 def _(logprobs, mo):
     # ---- your turn ----
+    # Stuck? Ask your tutor in its window. It can read this cell and your last run.
     #
     # Two small functions.
     #
