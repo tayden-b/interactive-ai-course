@@ -1,8 +1,9 @@
-"""The offline guide: the current module's build steps, rendered as a plain page.
+"""The guide: how to work with your tutor and what is in this folder.
 
-Optional by design. The agent leads; this is here for anyone who wants to read ahead,
-work without the website, or just see the whole module at once. Stdlib only, and it
-renders the same BUILD.md the tutor teaches from, so the two can never drift.
+Deliberately not a copy of the module content. That lives on the website, and the tutor
+walks you through the build steps itself. This is the thing neither of those covers:
+how to talk to the agent, what it will refuse to do, how to get unstuck, and what every
+file here is for. Rendered from GUIDE.md so it can be read in the repo too.
 """
 
 from __future__ import annotations
@@ -33,9 +34,18 @@ code { font-family:ui-monospace,'JetBrains Mono',Menlo,monospace; font-size:.85e
   background:#f1efec; padding:.1em .35em; }
 pre { background:#f1efec; padding:1rem; overflow-x:auto; border-left:2px solid var(--blue); }
 pre code { background:none; padding:0; }
-blockquote { border-left:2px solid var(--line); margin:1rem 0; padding-left:1rem; color:var(--muted); }
+blockquote { border-left:2px solid var(--blue); background:#fff; margin:1rem 0;
+  padding:.75rem 1rem; color:var(--ink); font-family:ui-monospace,'JetBrains Mono',Menlo,monospace;
+  font-size:.85rem; line-height:1.55; }
+ul, ol { padding-left:1.25rem; }
+li { margin:.3rem 0; }
 hr { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
 strong { font-weight:600; }
+table { border-collapse:collapse; width:100%; margin:1.25rem 0; font-size:.9rem; }
+th, td { text-align:left; padding:.6rem .75rem; border-bottom:1px solid var(--line); vertical-align:top; }
+th { font-family:ui-monospace,'JetBrains Mono',Menlo,monospace; font-size:.65rem;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+td:first-child { white-space:nowrap; }
 .note { border:1px solid var(--line); background:#fff; padding:1rem 1.25rem; margin-bottom:2.5rem;
   font-size:.9rem; color:var(--muted); }
 .note strong { color:var(--ink); }
@@ -56,13 +66,13 @@ def _inline(t: str) -> str:
 
 def md_to_html(md: str) -> str:
     """A deliberately small renderer for the subset BUILD.md uses."""
-    out, lines, i, in_list = [], md.split("\n"), 0, False
+    out, lines, i, in_list = [], md.split("\n"), 0, None  # in_list: None | "ul" | "ol"
 
     def close_list():
         nonlocal in_list
         if in_list:
-            out.append("</ul>")
-            in_list = False
+            out.append(f"</{in_list}>")
+            in_list = None
 
     while i < len(lines):
         line = lines[i]
@@ -78,6 +88,21 @@ def md_to_html(md: str) -> str:
             i += 1
             continue
 
+        if line.startswith("|") and i + 1 < len(lines) and re.match(r"^\|[\s:|-]+\|?$", lines[i + 1]):
+            close_list()
+            head = [c.strip() for c in line.strip().strip("|").split("|")]
+            i += 2
+            rows = []
+            while i < len(lines) and lines[i].startswith("|"):
+                rows.append([c.strip() for c in lines[i].strip().strip("|").split("|")])
+                i += 1
+            th = "".join(f"<th>{_inline(c)}</th>" for c in head)
+            body = "".join(
+                "<tr>" + "".join(f"<td>{_inline(c)}</td>" for c in r) + "</tr>" for r in rows
+            )
+            out.append(f"<table>{'<thead><tr>' + th + '</tr></thead>' if any(head) else ''}<tbody>{body}</tbody></table>")
+            continue
+
         if line.startswith("### "):
             close_list(); out.append(f"<h3>{_inline(line[4:])}</h3>")
         elif line.startswith("## "):
@@ -89,9 +114,13 @@ def md_to_html(md: str) -> str:
         elif line.startswith("> "):
             close_list(); out.append(f"<blockquote>{_inline(line[2:])}</blockquote>")
         elif re.match(r"^[-*] ", line):
-            if not in_list:
-                out.append("<ul>"); in_list = True
+            if in_list != "ul":
+                close_list(); out.append("<ul>"); in_list = "ul"
             out.append(f"<li>{_inline(line[2:])}</li>")
+        elif re.match(r"^\d+\. ", line):
+            if in_list != "ol":
+                close_list(); out.append("<ol>"); in_list = "ol"
+            out.append(f"<li>{_inline(re.sub(r'^\d+\. ', '', line))}</li>")
         elif not line.strip():
             close_list()
         else:
@@ -110,33 +139,28 @@ def md_to_html(md: str) -> str:
 
 
 def render(root: Path, module: int, titles: dict[int, str]) -> str:
-    build = root / "modules" / f"m{module}" / "BUILD.md"
-    title = titles.get(module, f"Module {module}")
-
-    if build.exists():
-        body = md_to_html(build.read_text())
-    else:
-        body = (
-            f"<h1>Module {module} — {html.escape(title)}</h1>"
-            "<p>This module's project is not written yet. Run <code>./course status</code> "
-            "to see which ones are.</p>"
-        )
+    guide = root / "GUIDE.md"
+    body = md_to_html(guide.read_text()) if guide.exists() else (
+        "<h1>Guide</h1><p>GUIDE.md is missing from this folder.</p>"
+    )
+    title = titles.get(module, "")
+    here = (
+        f'You are on <strong>Module {module}</strong>'
+        + (f" &mdash; {html.escape(title)}" if title else "")
+        + f'. <a href="https://llm-textbook.vercel.app/m/{module}">Read it on the site</a>'
+        + ", or just ask your tutor to start."
+    )
 
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Module {module} · LLM.TEXTBOOK</title>
+<title>How to work with your tutor · LLM.TEXTBOOK</title>
 <style>{CSS}</style></head>
 <body><div class="wrap">
 <header>
-  <p class="eyebrow">LLM.TEXTBOOK · offline guide ·
-    <a href="https://llm-textbook.vercel.app/m/{module}">read this module online</a></p>
+  <p class="eyebrow">LLM.TEXTBOOK · your local guide</p>
 </header>
-<div class="note">
-  <strong>You do not need this page.</strong> Your coding agent leads you through these
-  steps one at a time, and that is the way the course is meant to be taken. This is the
-  whole module in one place, for reading ahead or working without the website.
-</div>
+<div class="note">{here}</div>
 {body}
-<footer>Served from your own machine by <code>./course serve</code></footer>
+<footer>Served from your own machine by <code>./course serve</code> · the course reading lives at <a href="https://llm-textbook.vercel.app">llm-textbook.vercel.app</a></footer>
 </div></body></html>"""

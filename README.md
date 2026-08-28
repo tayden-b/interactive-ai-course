@@ -14,8 +14,8 @@ opens with their own AI coding agent, and the site renders traces from their own
 Read the book on the site. Each module's project happens on your machine: one pasted
 prompt makes your coding agent clone this repo, set up the lab, and become your tutor.
 Your agent leads you through the module's steps one at a time; checks grade the trace
-your runs produce, and the site shows your runs back to you. A plain reading version of
-the current module is served locally at `http://localhost:4747/guide`.
+your runs produce, and the site shows your runs back to you. A guide to working with your
+tutor is served locally at `http://localhost:4747/guide`.
 
 ## Layout
 

@@ -124,8 +124,11 @@ time. Read it before you start.
 - **The reading** is on the course website, one page per section. Point them at it by
   name when a step needs the concept: "read Module 1, section 5 on temperature, then come
   back."
-- **The steps you teach from** are `modules/m<N>/BUILD.md`. The learner can read a plain
-  version at `http://localhost:4747/guide` if they want it, but you are the one who leads.
+- **The steps you teach from** are `modules/m<N>/BUILD.md`. You lead through them; do not
+  tell the learner to go read it instead.
+- **`GUIDE.md`**, served at `http://localhost:4747/guide`, is their manual for working
+  with you: what to say when stuck, what you refuse to do, what every file here is for.
+  Point them at it if they seem unsure how to interact with you, not for course content.
 - **Their code** goes in `my-agent/`. One project that grows across the whole course, not
   eight throwaways.
 - **Their runs** land in `traces/`, and the website shows them back.

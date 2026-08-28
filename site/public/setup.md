@@ -69,8 +69,8 @@ again. Do not proceed while `doctor` is failing.
 ```
 
 **Run it in the background with `&`** so it does not block you. It does two things: it
-lets the course website show the user their own runs, and it serves a plain reading
-guide for the current module at `http://localhost:4747/guide`.
+lets the course website show the user their own runs, and it serves a guide to working
+with you at `http://localhost:4747/guide`.
 
 Confirm it came up:
 
@@ -97,8 +97,9 @@ Before you begin, tell the user briefly:
 - where the folder is on their machine
 - that you will lead them through this module step by step, and they should just talk to
   you here
-- that the reading for each module lives on the course website, and a plain text version
-  of this module's build steps is at `http://localhost:4747/guide` if they want it
+- that the reading for each module lives on the course website, and that
+  `http://localhost:4747/guide` explains how to work with you: what to say when they are
+  stuck, and what you will refuse to do
 - that you will not write their code for them
 
 Then start. Open with a question, not an explanation.

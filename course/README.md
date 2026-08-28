@@ -27,7 +27,7 @@ Any agent that can read files works — Claude Code, Cursor, Codex CLI, Gemini C
 | `./course doctor` | check the environment and say what to fix |
 | `./course status` | where you are across the eight modules |
 | `./course check N` | grade module N **against your trace** |
-| `./course serve` | let the website read your traces, over localhost |
+| `./course serve` | let the website read your traces, and serve the guide at /guide |
 
 ## How the site sees your work
 
