@@ -31,7 +31,7 @@ export default function Home() {
       <div className="dot-ground dot-ground--faint -mx-5 px-5 py-8 md:-mx-8 md:px-8">
         <Eyebrow>An interactive book</Eyebrow>
         <h1 className="mt-5 text-balance font-display text-5xl leading-[.98] tracking-tight md:text-6xl lg:text-7xl">Your guide to <span style={{ color: ACC }}>LLMs and agents</span></h1>
-        <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Eight modules you read right here, with a diagram for every idea. Each one ends in a hands-on project you build on your own machine, with the coding agent you already use as your tutor.</p>
+        <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Eight modules on how language models and agents work, from your first API call to a deployed multi-agent system. Each module ends in a project you build on your own machine.</p>
         <div className="mt-9 flex flex-wrap gap-3">
           <Link href="/m/1" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Start reading Module 1</Link>
           <a href="#how-it-works" className="inline-flex border border-border px-5 py-3 text-sm">How it works</a>
@@ -46,16 +46,16 @@ export default function Home() {
       <div className="grid gap-8 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-14">
         <div>
           <Eyebrow>How it works</Eyebrow>
-          <h2 className="mt-4 text-balance font-display text-3xl leading-tight md:text-4xl">Read it here, build it there</h2>
-          <p className="mt-4 text-sm leading-6 text-muted-foreground">The reading lives on this site. The projects live on your machine, and nothing you write is ever uploaded.</p>
+          <h2 className="mt-4 text-balance font-display text-3xl leading-tight md:text-4xl">How the course works</h2>
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">The reading is on this site. The projects run on your machine. Nothing you write is uploaded.</p>
         </div>
 
         <div>
           <ol className="grid gap-6 sm:grid-cols-3">
             {[
-              { n: "01", t: "Read the module", d: "Sections, diagrams, and a check as you go. All of it here, in the browser." },
-              { n: "02", t: "Reach the project", d: "Every module ends in one. Paste the line below into your coding agent." },
-              { n: "03", t: "Build it with your agent", d: "It sets up a folder on your machine and leads you through the project step by step, hinting instead of solving." },
+              { n: "01", t: "Read the module", d: "Short sections with diagrams and a quick check at the end of each one." },
+              { n: "02", t: "Copy the project prompt", d: "Every module ends in a project. Copy the line below into your coding agent." },
+              { n: "03", t: "Build it with your agent", d: "The agent sets up a folder on your machine and walks you through the project. It gives hints, not solutions." },
             ].map((s2) => (
               <li key={s2.n}>
                 <span className="font-mono text-[10px] tracking-[.18em]" style={{ color: INK }}>{s2.n}</span>
@@ -66,7 +66,7 @@ export default function Home() {
           </ol>
 
           <div className="mt-8">
-            <LabPrompt module={1} eyebrow="The line you paste when you reach a project" />
+            <LabPrompt module={1} eyebrow="The project prompt" />
           </div>
         </div>
       </div>
