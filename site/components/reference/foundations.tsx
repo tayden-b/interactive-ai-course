@@ -39,7 +39,7 @@ export function Foundations() {
       index="01"
       eyebrow="Foundations"
       title="AI is a set of nested ideas, not one technology"
-      lede="Every term in the discourse sits somewhere inside this containment diagram. Read it outside-in: each ring is a narrower, more specific way of building the ring above it."
+      lede="Every term in the discourse sits somewhere inside this containment diagram. Read it outside-in: each ring is a narrower, more specific way of building the ring around it."
     >
       <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
         <Tile>
@@ -78,7 +78,7 @@ export function Foundations() {
                 {
                   term: 'Parameters',
                   detail:
-                    'The learned numbers inside a model — its weights. Size is quoted in billions (7B, 70B, 400B).',
+                    'The learned numbers inside a model: its weights. Size is quoted in billions (7B, 70B, 400B).',
                 },
                 {
                   term: 'Token',
@@ -89,18 +89,13 @@ export function Foundations() {
                   term: 'Inference',
                   detail: 'Running a trained model to produce output. Training happens once; inference happens forever.',
                 },
-                {
-                  term: 'Agent',
-                  detail:
-                    'A model placed in a loop with tools, memory and a goal, allowed to decide its own next step.',
-                },
               ]}
             />
           </Tile>
 
           <Note label="Caveat">
             None of this involves understanding in the human sense. An LLM is a very good conditional
-            probability machine — the capability comes from scale, data and feedback, not from an
+            probability machine. The capability comes from scale, data and feedback, not from an
             inner world model we designed.
           </Note>
         </div>

@@ -41,9 +41,9 @@ function StackDiagram() {
     <Tile>
       <TileTitle meta="graphic 01">The four layers of an AI app</TileTitle>
       <p className="mb-5 text-sm leading-relaxed text-muted-foreground text-pretty">
-        Read it bottom-up: each layer only talks to the one directly below it. Most beginner
-        confusion comes from mixing layers &mdash; blaming &ldquo;the model&rdquo; for a bug that
-        actually lives in orchestration.
+        Read it bottom-up: each layer builds on the ones below it and never reaches up. Most
+        beginner confusion comes from mixing layers: blaming &ldquo;the model&rdquo; for a bug
+        that actually lives in orchestration.
       </p>
       <ol className="flex flex-col gap-2">
         {layers.map((layer) => (
@@ -88,6 +88,7 @@ function StackDiagram() {
 }
 
 const code: { line: string; note?: string; tone?: string }[] = [
+  { line: 'import os' },
   { line: 'from openai import OpenAI' },
   { line: '' },
   { line: 'client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])', note: 'never hardcode keys', tone: 'chart-2' },
@@ -96,7 +97,11 @@ const code: { line: string; note?: string; tone?: string }[] = [
   { line: '    "type": "function",' },
   { line: '    "name": "get_order",' },
   { line: '    "description": "Look up an order by id.",', note: 'the model picks tools from this text', tone: 'chart-3' },
-  { line: '    "parameters": {"order_id": "string"},' },
+  { line: '    "parameters": {' },
+  { line: '        "type": "object",' },
+  { line: '        "properties": {"order_id": {"type": "string"}},' },
+  { line: '        "required": ["order_id"],' },
+  { line: '    },' },
   { line: '}]' },
   { line: '' },
   { line: 'response = client.responses.create(' },
@@ -105,7 +110,7 @@ const code: { line: string; note?: string; tone?: string }[] = [
   { line: '    input=conversation,', note: 'history you choose to send', tone: 'chart-1' },
   { line: '    tools=TOOLS,' },
   { line: '    temperature=0.2,', note: '0 = predictable, 1 = creative', tone: 'chart-4' },
-  { line: '    max_output_tokens=800,', note: 'a hard cap on the reply', tone: 'chart-5' },
+  { line: '    max_output_tokens=800,', note: 'a hard cap on the reply', tone: 'chart-4' },
   { line: ')' },
 ]
 
@@ -237,7 +242,7 @@ export function Stack() {
         </div>
         <ContextWindow />
         <Note label="Beginner trap">
-          &ldquo;The agent forgot what I told it&rdquo; is almost never a model flaw &mdash; it is an
+          &ldquo;The agent forgot what I told it&rdquo; is almost never a model flaw. It is an
           orchestration choice about what you put in the context window on the next call.
         </Note>
       </div>
