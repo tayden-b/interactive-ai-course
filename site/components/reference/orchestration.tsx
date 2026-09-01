@@ -27,7 +27,7 @@ const tradeoff = [
 ]
 
 const shape = [
-  { axis: 'Latency', chain: 70, supervisor: 34 },
+  { axis: 'Speed', chain: 70, supervisor: 34 },
   { axis: 'Cost control', chain: 88, supervisor: 40 },
   { axis: 'Debuggability', chain: 90, supervisor: 38 },
   { axis: 'Task breadth', chain: 32, supervisor: 88 },
@@ -40,7 +40,7 @@ export function Orchestration() {
       id="orchestration"
       index="09"
       eyebrow="Orchestration"
-      title="Five ways to wire agents together — in increasing order of regret"
+      title="Five ways to wire agents together, from simple to complex"
       lede="Orchestration is the question of who decides what happens next: your code, one model, or a committee of models. Start at the top of this list and only move down when the task forces you to."
     >
       <div className="grid gap-6 lg:grid-cols-2">
