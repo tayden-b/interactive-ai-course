@@ -38,7 +38,7 @@ const trace: Step[] = [
   {
     phase: 'Act',
     label: 'billing.listPaymentMethods({ account: "a_88" })',
-    detail: 'Second tool call, chosen by the model — not by a hard-coded branch.',
+    detail: 'Second tool call, chosen by the model, not by a hard-coded branch.',
   },
   {
     phase: 'Observe',
@@ -186,7 +186,7 @@ export function Agents() {
             </Tile>
             <Note label="Cost warning">
               Every loop iteration re-sends the whole growing context. A ten-step agent can cost
-              far more than ten single calls — budget by step count and cap it explicitly.
+              far more than ten single calls. Budget by step count and cap it explicitly.
             </Note>
           </div>
         </div>

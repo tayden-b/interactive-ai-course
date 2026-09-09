@@ -115,7 +115,7 @@ export function Orchestration() {
           </div>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-pretty">
             Each worker has its own context window and tool set, which prevents one giant polluted
-            prompt. The supervisor becomes the single point of failure — and the thing you evaluate.
+            prompt. The supervisor becomes the single point of failure, and the thing you evaluate.
           </p>
         </Tile>
       </div>
@@ -173,7 +173,7 @@ export function Orchestration() {
           </ChartContainer>
           <p className="mt-2 text-xs leading-relaxed text-muted-foreground text-pretty">
             Bottom right is the swarm; top left is a single call. Production systems usually live in
-            the middle — a deterministic skeleton with one agentic joint.
+            the middle: a deterministic skeleton with one agentic joint.
           </p>
         </Tile>
 
@@ -223,7 +223,7 @@ export function Orchestration() {
             {[
               { k: 'State & durability', v: 'Persist every step so a crash or a timeout resumes instead of restarting.' },
               { k: 'Tool contracts', v: 'Typed schemas, validation, retries with backoff, idempotency keys on writes.' },
-              { k: 'Budgets', v: 'Caps on steps, tokens, wall clock and money — enforced outside the model.' },
+              { k: 'Budgets', v: 'Caps on steps, tokens, wall clock and money, enforced outside the model.' },
               { k: 'Human in the loop', v: 'Pause points for approval before irreversible actions.' },
               { k: 'Tracing', v: 'Every prompt, tool call and result recorded and replayable.' },
             ].map((row) => (
