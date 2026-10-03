@@ -16,7 +16,6 @@ import { useEffect, useState } from "react"
 
 /** `course serve` binds the first of these that is free, so we try them in the same order. */
 export const LAB_PORTS = [4747, 4748, 4749, 4750]
-const POLL_MS = 4000
 const TIMEOUT_MS = 900
 
 export type SpanKind = "llm" | "tool" | "step"
@@ -98,7 +97,7 @@ const SLOW_MS = 30000
 type Snapshot = Omit<LabState, "refresh">
 
 let snapshot: Snapshot = { status: "probing", port: null, trace: null, progress: null, traceCount: 0 }
-let listeners = new Set<() => void>()
+const listeners = new Set<() => void>()
 let timer: ReturnType<typeof setTimeout> | null = null
 let knownPort: number | null = null
 let probeIndex = 0

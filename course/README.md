@@ -38,10 +38,9 @@ There is no account and no upload. Close the server and the site falls back to e
 ## The parts
 
 ```
-modules/mN/      the module: BUILD.md, the steps your tutor walks you through
+modules/mN/      what to build, per module: BUILD.md, the steps your tutor walks you through
 tracing.py       the trace library — wire this into the agent you build
 my-agent/        your code. one project, growing across all eight modules
-modules/mN/      what to build, per module
 checks/          the graders. your agent is forbidden to edit these
 TUTOR.md         how any coding agent should teach this course
 traces/          what your agent did, written by tracing.py   (git-ignored)

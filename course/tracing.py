@@ -41,6 +41,7 @@ PRICES = {
     "gpt-4o-mini": (0.15, 0.60),
     "gpt-4o": (2.50, 10.00),
     "claude-haiku-4-5": (1.00, 5.00),
+    "claude-sonnet-4-5": (3.00, 15.00),
     "claude-sonnet-5": (3.00, 15.00),
 }
 
@@ -213,7 +214,7 @@ class BudgetExceeded(RuntimeError):
 
 def _provider_of(model: str) -> str:
     m = (model or "").lower()
-    if m.startswith("gpt") or m.startswith("o1") or m.startswith("o3"):
+    if m.startswith("gpt") or m.startswith("o1") or m.startswith("o3") or m.startswith("o4") or m.startswith("o5"):
         return "openai"
     if "claude" in m:
         return "anthropic"
