@@ -202,3 +202,47 @@ below were evaluated against that reality.
 - No design-system or structural changes; edits are confined to content,
   one missing footer, link targets, the lint toolchain, and small
   correctness fixes in `tracing.py`.
+
+---
+
+# Round 2 — Making the site more impressive
+
+A second pass after the correctness audit merged (PR #1). The goal this time was not accuracy but
+presence: places where the reader can do something with the idea, and a sense of place in the book.
+Scope stayed inside `site/`; nothing under `course/` changed.
+
+## Shipped
+
+- **[FIXED] Live tokenizer in Module 1 §2.** A real `o200k_base` BPE encoder (the encoding behind GPT-4o
+  and GPT-5) runs in the page. Type anything; every piece is tinted, hover shows its id, and the token /
+  word / character counts update. The 1 MB encoding loads only when the box is focused or after an idle
+  moment, so the page itself stays light. `site/components/figures/tokenizer-demo.tsx`.
+- **[FIXED] Temperature sampler in Module 1 §5.** The two static charts became one chart with a slider
+  (0–2) over the same sleep/cook/relax/read list as Figure 3.1. Shares are recomputed with real
+  temperature arithmetic (log-probabilities divided by T, renormalised; the tail is modelled as 2,000
+  tiny tokens so it swells at high T and vanishes at low T). "Pick 20 times" samples from the list so
+  the reader sees variance, not just a bar chart. `site/components/figures/temperature-demo.tsx`.
+- **[FIXED] Reading progress and resume.** Opening a section records it on the device
+  (`localStorage`, key `llmtextbook-progress`). The landing hero shows "Continue where you left off ·
+  Module 03 · 4. The loop" for a returning reader; module cards show "4 of 11 read" with a hairline
+  rail; the rail and the module page mark read sections with a filled dot; the header gets a
+  "Continue reading →" link outside the book. This replaces the manual "Save your place" button,
+  which stored a title string with no way back. `site/lib/progress.ts`, `site/components/book/progress-ui.tsx`.
+- **[FIXED] Labelled Previous / Next everywhere.** All eight module files now use the shared `PrevNext`
+  pager, so every footer names its destination ("03 · A probability machine") instead of a bare
+  "Next →". ← and → keys turn the page (ignored while typing or with a modifier held).
+- **[FIXED] Paragraph spacing.** `Prose` used Tailwind's `prose` class, but `@tailwindcss/typography`
+  is not installed, so every section's paragraphs ran together with no gap. Replaced with explicit
+  sibling spacing.
+- **[FIXED] Per-page titles.** Module and section routes now emit `generateMetadata`, so browser tabs,
+  history and shared links read "The loop · Module 3 · LLM.TEXTBOOK" instead of the site-wide title.
+
+## Checked and left alone
+
+- Figure 07 on the landing-page Capstone card: an early headless screenshot showed it blank; verified in
+  a real browser that it renders (the reveal-on-scroll transition had not fired). No change.
+- Dark mode: the whole figure language is "electric blue on warm paper"; a dark theme would touch every
+  SVG and chart token for no reading benefit. [WONT-FIX]
+- The hero "demo" console: it types once and stops; considered replacing it with the interactive agent
+  loop diagram but that diagram belongs to Module 3 and would promise the loop before the book has
+  earned it. [NEEDS-AUTHOR]

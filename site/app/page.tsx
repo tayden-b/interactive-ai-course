@@ -5,6 +5,7 @@ import { ReadingFrame, Eyebrow } from "@/components/book/reading-frame"
 import { courseModules } from "@/components/book/course-data"
 import { Fig01, Fig07 } from "@/components/figures/course-figures"
 import { LabPrompt } from "@/components/lab/lab-prompt"
+import { HeroActions, CardProgress } from "@/components/book/progress-ui"
 
 /** The hero particle globe. Flip to true to bring it back. */
 const SHOW_SPHERE = false
@@ -19,6 +20,7 @@ function CardBody({ index, title, description, build }: { index: number; title: 
     <h2 className="mt-2 font-display text-2xl leading-tight md:text-[26px]">{title}</h2>
     <p className="mt-3 text-sm leading-6 text-muted-foreground">{description}</p>
     <p className="mt-4 font-mono text-[10px] uppercase tracking-[.12em] text-muted-foreground">You build — <span className="text-foreground">{build}</span></p>
+    <CardProgress module={index} />
     <span className="mt-5 block font-mono text-[10px] uppercase tracking-[.16em]" style={{ color: INK }}>Open</span>
   </>
 }
@@ -32,10 +34,7 @@ export default function Home() {
         <Eyebrow>An interactive book</Eyebrow>
         <h1 className="mt-5 text-balance font-display text-5xl leading-[.98] tracking-tight md:text-6xl lg:text-7xl">Your guide to <span style={{ color: ACC }}>LLMs and agents</span></h1>
         <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground">Eight modules on how language models and agents work, from your first API call to a deployed multi-agent system. Each module ends in a project you build on your own machine.</p>
-        <div className="mt-9 flex flex-wrap gap-3">
-          <Link href="/m/1" className="inline-flex bg-primary px-5 py-3 text-sm text-primary-foreground">Start reading Module 1</Link>
-          <a href="#how-it-works" className="inline-flex border border-border px-5 py-3 text-sm">How it works</a>
-        </div>
+        <HeroActions />
       </div>
       {SHOW_SPHERE
         ? <div className="relative -mx-5 h-[520px] overflow-visible md:-mx-16 md:h-[700px]"><AnimatedSphere /></div>
