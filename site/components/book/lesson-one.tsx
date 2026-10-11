@@ -1,14 +1,14 @@
 "use client"
 
-import Link from "next/link"
 import { useState } from "react"
-import { Eyebrow, Figure, LessonHeader, Prose } from "./reading-frame"
+import { Eyebrow, Figure, LessonHeader, Prose, PrevNext } from "./reading-frame"
 import { GoDeeper } from "@/components/figures/resource"
 import { Fig01, Fig02, Fig08 } from "@/components/figures/course-figures"
 import { Flow, KV, Note, Numbers, Stack, Steps, Table, Transcript } from "@/components/figures/kit"
 import { LabPrompt } from "@/components/lab/lab-prompt"
 import { YourRun } from "@/components/lab/your-run"
-import { Bars } from "@/components/figures/charts"
+import { TokenizerDemo } from "@/components/figures/tokenizer-demo"
+import { TemperatureDemo } from "@/components/figures/temperature-demo"
 
 export const sectionMeta = ["~6 min", "~7 min", "~8 min", "~6 min", "~7 min", "~8 min", "~6 min", "~8 min", "~7 min", "~5 min", "~25 min"] as const
 
@@ -24,46 +24,15 @@ const stackSteps = [
   { title: "Tokens back", body: "Append the pick, send the longer text back, repeat until the stop token. § 4" },
 ]
 
-// § 5 — same five buckets as Figure 3.1 (§ 3), redrawn to show what temperature does to them.
-// Temperature 0 always takes the top pick. Temperature 1.5 flattens the list past the raw
-// odds, so sleep's share drops below its 9% in § 3 and the long tail picks up the rest.
-const tempPicks = [
-  { label: "sleep", value: 6 },
-  { label: "cook", value: 5 },
-  { label: "relax", value: 4 },
-  { label: "read", value: 3 },
-  { label: "thousands more", value: 82 },
-]
-const tempZero = tempPicks.map((d, i) =>
-  ({ ...d, value: i === 0 ? 100 : 0, accent: i === 0 }))
-const tempNoteLow = "Always the top bar, so the same reply every time. " +
-  "Good for factual lookup, code."
-const tempNoteHigh = "Spread across the list, so replies vary and drift. " +
-  "Same list of odds both times; only the picking changed."
 const tempFigure = (
   <Stack>
-    <Bars
-      title="Temperature 0 · share of picks · illustrative"
-      unit="%"
-      max={100}
-      height={170}
-      data={tempZero}
-      note={tempNoteLow}
-    />
-    <Bars
-      title="Temperature 1.5 · share of picks · illustrative"
-      unit="%"
-      max={100}
-      height={170}
-      data={tempPicks}
-      note={tempNoteHigh}
-    />
+    <TemperatureDemo />
   </Stack>
 )
 
 const lessons: Lesson[] = [
 {title:"What an LLM is",line:"A language model is a program that takes in text and produces the text most likely to come next.",caption:"FIGURE 1.1 — Text in, text out. Everything in this module is about what happens inside the box.",figure:<Stack><Flow items={[{label:"What's the capital of France?",sub:"text in"},{label:"model",accent:true,sub:"one small piece at a time"},{label:"Paris.",sub:"text out"}]} /><KV rows={[{k:"large",v:"the program is very big"},{k:"language",v:"it works on text"},{k:"model",v:"a program whose behavior was learned rather than written"}]} /></Stack>,paragraphs:["When you type into ChatGPT or Claude and get an answer back, you're using a large language model. The name sounds heavy. The idea is not.","A language model is a program. You give it text, and it gives you text back. That's the whole interface: words in, words out.","What makes it different is how it decides what to say. It learned from an enormous amount of written text what text tends to come next. It uses that to produce a reply, one small piece at a time.","The word large means the program is very big. Language means it works on text. Model is the word for a program whose behavior was learned rather than written."],key:"A language model doesn't retrieve answers; it produces the text most likely to follow yours.",question:"Which is closest to what a language model does?",options:["It searches for the best answer in a database.","It follows rules written by engineers.","It produces the text most likely to come next after yours."],answers:["No. Nothing is stored as an answer. It produces text.","The engineers wrote the program that runs it, not the behavior. The behavior was learned.","Yes. Hold onto that sentence; every section builds on it."],deeper:"Andrej Karpathy, Intro to Large Language Models",url:"https://www.youtube.com/watch?v=zjkBMFhNj_g"},
-{title:"Tokens: what the model reads",line:"The model doesn't read words or letters; it reads pieces of text called tokens.",caption:"FIGURE 2.1 — The same sentence, the way the model sees it.",figure:<Table head={["text","what the model sees","tokens"]} accentCol={2} rows={[["The quick brown fox jumps over the lazy dog","The · quick · brown · fox · jumps · over · the · lazy · dog","9"],["unbelievably","un · believ · ably","3"]]} />,paragraphs:["Before the model can do anything with your text, the text is chopped into pieces. The pieces are called tokens.","A token is often a whole word, but not always. Common words are usually one token. Long or rare words get split into several. Punctuation is its own token.","This explains why a model can miscount the letters in strawberry. It never saw the letters, only the pieces. It's also why prices and limits are measured in tokens.","The tokenizer does the chopping before the model and after it. From here on, next piece means next token."],key:"Everything the model reads and writes is made of tokens, and that's the unit it's priced and limited in.",question:"Why might a model miscount the letters in a word?",options:["It's bad at arithmetic.","It reads tokens, not letters, so letters inside a token are invisible to it.","It wasn't trained on spelling."],answers:["That's a different problem. This one is about what it can see.","Yes.","It saw plenty of spelling. Just in pieces."],deeper:"tiktokenizer",url:"https://tiktokenizer.vercel.app/"},
+{title:"Tokens: what the model reads",line:"The model doesn't read words or letters; it reads pieces of text called tokens.",caption:"FIGURE 2.1 — The same sentence, the way the model sees it.",figure:<Stack><Table head={["text","what the model sees","tokens"]} accentCol={2} rows={[["The quick brown fox jumps over the lazy dog","The · quick · brown · fox · jumps · over · the · lazy · dog","9"],["unbelievably","un · believ · ably","3"]]} /><TokenizerDemo /></Stack>,paragraphs:["Before the model can do anything with your text, the text is chopped into pieces. The pieces are called tokens.","A token is often a whole word, but not always. Common words are usually one token. Long or rare words get split into several. Punctuation is its own token.","This explains why a model can miscount the letters in strawberry. It never saw the letters, only the pieces. It's also why prices and limits are measured in tokens.","The tokenizer does the chopping before the model and after it. From here on, next piece means next token."],key:"Everything the model reads and writes is made of tokens, and that's the unit it's priced and limited in.",question:"Why might a model miscount the letters in a word?",options:["It's bad at arithmetic.","It reads tokens, not letters, so letters inside a token are invisible to it.","It wasn't trained on spelling."],answers:["That's a different problem. This one is about what it can see.","Yes.","It saw plenty of spelling. Just in pieces."],deeper:"tiktokenizer",url:"https://tiktokenizer.vercel.app/"},
 {title:"A probability machine",line:"Given some text, the model produces a list of possible next tokens, each with a probability.",caption:"FIGURE 3.1 — Not an answer. A list of possible next tokens, with odds.",figure:<Fig08 />,paragraphs:["When the model reads your text, it doesn't decide on a next token. It produces a list: every token it knows, ranked by how likely it is to come next, with a probability beside each one.","For a sentence about rain, sleep might be at the top with about nine percent, then cook, then relax, and thousands of less likely tokens.","That list is the model's entire output. Everything you've read from a chatbot started as a list like this.","One tall bar means the model is sure. A few medium bars mean it's torn. A long flat spread means the text could go almost anywhere."],key:"The model's output is a probability list over next tokens; choosing one from it is a separate step.",question:"What does the model produce when it reads your text?",options:["The single best next token.","A ranked list of possible next tokens, each with a probability.","The complete reply."],answers:["It produces the whole list. Picking one happens next.","Yes.","No, one token's worth of odds at a time."],deeper:"Google's Machine Learning Crash Course, Introduction to LLMs",url:"https://developers.google.com/machine-learning/crash-course/llm"},
 {title:"One token at a time",line:"A reply is made by picking a token from the list, adding it to the text, and asking for the list again, thousands of times.",caption:"FIGURE 4.1 — Pick, append, repeat.",figure:<Fig01 />,paragraphs:["A list of odds isn't a reply. To get a reply, the program picks one token, adds it to the end of the text, and sends the longer text back for a fresh list.","Then it picks again. Each pick adds one token. The loop runs until a special stop token ends the reply.","This is why an answer appears a few characters at a time. Each piece was one trip around the loop.","There is no plan for how a sentence will end when it starts. There is a good next guess, followed by another good next guess."],key:"Generation is a loop: one token per pass, each pass seeing everything so far.",question:"Why does a chatbot's reply appear in pieces?",options:["For effect: the whole answer exists first.","Because each token is chosen and sent one at a time.","Because the internet is slow."],answers:["It doesn't. Each piece is chosen after the previous one.","Yes.","Not the cause. The pieces really are made one at a time."],deeper:"3Blue1Brown, But what is a GPT?",url:"https://www.3blue1brown.com/lessons/gpt"},
 ]
@@ -80,7 +49,7 @@ const later: Record<number, Lesson> = {
 
 function Check({lesson}:{lesson:Lesson}) { const [selected,setSelected]=useState<number|null>(null); if(!lesson.options) return null; return <section className="mt-12 border border-border p-5"><Eyebrow>Check</Eyebrow><p className="mt-3 text-sm leading-6">{lesson.question}</p><div className="mt-4 grid gap-2">{lesson.options.map((o,i)=><button key={o} onClick={()=>setSelected(i)} className={`border px-3 py-3 text-left text-sm ${selected===i?"border-foreground":"border-border"}`}><span className="mr-2 font-mono text-[10px]">{String.fromCharCode(65+i)}</span>{o}</button>)}</div>{selected!==null&&<p className="mt-4 border-t border-border pt-4 text-sm leading-6 text-muted-foreground">{lesson.answers?.[selected]}</p>}</section> }
 
-export function LessonOne({section=1}:{section?:number}) { const lesson=lessons[section-1]??later[section]; const item=lesson??lessons[0]; return <article><LessonHeader eyebrow={`Module 01 · Section ${section} of 11`} meta={sectionMeta[section-1]??"~7 min"}>{item.title}</LessonHeader><div className="mt-10 border border-border px-4 py-3"><Eyebrow>In one line</Eyebrow><p className="mt-2 text-lg leading-7">{item.line}</p></div><Figure caption={item.caption}>{item.figure}</Figure><Prose>{item.paragraphs.map(p=><p key={p}>{p}</p>)}</Prose><aside className="mt-10 border border-border p-5"><Eyebrow>Key idea</Eyebrow><p className="mt-2 text-sm leading-6">{item.key}</p></aside><Check lesson={item}/>{item.deeper&&<GoDeeper title={item.deeper} url={item.url} />}<div className="mt-12 flex items-center justify-between border-t border-border pt-6 font-mono text-[10px]"><Link href={section>1?`/m/1/s/${section-1}`:"/m/1"}>← Previous</Link>{section<11?<Link className="text-foreground" href={`/m/1/s/${section+1}`}>Next →</Link>:<Link className="text-foreground" href="/m/2">Next: Module 02 — Working with a model →</Link>}</div></article> }
+export function LessonOne({section=1}:{section?:number}) { const lesson=lessons[section-1]??later[section]; const item=lesson??lessons[0]; return <article><LessonHeader eyebrow={`Module 01 · Section ${section} of 11`} meta={sectionMeta[section-1]??"~7 min"}>{item.title}</LessonHeader><div className="mt-10 border border-border px-4 py-3"><Eyebrow>In one line</Eyebrow><p className="mt-2 text-lg leading-7">{item.line}</p></div><Figure caption={item.caption}>{item.figure}</Figure><Prose>{item.paragraphs.map(p=><p key={p}>{p}</p>)}</Prose><aside className="mt-10 border border-border p-5"><Eyebrow>Key idea</Eyebrow><p className="mt-2 text-sm leading-6">{item.key}</p></aside><Check lesson={item}/>{item.deeper&&<GoDeeper title={item.deeper} url={item.url} />}<PrevNext prev={section > 1 ? `/m/1/s/${section - 1}` : "/m/1"} next={section < 11 ? `/m/1/s/${section + 1}` : "/m/2"} /></article> }
 export function LessonShell({lesson}:{lesson:number}){return <LessonOne section={lesson}/>}
 export { sectionMeta as lessonMeta }
 export const moduleSections = lessons.map(x=>x.title).concat(Object.values(later).map(x=>x.title).slice(4))

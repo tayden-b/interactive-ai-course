@@ -1,3 +1,5 @@
+import type { Metadata } from "next"
+import { BRAND } from "@/lib/brand"
 import type { ComponentType } from "react"
 import { notFound } from "next/navigation"
 import Link from "next/link"
@@ -5,6 +7,7 @@ import { ReadingFrame, Eyebrow } from "@/components/book/reading-frame"
 import { courseModules } from "@/components/book/course-data"
 import { AnimatedWave } from "@/components/landing/animated-wave"
 import { Fig01, Fig03, Fig06, Fig07, Fig09, Fig13 } from "@/components/figures/course-figures"
+import { ContinueCta, SeenMark } from "@/components/book/progress-ui"
 
 const ACC = "var(--figure-accent)"
 const INK = "var(--figure-accent-ink)"
@@ -42,6 +45,12 @@ const RUNNING_EXAMPLE = [
 ] as const
 
 export function generateStaticParams() { return courseModules.map((_, i) => ({ module: String(i + 1) })) }
+
+export async function generateMetadata({ params }: { params: Promise<{ module: string }> }): Promise<Metadata> {
+  const { module: raw } = await params; const item = courseModules[Number(raw) - 1]
+  if (!item) return {}
+  return { title: `Module ${String(raw).padStart(2, "0")}: ${item.title} · ${BRAND}`, description: item.intro }
+}
 
 export default async function ModulePage({ params }: { params: Promise<{ module: string }> }) {
   const { module: raw } = await params; const index = Number(raw); const item = courseModules[index - 1]; if (!item) notFound()
@@ -93,7 +102,7 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
     </section>
 
     {/* Sections: blue mono numerals; the project row carries the rule; the verb at the end is blue. */}
-    <section className="mt-12"><Eyebrow>Sections</Eyebrow><div className="mt-4 border-t border-border">{item.sections.map((name, i) => { const isProject = i + 1 === item.projectSection; return <Link key={name} href={`/m/${index}/s/${i + 1}`} className="grid grid-cols-[40px_1fr_auto] items-center gap-3 border-b border-border py-4 text-sm hover:bg-secondary" style={isProject ? { boxShadow: `inset 2px 0 0 ${ACC}`, paddingLeft: 12 } : undefined}><span className="font-mono text-[10px]" style={{ color: INK }}>{String(i + 1).padStart(2, "0")}</span><span>{name}{isProject && <span className="ml-3 font-mono text-[10px] uppercase tracking-[.16em]" style={{ color: INK }}>Project</span>}</span><span className="font-mono text-[10px] text-muted-foreground">~{item.minutes[i]} min · <span style={{ color: INK }}>{i === 0 ? "Start" : "Open"}</span></span></Link> })}</div></section>
+    <section className="mt-12"><div className="flex flex-wrap items-end justify-between gap-4"><Eyebrow>Sections</Eyebrow><ContinueCta /></div><div className="mt-4 border-t border-border">{item.sections.map((name, i) => { const isProject = i + 1 === item.projectSection; return <Link key={name} href={`/m/${index}/s/${i + 1}`} className="grid grid-cols-[52px_1fr_auto] items-center gap-3 border-b border-border py-4 text-sm hover:bg-secondary" style={isProject ? { boxShadow: `inset 2px 0 0 ${ACC}`, paddingLeft: 12 } : undefined}><span className="flex items-center gap-2 font-mono text-[10px]" style={{ color: INK }}><SeenMark module={index} section={i + 1} />{String(i + 1).padStart(2, "0")}</span><span>{name}{isProject && <span className="ml-3 font-mono text-[10px] uppercase tracking-[.16em]" style={{ color: INK }}>Project</span>}</span><span className="font-mono text-[10px] text-muted-foreground">~{item.minutes[i]} min · <span style={{ color: INK }}>{i === 0 ? "Start" : "Open"}</span></span></Link> })}</div></section>
 
     {next && <p className="mt-8 font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground">Then — <Link href={`/m/${index + 1}`} style={{ color: INK }}>Module {String(index + 1).padStart(2, "0")}: {next.title} →</Link></p>}
 

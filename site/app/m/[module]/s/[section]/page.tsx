@@ -1,3 +1,5 @@
+import type { Metadata } from "next"
+import { BRAND } from "@/lib/brand"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ReadingFrame, Eyebrow, Figure, LessonHeader, Prose, ProjectBlocks, Check } from "@/components/book/reading-frame"
@@ -12,6 +14,13 @@ import { ModuleSevenLesson } from "@/components/book/module-seven"
 import { ModuleEightLesson } from "@/components/book/module-eight"
 
 export function generateStaticParams() { return courseModules.flatMap((item, m) => item.sections.map((_, s) => ({ module: String(m + 1), section: String(s + 1) }))) }
+export async function generateMetadata({ params }: { params: Promise<{ module: string; section: string }> }): Promise<Metadata> {
+  const { module: mr, section: sr } = await params
+  const item = courseModules[Number(mr) - 1]; const title = item?.sections[Number(sr) - 1]
+  if (!item || !title) return {}
+  return { title: `${title} · Module ${mr} · ${BRAND}`, description: `${item.title}, section ${sr} of ${item.sections.length}: ${title}.` }
+}
+
 export default async function SectionPage({ params }: { params: Promise<{ module: string; section: string }> }) {
   const { module: mr, section: sr } = await params
   const mn = Number(mr); const section = Number(sr); const item = courseModules[mn - 1]; const title = item?.sections[section - 1]
