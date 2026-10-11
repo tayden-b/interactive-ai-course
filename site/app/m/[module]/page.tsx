@@ -47,7 +47,6 @@ export default async function ModulePage({ params }: { params: Promise<{ module:
   const { module: raw } = await params; const index = Number(raw); const item = courseModules[index - 1]; if (!item) notFound()
   const nn = String(index).padStart(2, "0")
   const hero = HERO[index]
-  const minutes = item.minutes.reduce((a, b) => a + b, 0)
   const projectHref = item.projectSection > 0 ? `/m/${index}/s/${item.projectSection}` : `/m/${index}/s/1`
   const next = courseModules[index]
 

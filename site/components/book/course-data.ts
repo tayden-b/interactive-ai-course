@@ -24,7 +24,7 @@ export const courseModules = [
     minutes: [5, 7, 7, 8, 6, 7, 5, 40], projectSection: 8,
     intro: "A model can only produce text. This module is about giving it hands: describing a tool, letting the model ask for it, running it yourself, and sending the result back — then doing that in a loop until the job is done. By the end, you'll have built one and watched every step of it.",
     outcomes: ["Explain what a tool is and who actually runs it.", "Draw the loop — gather, decide, act, observe — and say when it stops.", "Diagnose the most common reason an agent picks the wrong tool."],
-    projectTitle: "An agent that can look things up", projectBlurb: "A small agent with three tools — a clock, a search, and a file reader — that answers questions it couldn't answer alone, with every step recorded.", projectCta: "Open project →",
+    projectTitle: "An agent that can look things up", projectBlurb: "A small agent with one real tool — the clock, a search, or a file reader — that answers questions it couldn't answer alone, with every step recorded.", projectCta: "Open project →",
   },
   {
     title: "Memory and context", description: "What the model can see, what it forgets, and how to give it a memory.", project: "An agent that remembers.", build: "Memory",
@@ -40,7 +40,7 @@ export const courseModules = [
     minutes: [5, 7, 8, 8, 6, 6, 40], projectSection: 7,
     intro: "You've built an agent that works when you watch it. This module is about knowing it works when you don't: writing down what 'correct' means before you build, grading automatically, reading traces to find out why it failed, and running all of that every time the code changes. Evals are the difference between a demo and something you'd put your name on.",
     outcomes: ["Write a set of golden cases for a task before building it.", "Pick the right grader — exact match, a code check, or a model judging — for each case.", "Read twenty traces and name the step where things go wrong."],
-    projectTitle: "A test suite for your agent", projectBlurb: "Golden cases, three kinds of grader, assertions on the trace, and a command that runs it all — then a change that makes it fail, on purpose.", projectCta: "Open project →",
+    projectTitle: "A test suite for your agent", projectBlurb: "Golden cases, more than one kind of grader, a traced run of every case, and a command that runs it all — then a change that makes it fail, on purpose.", projectCta: "Open project →",
   },
   {
     title: "Failure modes and guardrails", description: "Hallucinated results, runaway loops, injection, cost blowups — and the checks that catch them.", project: "Guardrails.", build: "Guardrails",
